@@ -14,7 +14,7 @@ public class PageController {
 
 
     @RequestMapping(method= RequestMethod.GET)
-    public String hello(Model model) {
+    public String index(Model model) {
         model.addAttribute("greeting", "Hello Cyril Springloaded!!");
         return "index";
     }

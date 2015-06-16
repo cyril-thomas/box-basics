@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='Brickwall'"></head>
+
+<body>
+<div th:replace="layout :: navbar">(navbar)</div>
+<div th:replace="admin/layout :: leftNav">(leftNav)</div>
+
+<div class="container paddedContainer">
+    <div class="starter-template">
+        <a th:href="@{/org/edit}">Create New</a>
+
+        <h1>List of box's</h1>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Edit</th>
+            </tr>
+            <tr th:each="org : ${currentOrgs}">
+                <td th:text="${org.id}"></td>
+                <td th:text="${org.name}"></td>
+                <td th:text="${org.postalAddress.city}"></td>
+                <td th:text="${org.email}"></td>
+                <td th:text="${org.phone}"></td>
+                <td><a th:href="@{/org/edit(id=${org.id})}">Edit</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div th:include="layout :: footer" id="footer">(footer)</div>
+
+</body>
+</html>
