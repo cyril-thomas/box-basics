@@ -1,4 +1,4 @@
-package edu.simplyct.leagueo;
+package edu.simplyct.boxbasics;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

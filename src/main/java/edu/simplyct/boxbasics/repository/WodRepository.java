@@ -1,6 +1,6 @@
-package edu.simplyct.leagueo.repository;
+package edu.simplyct.boxbasics.repository;
 
-import edu.simplyct.leagueo.model.Wod;
+import edu.simplyct.boxbasics.model.Wod;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 

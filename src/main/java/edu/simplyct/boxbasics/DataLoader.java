@@ -1,11 +1,9 @@
-package edu.simplyct.leagueo;
+package edu.simplyct.boxbasics;
 
-import edu.simplyct.leagueo.model.User;
-import edu.simplyct.leagueo.repository.UserRepository;
+import edu.simplyct.boxbasics.model.User;
+import edu.simplyct.boxbasics.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 
 /**
  * Created by cyril on 6/11/15.

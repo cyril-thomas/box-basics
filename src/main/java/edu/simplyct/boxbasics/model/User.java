@@ -1,4 +1,4 @@
-package edu.simplyct.leagueo.model;
+package edu.simplyct.boxbasics.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 

@@ -1,7 +1,7 @@
-package edu.simplyct.leagueo.controller;
+package edu.simplyct.boxbasics.controller;
 
-import edu.simplyct.leagueo.model.Wod;
-import edu.simplyct.leagueo.repository.WodRepository;
+import edu.simplyct.boxbasics.model.Wod;
+import edu.simplyct.boxbasics.repository.WodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

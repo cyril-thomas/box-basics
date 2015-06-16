@@ -1,7 +1,7 @@
-package edu.simplyct.leagueo.controller;
+package edu.simplyct.boxbasics.controller;
 
-import edu.simplyct.leagueo.model.User;
-import edu.simplyct.leagueo.repository.UserRepository;
+import edu.simplyct.boxbasics.model.User;
+import edu.simplyct.boxbasics.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
