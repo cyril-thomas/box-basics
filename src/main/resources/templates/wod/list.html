@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='League-O'"></head>
+<body>
+
+<div th:replace="layout :: navbar">(navbar)</div>
+<div th:replace="admin/layout :: leftNav"/>
+<div th:replace="admin/layout :: content"/>
+<div style="position: right;">
+
+    <a th:href="@{/wod/edit}">Create New</a>
+    <h1>List of WOD's</h1>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Notes</th>
+            <th>Edit</th>
+        </tr>
+        <tr th:each="wod : ${currentWods}">
+            <td th:text="${wod.id}"></td>
+            <td th:text="${wod.name}"></td>
+            <td th:text="${wod.notes}"></td>
+            <td><a th:href="@{/wod/edit(id=${wod.id})}">Edit</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

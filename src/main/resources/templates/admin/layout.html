@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="leftNav" style="padding-top: 50px;" role="leftNav">
+    <div style="width: 80px;">
+        <div class="collapse navbar-collapse">
+            <ul class="nav">
+                <li class="active"><a th:href="@{/wod/list}">WOD</a></li>
+                <li><a th:href="@{/user/list}">Users</a></li>
+                <li><a th:href="@{/schedule/list}">Schedule</a></li>
+                <li><a th:href="@{/blog}">Blog</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
