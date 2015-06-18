@@ -2,6 +2,12 @@
 <head th:include="layout :: htmlhead" th:with="title='Brickwall'"></head>
 
 <body>
+<script>
+        $(document).ready(function(){
+         $("textarea#description").ckeditor();
+        });
+    </script>
+
 <div th:replace="layout :: navbar">(navbar)</div>
 <div th:replace="admin/layout :: leftNav">(leftNav)</div>
 
