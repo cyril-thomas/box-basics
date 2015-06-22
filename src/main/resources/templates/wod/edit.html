@@ -1,13 +1,8 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout :: htmlhead" th:with="title='Brickwall'"></head>
 
 <body>
-<script>
-        $(document).ready(function(){
-         $("textarea#description").ckeditor();
-        });
-    </script>
-
 <div th:replace="layout :: navbar">(navbar)</div>
 <div th:replace="admin/layout :: leftNav">(leftNav)</div>
 
@@ -35,17 +30,18 @@
                 <input type="text"
                        th:field="*{name}"
                        id="name"/>
-                <label for="description">Description</label>
+                <label for="wodDetails">Description</label>
                 <textarea
-                       th:field="*{description}"
-                       id="description"/>
+                       th:text="*{description}"
+                       name="description"
+                       id="wodDetails"/>
                 <label for="notes">Notes</label>
                 <textarea
                        th:field="*{notes}"
                        id="notes"/>
                 <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
 
-                <div th:text="*{description}"/>
+                <!--<div th:text="*{description}"/>-->
 
                 <div class="form-actions">
                     <input type="submit" th:value="*{id} != null? 'Update' : 'Create'"/>
@@ -57,5 +53,11 @@
 
 <div th:include="layout :: footer" id="footer">(footer)</div>
 
+<script>
+    $.noConflict();
+        jQuery(document).ready(function texta(){
+         jQuery("#wodDetails").summernote();
+        });
+    </script>
 </body>
 </html>
