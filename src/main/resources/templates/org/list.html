@@ -6,30 +6,35 @@
 <div th:replace="layout :: navbar">(navbar)</div>
 <div th:replace="admin/layout :: leftNav">(leftNav)</div>
 
-<div class="container paddedContainer">
-    <div class="starter-template">
-        <a th:href="@{/org/edit}">Create New</a>
-
-        <h1>List of box's</h1>
-        <table>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>City</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Edit</th>
-            </tr>
-            <tr th:each="org : ${currentOrgs}">
-                <td th:text="${org.id}"></td>
-                <td th:text="${org.name}"></td>
-                <td th:text="${org.postalAddress.city}"></td>
-                <td th:text="${org.email}"></td>
-                <td th:text="${org.phone}"></td>
-                <td><a th:href="@{/org/edit(id=${org.id})}">Edit</a></td>
-            </tr>
-        </table>
-    </div>
+<div class="container padded-container">
+    <h1>List of box's</h1>
+    <table class="table table-hover">
+        <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td><a th:href="@{/org/edit}" class="btn btn-primary">Create New</a>
+            </td>
+        </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Edit</th>
+        </tr>
+        <tr th:each="org : ${currentOrgs}">
+            <td th:text="${org.id}"></td>
+            <td th:text="${org.name}"></td>
+            <td th:text="${org.postalAddress.city}"></td>
+            <td th:text="${org.email}"></td>
+            <td th:text="${org.phone}"></td>
+            <td><a th:href="@{/org/edit(id=${org.id})}" class="btn btn-primary">Edit</a></td>
+        </tr>
+    </table>
 </div>
 
 <div th:include="layout :: footer" id="footer">(footer)</div>

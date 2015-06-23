@@ -5,12 +5,15 @@
 
 <div th:replace="layout :: navbar">(navbar)</div>
 <div th:replace="admin/layout :: leftNav"/>
-<div th:replace="admin/layout :: content"/>
-<div style="position: right;">
+<div class="container padded-container">
 
-    <a th:href="@{/wod/edit}">Create New</a>
     <h1>List of WOD's</h1>
-    <table>
+    <table class="table table-hover">
+        <tr>
+            <td/><td/><td/>
+            <td><a th:href="@{/wod/edit}" class="btn btn-primary">Create New</a>
+            </td>
+        </tr>
         <tr>
             <th>Id</th>
             <th>Name</th>
@@ -21,7 +24,7 @@
             <td th:text="${wod.id}"></td>
             <td th:text="${wod.name}"></td>
             <td th:text="${wod.notes}"></td>
-            <td><a th:href="@{/wod/edit(id=${wod.id})}">Edit</a></td>
+            <td><a th:href="@{/wod/edit(id=${wod.id})}" class="btn btn-primary">Edit</a></td>
         </tr>
     </table>
 </div>
