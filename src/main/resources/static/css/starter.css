@@ -1,9 +1,8 @@
-.adminContent {
-    padding-left: 150px;
-    position: inherit;
-    width: 900px;
+.admin-nav {
+    padding-top: 50px;
+    width: 80px;
 }
 
-.paddedContainer{
-    padding-top: 50px;
+.padded-container{
+    padding-top: 125px;
 }

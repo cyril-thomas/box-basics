@@ -1,52 +1,77 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:include="layout :: htmlhead" th:with="title='Brickwall'"></head>
 
 <body>
 <div th:replace="layout :: navbar">(navbar)</div>
 
 <div class="container">
-    <div class="starter-template">
-        <div class="container paddedContainer">
-            <form id="userForm"
-                  th:action="@{/user/edit}"
-                  th:object="${user}"
-                  action="#"
-                  method="post">
+    <div class="padded-container">
+        <form id="userForm"
+              th:action="@{/user/edit}"
+              th:object="${user}"
+              action="#"
+              method="post"
+              class="form-horizontal">
 
-                <div th:if="*{firstName} != null">
-                    <h1>Hello <span th:text="${user.firstName}"/>!</h1>
-                </div>
+            <div th:if="*{firstName} != null">
+                <h1>Hello <span th:text="${user.firstName}"/>!</h1>
+            </div>
 
-                <div th:if="${#fields.hasErrors('*')}"
-                     class="alert alert-error">
-                    <p th:each="error : ${#fields.errors('*')}"
-                       th:text="${error}">
-                        Validation error
-                    </p>
+            <div th:if="${#fields.hasErrors('*')}"
+                 class="alert alert-error">
+                <p class="text-danger"
+                   th:each="error : ${#fields.errors('*')}"
+                   th:text="${error}">
+                    Validation error
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="firstName" class="col-sm-2 control-label">First Name</label>
+
+                <div class="col-sm-10">
+                    <input type="text"
+                           th:field="*{firstName}"
+                           id="firstName"/>
                 </div>
-                <label for="firstName">First Name</label>
-                <input type="text"
-                       th:field="*{firstName}"
-                       id="firstName"/>
-                <label for="lastName">Last Name</label>
-                <input type="text"
-                       th:field="*{lastName}"
-                       id="lastName"/>
-                <label for="email">Email</label>
-                <input type="text"
-                       th:field="*{email}"
-                       id="email"/>
-                <label for="phone">Phone</label>
-                <input type="text"
-                       th:field="*{phone}"
-                       id="phone"/>
-                <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
-                <div class="form-actions">
-                    <input type="submit" value="Update"/>
+            </div>
+            <div class="form-group">
+                <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+
+                <div class="col-sm-10">
+                    <input type="text"
+                           th:field="*{lastName}"
+                           id="lastName"/>
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">Email</label>
+
+                <div class="col-sm-10">
+                    <input type="text"
+                           th:field="*{email}"
+                           id="email"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone" class="col-sm-2 control-label">Phone</label>
+
+                <div class="col-sm-10">
+                    <input type="text"
+                           th:field="*{phone}"
+                           id="phone"/>
+                </div>
+            </div>
+            <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit"
+                           class="btn btn-primary"
+                           th:value="*{id} != null? 'Update' : 'Register'"/>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 

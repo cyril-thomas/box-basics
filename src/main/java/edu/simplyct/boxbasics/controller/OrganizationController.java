@@ -1,5 +1,6 @@
 package edu.simplyct.boxbasics.controller;
 
+import edu.simplyct.boxbasics.model.Organization;
 import edu.simplyct.boxbasics.model.Wod;
 import edu.simplyct.boxbasics.repository.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class OrganizationController {
     public String edit(Model model,
                        @RequestParam(value = "id", required = false) Long id) {
         if (id == null) {
-            model.addAttribute("org", new Wod());
+            model.addAttribute("org", new Organization());
         } else {
             model.addAttribute("org", organizationRepository.findOne(id));
         }
