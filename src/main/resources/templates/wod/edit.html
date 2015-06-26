@@ -1,84 +1,96 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout :: htmlhead" th:with="title='Brickwall'"></head>
-
 <body>
 <div th:replace="layout :: navbar">(navbar)</div>
-<div th:replace="admin/layout :: leftNav">(leftNav)</div>
-
 <div class="container">
-    <form id="wodForm"
-          th:action="@{/wod/edit}"
-          th:object="${wod}"
-          action="#"
-          method="post"
-          class="form-horizontal">
+    <div class="spacer"/>
+    <div class="row">
+        <div class="col-lg-12">
+            <form id="wodForm"
+                  th:action="@{/wod/edit}"
+                  th:object="${wod}"
+                  action="#"
+                  method="post">
 
-        <div th:if="*{name} != null">
-            <h1>WOD : <span th:text="${name}"/></h1>
-        </div>
+                <!--Errors-->
+                <div th:if="${#fields.hasErrors('*')}"
+                     class="alert alert-error">
+                    <h3 class="text-danger"
+                        th:each="error : ${#fields.errors('*')}"
+                        th:text="${error}">
+                        Validation error
+                    </h3>
+                </div>
 
-        <div th:if="${#fields.hasErrors('*')}"
-             class="alert alert-error">
-            <p class="text-danger"
-               th:each="error : ${#fields.errors('*')}"
-               th:text="${error}">
-                Validation error
-            </p>
-        </div>
-        <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">Name</label>
+                <!-- Page Heading/Breadcrumbs -->
+                <div th:if="*{id} == null">
+                    <h1 class="page-header">WOD</h1>
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{/wod/list}">List</a>
+                        </li>
+                        <li class="active">New</li>
+                    </ol>
+                    <h3>Create a new WOD!</h3>
+                </div>
 
-            <div class="col-sm-10">
-                <input type="text"
-                       th:field="*{name}"
-                       id="name"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="wodDetails" class="col-sm-2 control-label">Description</label>
+                <div th:if="*{id} != null">
+                    <h1 class="page-header">WOD Edit</h1>
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{/wod/list}">List</a>
+                        </li>
+                        <li class="active">Edit</li>
+                    </ol>
+                    <h3>Editing <span th:text="*{name}"/></h3>
+                </div>
+                <div class="spacer"/>
 
-            <div class="col-sm-10">
+
+                <!-- Fields -->
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="name">Name</label>
+                        <input type="text"
+                               th:field="*{name}"
+                               id="name"
+                               class="form-control"/>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="wodDetails">Description</label>
                 <textarea
                         th:text="*{description}"
                         name="description"
-                        id="wodDetails"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="notes" class="col-sm-2 control-label">Notes</label>
-
-            <div class="col-sm-10">
-                <textarea
-                        th:field="*{notes}"
-                        id="notes"/>
-            </div>
-        </div>
-        <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
-
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+                        id="wodDetails"
+                        class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="notes">Notes</label>
+                        <textarea
+                                th:field="*{notes}"
+                                id="notes"
+                                class="form-control"></textarea>
+                    </div>
+                </div>
+                <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
                 <input type="submit"
                        class="btn btn-primary"
                        th:value="*{id} != null? 'Update' : 'Create'"/>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
+    <div th:include="layout :: footer" id="footer">(footer)</div>
 </div>
-
-<div th:include="layout :: footer" id="footer">(footer)</div>
 
 <script>
     $.noConflict();
         jQuery(document).ready(function texta(){
          jQuery("#wodDetails").summernote();
         });
-
-
-
-
-
-
 
 </script>
 </body>

@@ -1,121 +1,136 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout :: htmlhead" th:with="title='Brickwall'"></head>
-
 <body>
 <div th:replace="layout :: navbar">(navbar)</div>
-<div th:replace="admin/layout :: leftNav">(leftNav)</div>
-
 <div class="container">
-    <div class="paddedContainer">
-        <form id="orgForm"
-              th:action="@{/org/edit}"
-              th:object="${org}"
-              action="#"
-              method="post"
-              class="form-horizontal">
+    <div class="spacer"/>
 
-            <div th:if="*{name} != null">
-                <h1>Editing <span th:text="${org.name}"/>!</h1>
-            </div>
+    <form id="orgForm"
+          th:action="@{/org/edit}"
+          th:object="${org}"
+          action="#"
+          method="post">
 
-            <div th:if="${#fields.hasErrors('*')}"
-                 class="alert alert-error">
-                <p class="text-danger"
-                   th:each="error : ${#fields.errors('*')}"
-                   th:text="${error}">
-                    Validation error
-                </p>
-            </div>
-            <div class="form-group">
-                <label for="name" class="col-sm-2 control-label">Name</label>
 
-                <div class="col-sm-10">
-                    <input type="text"
-                           th:field="*{name}"
-                           id="name"/>
+        <!-- Errors -->
+        <div th:if="${#fields.hasErrors('*')}"
+             class="alert alert-error">
+            <h3 class="text-danger"
+                th:each="error : ${#fields.errors('*')}"
+                th:text="${error}">
+                Validation error
+            </h3>
+        </div>
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div th:if="*{name} != null">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header"><span th:text="*{name}"/></h1>
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{/}">Home</a>
+                        </li>
+                        <li class="active">Edit</li>
+                    </ol>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="firstLine" class="col-sm-2 control-label">Address Line</label>
+            <h1>Editing <span th:text="*{name}"/>!</h1>
+        </div>
 
-                <div class="col-sm-10">
-                    <input type="text"
-                           th:field="*{postalAddress.firstLine}"
-                           id="firstLine"/>
-                    <input type="text"
-                           th:field="*{postalAddress.secondLine}"
-                           id="secondLine"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="city" class="col-sm-2 control-label">City</label>
+        <!-- Fields -->
 
-                <div class="col-sm-10">
-                    <input type="text"
-                           th:field="*{postalAddress.city}"
-                           id="city"/>
-                </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="name">Name</label>
+                <input type="text"
+                       th:field="*{name}"
+                       id="name"
+                       class="form-control"/>
             </div>
-            <div class="form-group">
-                <label for="state" class="col-sm-2 control-label">State</label>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="firstLine">Address Line</label>
 
-                <div class="col-sm-10">
-                    <input type="text"
-                           th:field="*{postalAddress.state}"
-                           id="state"/>
-                </div>
+                <input type="text"
+                       th:field="*{postalAddress.firstLine}"
+                       id="firstLine"
+                       class="form-control"/>
+                <br/>
+                <input type="text"
+                       th:field="*{postalAddress.secondLine}"
+                       id="secondLine"
+                       class="form-control"/>
             </div>
-            <div class="form-group">
-                <label for="zipCode" class="col-sm-2 control-label">Zip Code</label>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="city">City</label>
 
-                <div class="col-sm-10">
-                    <input type="text"
-                           th:field="*{postalAddress.zipcode}"
-                           id="zipCode"/>
-                </div>
+                <input type="text"
+                       th:field="*{postalAddress.city}"
+                       id="city"
+                       class="form-control"/>
             </div>
-            <div class="form-group">
-                <label for="email" class="col-sm-2 control-label">Email</label>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="state">State</label>
+                <input type="text"
+                       th:field="*{postalAddress.state}"
+                       id="state"
+                       class="form-control"/>
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="zipCode">Zip Code</label>
 
-                <div class="col-sm-10">
-                    <input type="text"
-                           th:field="*{email}"
-                           id="email"/>
-                </div>
+                <input type="text"
+                       th:field="*{postalAddress.zipcode}"
+                       id="zipCode"
+                       class="form-control"/>
             </div>
-            <div class="form-group">
-                <label for="phone" class="col-sm-2 control-label">Phone</label>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="email">Email</label>
 
-                <div class="col-sm-10">
-                    <input type="text"
-                           th:field="*{phone}"
-                           id="phone"/>
-                </div>
+                <input type="text"
+                       th:field="*{email}"
+                       id="email"
+                       class="form-control"/>
             </div>
-            <div class="form-group">
-                <label for="domain" class="col-sm-2 control-label">Web Domain</label>
+        </div>
 
-                <div class="col-sm-10">
-                    <input type="text"
-                           th:field="*{webDomain}"
-                           id="domain"/>
-                </div>
-            </div>
-            <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="phone">Phone</label>
 
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <input type="submit"
-                           class="btn btn-primary"
-                           th:value="*{id} != null? 'Update' : 'Register'"/>
-                </div>
+                <input type="text"
+                       th:field="*{phone}"
+                       id="phone"
+                       class="form-control"/>
             </div>
-        </form>
-    </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="domain">Web Domain</label>
+
+                <input type="text"
+                       th:field="*{webDomain}"
+                       id="domain"
+                       class="form-control"/>
+            </div>
+        </div>
+        <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
+
+        <input type="submit"
+               class="btn btn-primary"
+               th:value="*{id} != null? 'Update' : 'Register'"/>
+    </form>
+    <div th:include="layout :: footer" id="footer">(footer)</div>
 </div>
-
-<div th:include="layout :: footer" id="footer">(footer)</div>
-
 </body>
 </html>

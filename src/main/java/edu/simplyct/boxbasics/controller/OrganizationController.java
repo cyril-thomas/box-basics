@@ -24,6 +24,12 @@ public class OrganizationController {
     @Autowired
     OrganizationRepository organizationRepository;
 
+    @RequestMapping("/landing")
+    public String getLanding(){
+        return "/org/landing";
+    }
+
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String wod(Model model) {
         model.addAttribute("currentOrgs", organizationRepository.findAll());
