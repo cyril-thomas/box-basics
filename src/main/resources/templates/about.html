@@ -1,14 +1,74 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout :: htmlhead" th:with="title='Brickwall'"></head>
-
 <body>
-<div th:replace="layout :: navbar">(navbar)</div>
+    <div th:replace="layout :: navbar">(navbar)</div>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="spacer"/>
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">About</h1>
+                <ol class="breadcrumb">
+                    <li><a th:href="@{/}">Home</a>
+                    </li>
+                    <li class="active">About</li>
+                </ol>
+            </div>
+        </div>
 
-<div class="container padded-container">
-  <p class="text-justify">CrossFit Refinery offers individuals the opportunity to reach their fitness goals using the theories and methodologies of CrossFit. These workouts are used for increasing fitness levels of all types: children/elderly, male/female, weekend warriors/professional athletes. CrossFit is a wide variety of constantly varied, functional movements, performed at high intensity. The workouts use exercises from different areas, such as cardio (i.e. running or rowing), gymnastic or bodyweight exercises (push-ups, pull ups, bodyweight squats), and weight training (i.e. squats or shoulder press). Any and all combinations of exercises are used together to add continuous variety, which in turn raises the overall level of fitness for an individual.
+        <div class="row">
+            <div class="col-md-6">
+                <iframe height="450" width="550" src="https://www.youtube.com/embed/ykccBGhfkxM" frameborder="0"/>
+            </div>
+            <div class="col-md-6">
+                <h2>About Brickwall</h2>
+                <p> Brickwall offers individuals the opportunity to reach their fitness goals using the theories and
+                methodologies of CrossFit. These workouts are used for increasing fitness levels of all types:
+                children/elderly, male/female, weekend warriors/professional athletes. CrossFit is a wide variety of
+                constantly varied, functional movements, performed at high intensity. The workouts use exercises from
+                different areas, such as cardio (i.e. running or rowing), gymnastic or bodyweight exercises (push-ups, pull
+                ups, bodyweight squats), and weight training (i.e. squats or shoulder press). Any and all combinations of
+                exercises are used together to add continuous variety, which in turn raises the overall level of fitness for
+                an individual.
 
-FOR EVERYONE - CrossFit Refinery welcomes all fitness levels. The same workouts elite athletes are doing are the same workouts the everyday person should do. Trainers will work with you to scale workouts to your abilities and comfort levels, without sacrificing safety and proper form. The only difference would be the amount of weight, number of reps, and substitutions to promote the progression to the recommended workout. The workouts are meant to be intense for the individual but without sacrificing safety and proper form.</p>
-</div>
+                FOR EVERYONE - CrossFit Brickwall welcomes all fitness levels. The same workouts elite athletes are doing are
+                the same workouts the everyday person should do. Trainers will work with you to scale workouts to your
+                abilities and comfort levels, without sacrificing safety and proper form. The only difference would be the
+                amount of weight, number of reps, and substitutions to promote the progression to the recommended workout.
+                The workouts are meant to be intense for the individual but without sacrificing safety and proper form.</p>
+            </div>
+        </div>
+
+        <!-- Team Members -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Our Team</h2>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt=""/>
+
+                    <div class="caption">
+                        <h3>John Smith<br/>
+                            <small>Job Title</small>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt
+                            maxime.</p>
+                        <ul class="list-inline">
+                            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                            </li>
+                        </ul>
+                    </div><!-- /.caption-->
+                </div><!-- /.thumbnail-->
+            </div><!-- /.col-md-4-->
+        </div><!-- /.row -->
+    <div th:replace="layout :: footer">(footer)</div>
+    </div>
 </body>
 </html>
