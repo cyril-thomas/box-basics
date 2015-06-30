@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -41,7 +42,7 @@ public class OrganizationController {
 
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String wod(Model model) {
+    public String orgs(Model model) {
         model.addAttribute("currentOrgs", organizationRepository.findAll());
         return "/org/list";
     }
@@ -78,6 +79,58 @@ public class OrganizationController {
         model.addAttribute("organization", organization);
         model.addAttribute("orgHome", homeRepository.findByOrganizationId(organization.getId()));
         model.addAttribute("orgAbout", aboutRepository.findByOrganizationId(organization.getId()));
+        return "/org/setup";
+    }
+
+    @RequestMapping(value = "/home/edit", method = RequestMethod.POST)
+    public String homePost(Model model,
+                           HttpSession session,
+                           @ModelAttribute @Valid Home orgHome,
+                           BindingResult result) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("errors", result.getAllErrors());
+            return "org/setup";
+        }
+
+        if(orgHome.getOrganization() == null){
+            Long orgId = (Long)session.getAttribute("orgId");
+            Organization organization = organizationRepository.findOne(orgId);
+            orgHome.setOrganization(organization);
+        }
+
+        model.addAttribute("message", "Updated!");
+        orgHome = homeRepository.save(orgHome);
+
+        model.addAttribute("organization", orgHome.getOrganization());
+        model.addAttribute("orgHome", orgHome);
+        model.addAttribute("orgAbout", aboutRepository.findByOrganizationId(orgHome.getOrganization().getId()));
+        return "/org/setup";
+    }
+
+    @RequestMapping(value = "/about/edit", method = RequestMethod.POST)
+    public String aboutPost(Model model,
+                           HttpSession session,
+                           @ModelAttribute @Valid About orgAbout,
+                           BindingResult result) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("errors", result.getAllErrors());
+            return "org/setup";
+        }
+
+        if(orgAbout.getOrganization() == null){
+            Long orgId = (Long)session.getAttribute("orgId");
+            Organization organization = organizationRepository.findOne(orgId);
+            orgAbout.setOrganization(organization);
+        }
+
+        model.addAttribute("message", "Updated!");
+        orgAbout = aboutRepository.save(orgAbout);
+
+        model.addAttribute("organization", orgAbout.getOrganization());
+        model.addAttribute("orgHome", homeRepository.findByOrganizationId(orgAbout.getOrganization().getId()));
+        model.addAttribute("orgAbout", orgAbout);
         return "/org/setup";
     }
 
