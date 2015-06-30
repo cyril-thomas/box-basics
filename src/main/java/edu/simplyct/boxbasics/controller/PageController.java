@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by cyril on 5/25/15.
  */
@@ -14,8 +16,8 @@ public class PageController {
 
 
     @RequestMapping(method= RequestMethod.GET)
-    public String index(Model model) {
-        model.addAttribute("greeting", "Hello Cyril Springloaded!!");
+    public String index(HttpSession httpSession) {
+        Long orgId = (Long)httpSession.getAttribute("orgId");
         return "index";
     }
 

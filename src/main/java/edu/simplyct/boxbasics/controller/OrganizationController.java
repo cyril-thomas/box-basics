@@ -1,7 +1,11 @@
 package edu.simplyct.boxbasics.controller;
 
+import edu.simplyct.boxbasics.model.About;
+import edu.simplyct.boxbasics.model.Home;
 import edu.simplyct.boxbasics.model.Organization;
 import edu.simplyct.boxbasics.model.Wod;
+import edu.simplyct.boxbasics.repository.AboutRepository;
+import edu.simplyct.boxbasics.repository.HomeRepository;
 import edu.simplyct.boxbasics.repository.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +28,14 @@ public class OrganizationController {
     @Autowired
     OrganizationRepository organizationRepository;
 
+    @Autowired
+    HomeRepository homeRepository;
+
+    @Autowired
+    AboutRepository aboutRepository;
+
     @RequestMapping("/landing")
-    public String getLanding(){
+    public String getLanding() {
         return "/org/landing";
     }
 
@@ -40,24 +50,35 @@ public class OrganizationController {
     public String edit(Model model,
                        @RequestParam(value = "id", required = false) Long id) {
         if (id == null) {
-            model.addAttribute("org", new Organization());
+            model.addAttribute("organization", new Organization());
+            model.addAttribute("orgHome", new Home());
+            model.addAttribute("orgAbout", new About());
         } else {
-            model.addAttribute("org", organizationRepository.findOne(id));
+            Organization organization = organizationRepository.findOne(id);
+            model.addAttribute("organization", organization);
+            model.addAttribute("orgHome", homeRepository.findByOrganizationId(organization.getId()));
+            model.addAttribute("orgAbout", aboutRepository.findByOrganizationId(organization.getId()));
         }
-        return "/org/edit";
+        return "/org/setup";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editPost(Model model,
-                           @ModelAttribute @Valid Wod wod,
+                           @ModelAttribute @Valid Organization organization,
                            BindingResult result) {
 
         if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
-            return "org/edit";
+            return "org/setup";
         }
 
-        return "/org/list";
+        model.addAttribute("message","Updated!");
+        organizationRepository.save(organization);
+
+        model.addAttribute("organization", organization);
+        model.addAttribute("orgHome", homeRepository.findByOrganizationId(organization.getId()));
+        model.addAttribute("orgAbout", aboutRepository.findByOrganizationId(organization.getId()));
+        return "/org/setup";
     }
 
 }

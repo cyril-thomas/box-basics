@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='Brickwall'"></head>
+<body>
+<div th:replace="layout :: navbar">(navbar)</div>
+<div class="container">
+    <div class="spacer"/>
+    <!-- Service Tabs -->
+    <div class="row">
+        <!-- Bread crumb -->
+
+        <div class="col-lg-12">
+            <h2 class="page-header">Brickwall</h2>
+            <ol class="breadcrumb">
+                <li><a th:href="@{/}">Home</a>
+                </li>
+                <li class="active">Edit</li>
+            </ol>
+        </div>
+
+        <div class="col-lg-12">
+
+            <div th:if="${message} != null">
+                <h3 class="text-info" th:text="${message}">Message</h3>
+            </div>
+
+            <ul id="setupTab" class="nav nav-tabs nav-justified">
+                <li class="active"><a href="#gym-details" data-toggle="tab"><i class="fa fa-tree"></i> Gym Details</a>
+                </li>
+                <li class=""><a href="#home-page" data-toggle="tab"><i class="fa fa-car"></i> Home page</a>
+                </li>
+                <li class=""><a href="#about" data-toggle="tab"><i class="fa fa-support"></i> About</a>
+                </li>
+                <li class=""><a href="#services" data-toggle="tab"><i class="fa fa-database"></i> Services</a>
+                </li>
+            </ul>
+
+            <div id="setupTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="gym-details">
+                    <h4>Gym details</h4>
+                    <form id="orgForm"
+                          th:action="@{/org/edit}"
+                          th:object="${organization}"
+                          action="#"
+                          method="post">
+
+                        <!-- Errors -->
+                        <div th:if="${#fields.hasErrors('*')}"
+                             class="alert alert-error">
+                            <h3 class="text-danger"
+                                th:each="error : ${#fields.errors('*')}"
+                                th:text="${error}">
+                                Validation error
+                            </h3>
+                        </div>
+
+                        <!-- Fields -->
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="name">Name</label>
+                                <input type="text"
+                                       th:field="*{name}"
+                                       id="name"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="firstLine">Address Line</label>
+
+                                <input type="text"
+                                       th:field="*{postalAddress.firstLine}"
+                                       id="firstLine"
+                                       class="form-control"/>
+                                <br/>
+                                <input type="text"
+                                       th:field="*{postalAddress.secondLine}"
+                                       id="secondLine"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="city">City</label>
+
+                                <input type="text"
+                                       th:field="*{postalAddress.city}"
+                                       id="city"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="state">State</label>
+                                <input type="text"
+                                       th:field="*{postalAddress.state}"
+                                       id="state"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="zipCode">Zip Code</label>
+
+                                <input type="text"
+                                       th:field="*{postalAddress.zipcode}"
+                                       id="zipCode"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="email">Email</label>
+
+                                <input type="text"
+                                       th:field="*{email}"
+                                       id="email"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="phone">Phone</label>
+
+                                <input type="text"
+                                       th:field="*{phone}"
+                                       id="phone"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="domain">Web Domain</label>
+
+                                <input type="text"
+                                       th:field="*{webDomain}"
+                                       id="domain"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
+
+                        <input type="submit"
+                               class="btn btn-primary"
+                               value="Update"/>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="home-page">
+                    <h4>Home Page Setup</h4>
+                    <form id="homeForm"
+                          th:action="@{/org/home/edit}"
+                          th:object="${orgHome}"
+                          action="#"
+                          method="post">
+
+
+                        <!-- Errors -->
+                        <div th:if="${#fields.hasErrors('*')}"
+                             class="alert alert-error">
+                            <h3 class="text-danger"
+                                th:each="error : ${#fields.errors('*')}"
+                                th:text="${error}">
+                                Validation error
+                            </h3>
+                        </div>
+
+                        <!-- Fields -->
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="home-title">Title</label>
+                                <input type="text"
+                                       th:field="*{title}"
+                                       id="home-title"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="p1-title">Intro Title</label>
+                                <input type="text"
+                                       th:field="*{introTitle}"
+                                       id="p1-title"
+                                       name="introTitle"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="p1-content">Intro Content</label>
+                                <textarea th:text="*{introContent}"
+                                       id="p1-content"
+                                       name="introContent"
+                                       class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="p2-title">Services  Title</label>
+                                <input type="text"
+                                       th:field="*{servicesTitle}"
+                                       id="p2-title"
+                                       name="servicesTitle"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="p2-content">Services Content</label>
+                                <textarea th:text="*{servicesContent}"
+                                          id="p2-content"
+                                          name="servicesContent"
+                                          class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="p3-title">Registration Title</label>
+                                <input type="text"
+                                       th:field="*{regTitle}"
+                                       id="p3-title"
+                                       name="regTitle"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="p3-content">Registration Content</label>
+                                <textarea th:text="*{regContent}"
+                                       id="p3-content"
+                                       name="regContent"
+                                       class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="reg-banner">Registration Banner</label>
+                                <input type="text"
+                                       th:field="*{regBanner}"
+                                       id="reg-banner"
+                                       name="regBanner"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="homeId" name="id"/>
+                        <input type="submit"
+                               class="btn btn-primary"
+                               value="Update"/>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="about">
+                    <h4>About Page Setup</h4>
+                    <form id="aboutForm"
+                          th:action="@{/org/about/edit}"
+                          th:object="${orgAbout}"
+                          action="#"
+                          method="post">
+
+
+                        <!-- Errors -->
+                        <div th:if="${#fields.hasErrors('*')}"
+                             class="alert alert-error">
+                            <h3 class="text-danger"
+                                th:each="error : ${#fields.errors('*')}"
+                                th:text="${error}">
+                                Validation error
+                            </h3>
+                        </div>
+
+                        <!-- Fields -->
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="atitle">Title</label>
+                                <input type="text"
+                                       th:field="*{title}"
+                                       id="atitle"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="acontent">About Content</label>
+                                <textarea th:text="*{aboutContent}"
+                                          id="acontent"
+                                          name="aboutContent"
+                                          class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="aboutId" name="id"/>
+                        <input type="submit"
+                               class="btn btn-primary"
+                               value="Update"/>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="services">
+                    <h4>Services Page Setup</h4>
+                    <p>To be done</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div th:include="layout :: footer" id="footer">(footer)</div>
+</div>
+<script>
+    jQuery(document).ready(function textEditor(){
+     jQuery("#p1-content").summernote();
+     jQuery("#p2-content").summernote();
+     jQuery("#p3-content").summernote();
+     jQuery("#acontent").summernote();
+    });
+
+</script>
+</body>
+</html>
