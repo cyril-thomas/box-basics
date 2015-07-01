@@ -1,5 +1,8 @@
 package edu.simplyct.boxbasics.model;
 
+import lombok.Data;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 /**
@@ -7,6 +10,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "address")
+@Data
+@ToString
 public class Address {
 
     @Id
@@ -28,52 +33,4 @@ public class Address {
 
     @Column(name = "zip_code")
     String zipcode;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstLine() {
-        return firstLine;
-    }
-
-    public void setFirstLine(String firstLine) {
-        this.firstLine = firstLine;
-    }
-
-    public String getSecondLine() {
-        return secondLine;
-    }
-
-    public void setSecondLine(String secondLine) {
-        this.secondLine = secondLine;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
 }

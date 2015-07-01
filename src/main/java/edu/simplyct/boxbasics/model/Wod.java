@@ -1,5 +1,7 @@
 package edu.simplyct.boxbasics.model;
 
+import lombok.Data;
+import lombok.ToString;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -9,6 +11,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "wod")
+@Data
+@ToString
 public class Wod {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -25,36 +29,4 @@ public class Wod {
 
     @Column(name = "notes")
     String notes;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
 }

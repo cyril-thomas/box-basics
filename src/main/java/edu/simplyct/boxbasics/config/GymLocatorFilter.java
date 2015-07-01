@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -26,11 +27,14 @@ public class GymLocatorFilter implements Filter{
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        String serverName = servletRequest.getServerName();
-        if (serverName.contains(".woddojo.com")){
-            String gymName = serverName.substring(0, serverName.indexOf(".woddojo.com"));
-            Organization organization = organizationRepository.findByWebDomain(gymName);
-            ((HttpServletRequest)servletRequest).getSession().setAttribute("orgId",organization.getId());
+        HttpSession session = ((HttpServletRequest) servletRequest).getSession();
+        if(session.getAttribute("orgId") == null) {
+            String serverName = servletRequest.getServerName();
+            if (serverName.contains(".woddojo.com")) {
+                String gymName = serverName.substring(0, serverName.indexOf(".woddojo.com"));
+                Organization organization = organizationRepository.findByWebDomain(gymName);
+                session.setAttribute("orgId", organization.getId());
+            }
         }
         filterChain.doFilter(servletRequest,servletResponse);
     }
