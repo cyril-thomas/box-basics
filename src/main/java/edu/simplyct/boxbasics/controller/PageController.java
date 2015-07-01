@@ -31,6 +31,8 @@ public class PageController {
         model.addAttribute("gymObj", gymDetail);
         model.addAttribute("homeObj", homePage);
 
+        httpSession.setAttribute("gym_name", gymDetail.getName());
+
         return "index";
     }
 
