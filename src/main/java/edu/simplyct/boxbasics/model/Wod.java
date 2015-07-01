@@ -1,7 +1,6 @@
 package edu.simplyct.boxbasics.model;
 
 import lombok.Data;
-import lombok.ToString;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -12,7 +11,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "wod")
 @Data
-@ToString
 public class Wod {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

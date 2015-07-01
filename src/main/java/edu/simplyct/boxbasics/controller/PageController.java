@@ -31,13 +31,13 @@ public class PageController {
         model.addAttribute("gymObj", gymDetail);
         model.addAttribute("homeObj", homePage);
 
-        httpSession.setAttribute("gym_name", gymDetail.getName());
-
         return "index";
     }
 
     @RequestMapping(value = "about", method = RequestMethod.GET)
-    public String about() {
+    public String about(Model model, HttpSession httpSession) {
+        Long orgId = (Long) httpSession.getAttribute("orgId");
+
         return "about";
     }
 

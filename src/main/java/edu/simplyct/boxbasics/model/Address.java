@@ -1,7 +1,6 @@
 package edu.simplyct.boxbasics.model;
 
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -11,7 +10,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "address")
 @Data
-@ToString
 public class Address {
 
     @Id

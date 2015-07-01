@@ -2,13 +2,11 @@ package edu.simplyct.boxbasics.helper.dto;
 
 import edu.simplyct.boxbasics.model.Home;
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * Created by cyril on 6/30/15.
  */
 @Data
-@ToString
 public class HomePage {
     Long   homeId;
     String landingHeader;

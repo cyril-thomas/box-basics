@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -34,6 +33,7 @@ public class GymLocatorFilter implements Filter{
                 String gymName = serverName.substring(0, serverName.indexOf(".woddojo.com"));
                 Organization organization = organizationRepository.findByWebDomain(gymName);
                 session.setAttribute("orgId", organization.getId());
+                session.setAttribute("gymName", organization.getName());
             }
         }
         filterChain.doFilter(servletRequest,servletResponse);
