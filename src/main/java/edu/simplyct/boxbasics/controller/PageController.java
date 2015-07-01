@@ -2,6 +2,7 @@ package edu.simplyct.boxbasics.controller;
 
 import edu.simplyct.boxbasics.helper.PortalHelper;
 import edu.simplyct.boxbasics.helper.dto.AboutPage;
+import edu.simplyct.boxbasics.helper.dto.CoachDetail;
 import edu.simplyct.boxbasics.helper.dto.GymDetail;
 import edu.simplyct.boxbasics.helper.dto.HomePage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by cyril on 5/25/15.
@@ -36,8 +38,10 @@ public class PageController {
     public String about(Model model, HttpSession httpSession) {
         Long orgId = (Long) httpSession.getAttribute("orgId");
         AboutPage aboutPage = portalHelper.getAboutPage(orgId);
+        List<CoachDetail> coaches = portalHelper.getCoaches(orgId);
 
         model.addAttribute("aboutObj", aboutPage);
+        model.addAttribute("coaches", coaches);
         return "about";
     }
 
