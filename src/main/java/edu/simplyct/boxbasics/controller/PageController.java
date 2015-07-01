@@ -1,6 +1,7 @@
 package edu.simplyct.boxbasics.controller;
 
 import edu.simplyct.boxbasics.helper.PortalHelper;
+import edu.simplyct.boxbasics.helper.dto.AboutPage;
 import edu.simplyct.boxbasics.helper.dto.GymDetail;
 import edu.simplyct.boxbasics.helper.dto.HomePage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,8 @@ public class PageController {
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model, HttpSession httpSession) {
         Long orgId = (Long) httpSession.getAttribute("orgId");
-
-        GymDetail gymDetail = portalHelper.getGymDetail(orgId);
         HomePage homePage = portalHelper.getHomePage(orgId);
 
-        model.addAttribute("gymObj", gymDetail);
         model.addAttribute("homeObj", homePage);
 
         return "index";
@@ -37,12 +35,19 @@ public class PageController {
     @RequestMapping(value = "about", method = RequestMethod.GET)
     public String about(Model model, HttpSession httpSession) {
         Long orgId = (Long) httpSession.getAttribute("orgId");
+        AboutPage aboutPage = portalHelper.getAboutPage(orgId);
 
+        model.addAttribute("aboutObj", aboutPage);
         return "about";
     }
 
     @RequestMapping(value = "contact", method = RequestMethod.GET)
-    public String contact() {
+    public String contact(Model model, HttpSession httpSession) {
+        Long orgId = (Long) httpSession.getAttribute("orgId");
+        GymDetail gymDetail = portalHelper.getGymDetail(orgId);
+
+        model.addAttribute("gymObj", gymDetail);
+
         return "contact";
     }
 
