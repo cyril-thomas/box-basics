@@ -1,20 +1,12 @@
 package edu.simplyct.boxbasics.helper;
 
-import edu.simplyct.boxbasics.helper.dto.AboutPage;
-import edu.simplyct.boxbasics.helper.dto.CoachDetail;
-import edu.simplyct.boxbasics.helper.dto.GymDetail;
-import edu.simplyct.boxbasics.helper.dto.HomePage;
-import edu.simplyct.boxbasics.model.About;
-import edu.simplyct.boxbasics.model.Coach;
-import edu.simplyct.boxbasics.model.Home;
-import edu.simplyct.boxbasics.model.Organization;
-import edu.simplyct.boxbasics.repository.AboutRepository;
-import edu.simplyct.boxbasics.repository.CoachRepository;
-import edu.simplyct.boxbasics.repository.HomeRepository;
-import edu.simplyct.boxbasics.repository.OrganizationRepository;
+import edu.simplyct.boxbasics.helper.dto.*;
+import edu.simplyct.boxbasics.model.*;
+import edu.simplyct.boxbasics.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +28,9 @@ public class PortalHelper {
     @Autowired
     CoachRepository coachRepository;
 
+    @Autowired
+    AnnouncementRepository announcementRepository;
+
     public HomePage getHomePage(Long orgId) {
         Home home = homeRepository.findByOrganizationId(orgId);
         return new HomePage(home);
@@ -55,6 +50,13 @@ public class PortalHelper {
         List<Coach> coaches = coachRepository.findByUserOrganizationId(orgId);
         return coaches.stream()
                       .map(e -> new CoachDetail(e))
+                      .collect(Collectors.toList());
+    }
+
+    public List<AnnouncementDetail> getAnnouncements(Long orgId) {
+        List<Announcement> announcements = announcementRepository.findByOrganizationIdAndEndDateAfter(orgId, new Date());
+        return announcements.stream()
+                            .map(e -> new AnnouncementDetail(e))
                       .collect(Collectors.toList());
     }
 }

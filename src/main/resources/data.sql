@@ -53,3 +53,8 @@ insert into about(about_id,about_title,about_content,org_id)
 values(1,'About Brickwall!'
 ,'Brickwall offers individuals the opportunity to reach their fitness goals using the theories and methodologies of CrossFit. These workouts are used for increasing fitness levels of all types: children/elderly, male/female, weekend warriors/professional athletes. CrossFit is a wide variety of constantly varied, functional movements, performed at high intensity. The workouts use exercises from different areas, such as cardio (i.e. running or rowing), gymnastic or bodyweight exercises (push-ups, pull ups, bodyweight squats), and weight training (i.e. squats or shoulder press). Any and all combinations of exercises are used together to add continuous variety, which in turn raises the overall level of fitness for an individual. FOR EVERYONE - CrossFit Brickwall welcomes all fitness levels. The same workouts elite athletes are doing are the same workouts the everyday person should do. Trainers will work with you to scale workouts to your abilities and comfort levels, without sacrificing safety and proper form. The only difference would be the amount of weight, number of reps, and substitutions to promote the progression to the recommended workout. The workouts are meant to be intense for the individual but without sacrificing safety and proper form.'
 ,1);
+
+insert into announcement(announcement_id,title,content,org_id)
+values(1,'Hey Brickwallers!'
+,'Brickwall is now offering yoga classes'
+,1);

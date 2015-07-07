@@ -100,6 +100,22 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="media">
+                <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-bullhorn fa-stack-1x fa-inverse"></i>
+                        </span>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">Announcements</h4>
+
+                    <p>Edit and Manage announcements for your dojo</p>
+                    <a th:href="@{/announcement/list}" class="btn btn-primary">Setup</a>
+                </div>
+            </div>
+        </div>
     </div>
     <div th:include="layout :: footer" id="footer">(footer)</div>
 </div>
