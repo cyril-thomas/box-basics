@@ -30,6 +30,6 @@ public class SocialController {
             e.printStackTrace();
             model.addAttribute("feed", null);
         }*/
-        return "/social/list";
+        return "social/list";
     }
 }

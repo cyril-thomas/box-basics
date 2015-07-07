@@ -3,7 +3,6 @@ package edu.simplyct.boxbasics.controller;
 import edu.simplyct.boxbasics.model.About;
 import edu.simplyct.boxbasics.model.Home;
 import edu.simplyct.boxbasics.model.Organization;
-import edu.simplyct.boxbasics.model.Wod;
 import edu.simplyct.boxbasics.repository.AboutRepository;
 import edu.simplyct.boxbasics.repository.HomeRepository;
 import edu.simplyct.boxbasics.repository.OrganizationRepository;
@@ -37,14 +36,14 @@ public class OrganizationController {
 
     @RequestMapping("/landing")
     public String getLanding() {
-        return "/org/landing";
+        return "org/landing";
     }
 
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String orgs(Model model) {
         model.addAttribute("currentOrgs", organizationRepository.findAll());
-        return "/org/list";
+        return "org/list";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -60,7 +59,7 @@ public class OrganizationController {
             model.addAttribute("orgHome", homeRepository.findByOrganizationId(organization.getId()));
             model.addAttribute("orgAbout", aboutRepository.findByOrganizationId(organization.getId()));
         }
-        return "/org/setup";
+        return "org/setup";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -79,7 +78,7 @@ public class OrganizationController {
         model.addAttribute("organization", organization);
         model.addAttribute("orgHome", homeRepository.findByOrganizationId(organization.getId()));
         model.addAttribute("orgAbout", aboutRepository.findByOrganizationId(organization.getId()));
-        return "/org/setup";
+        return "org/setup";
     }
 
     @RequestMapping(value = "/home/edit", method = RequestMethod.POST)
@@ -105,7 +104,7 @@ public class OrganizationController {
         model.addAttribute("organization", orgHome.getOrganization());
         model.addAttribute("orgHome", orgHome);
         model.addAttribute("orgAbout", aboutRepository.findByOrganizationId(orgHome.getOrganization().getId()));
-        return "/org/setup";
+        return "org/setup";
     }
 
     @RequestMapping(value = "/about/edit", method = RequestMethod.POST)
@@ -131,7 +130,7 @@ public class OrganizationController {
         model.addAttribute("organization", orgAbout.getOrganization());
         model.addAttribute("orgHome", homeRepository.findByOrganizationId(orgAbout.getOrganization().getId()));
         model.addAttribute("orgAbout", orgAbout);
-        return "/org/setup";
+        return "org/setup";
     }
 
 }

@@ -26,7 +26,7 @@ public class WodController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String wod(Model model) {
         model.addAttribute("currentWods", wodRepository.findAll());
-        return "/wod/list";
+        return "wod/list";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -37,7 +37,7 @@ public class WodController {
         } else {
             model.addAttribute("wod", wodRepository.findOne(id));
         }
-        return "/wod/edit";
+        return "wod/edit";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -71,7 +71,7 @@ public class WodController {
 
         model.addAttribute("currentWods", wodRepository.findAll());
 
-        return "/wod/list";
+        return "wod/list";
     }
 
 }
