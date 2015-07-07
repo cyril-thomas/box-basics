@@ -54,5 +54,10 @@ public class PageController {
 
         return "contact";
     }
+    
+    @RequestMapping(value = "server_status", method = RequestMethod.GET)
+    public String serverStatus() {
+    	return "server_status";
+    }
 
 }
