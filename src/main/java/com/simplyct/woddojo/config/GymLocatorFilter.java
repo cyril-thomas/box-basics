@@ -26,8 +26,14 @@ public class GymLocatorFilter implements Filter{
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpSession session = ((HttpServletRequest) servletRequest).getSession();
-        if (session.getAttribute("orgId") == null) {
+
+        HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
+        if ("server_status.html".equals(httpRequest.getServletPath())) {
+        	filterChain.doFilter(servletRequest,servletResponse);
+        	return;
+        }
+    	HttpSession session = httpRequest.getSession();
+        if(session.getAttribute("orgId") == null) {
             String serverName = servletRequest.getServerName();
             if (serverName.contains(".woddojo.com")) {
                 String gymName = serverName.substring(0, serverName.indexOf(".woddojo.com"));
