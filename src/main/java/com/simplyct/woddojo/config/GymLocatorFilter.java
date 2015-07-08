@@ -3,6 +3,7 @@ package com.simplyct.woddojo.config;
 import com.simplyct.woddojo.model.Organization;
 import com.simplyct.woddojo.repository.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -14,6 +15,7 @@ import java.io.IOException;
  * Created by cyril on 6/29/15.
  */
 @Component
+@Profile({"stage", "production"})
 public class GymLocatorFilter implements Filter{
 
     @Autowired
