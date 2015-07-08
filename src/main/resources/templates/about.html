@@ -23,8 +23,10 @@
                 <iframe height="450" width="550" src="https://www.youtube.com/embed/ykccBGhfkxM" frameborder="0"/>
             </div>
             <div class="col-md-6">
-                <h2><p th:text="${aboutObj.aboutHeader}"></p></h2>
-                <p th:text="${aboutObj.aboutContent}"></p>
+                <h2>
+                    <div th:text="${aboutObj.aboutHeader}"></div>
+                </h2>
+                <div th:text="${aboutObj.aboutContent}"></div>
             </div>
         </div>
 
@@ -43,7 +45,7 @@
                             <br/>
                             <small><span th:text="${coach.jobTitle}"></span></small>
                         </h3>
-                        <p th:text="${coach.intro}"></p>
+                        <div th:text="${coach.intro}"></div>
                         <ul class="list-inline">
                             <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
                             </li>

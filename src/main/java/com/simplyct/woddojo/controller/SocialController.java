@@ -24,20 +24,16 @@ public class SocialController {
     @Autowired
     InstagramService instagramService;
 
-    @RequestMapping(value = "/landing", method = RequestMethod.GET)
-    public String getInstagram(Model model) {
-        model.addAttribute("authorizationUrl", instagramService.getAuthorizationUrl(null));
-        return "social/list";
-    }
-
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String getInstagramFeed(Model model,
                                    HttpSession session) {
-        Long orgId = (Long) session.getAttribute("orgId");
-
         if (session.getAttribute("INSTAGRAM_OBJECT") == null) {
             model.addAttribute("feed", null);
+            model.addAttribute("authorizationUrl", instagramService.getAuthorizationUrl(null));
+            return "social/list";
         }
+
+        Long orgId = (Long) session.getAttribute("orgId");
 
         Instagram instagram = (Instagram) session.getAttribute("INSTAGRAM_OBJECT");
 
