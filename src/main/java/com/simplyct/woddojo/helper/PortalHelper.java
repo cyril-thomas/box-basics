@@ -33,7 +33,9 @@ public class PortalHelper {
 
     public HomePage getHomePage(Long orgId) {
         Home home = homeRepository.findByOrganizationId(orgId);
-        return new HomePage(home);
+        HomePage homePage = new HomePage(home);
+        homePage.setAnnouncements(getAnnouncements(orgId));
+        return homePage;
     }
 
     public GymDetail getGymDetail(Long orgId) {

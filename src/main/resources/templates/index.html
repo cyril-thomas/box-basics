@@ -50,6 +50,33 @@
                 </div>
             </div>
 
+            <!-- Announcements -->
+            <div class="row" th:if="${homeObj.announcements != null and homeObj.announcements.size() > 0}">
+                <div class="col-lg-12">
+                    <h2><i class="fa fa-2x fa-bullhorn"></i> Annoucements</h2>
+
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default" th:each="anno,iterStat : ${homeObj.announcements}">
+                            <div class="panel-heading" role="tab" th:id="'heading-'+${anno.aId}">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                       th:href="'#collapse-'+${anno.aId}" aria-expanded="true">
+                                        <div th:text="${anno.title}"/>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div th:id="'collapse-'+${anno.aId}" class="panel-collapse collapsed in" role="tabpanel">
+                                <div class="panel-body">
+                                    <div th:text="${anno.content}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br/><br/>
+
             <div class="well">
                 <div class="row">
                     <div class="col-md-8">

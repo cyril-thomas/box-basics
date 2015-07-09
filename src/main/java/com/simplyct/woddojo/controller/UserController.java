@@ -45,11 +45,10 @@ public class UserController {
             return "users/edit";
         }
 
-
+        //registration flow
         if (user.getId() == null) {
             userRepository.save(user);
-            model.addAttribute("currentUsers", userRepository.findAll());
-            return "users/list";
+            return "users/success";
         }
 
         User dbValue = userRepository.findOne(user.getId());
