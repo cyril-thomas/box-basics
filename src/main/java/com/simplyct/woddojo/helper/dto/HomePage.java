@@ -3,6 +3,8 @@ package com.simplyct.woddojo.helper.dto;
 import com.simplyct.woddojo.model.Home;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * Created by cyril on 6/30/15.
  */
@@ -17,6 +19,7 @@ public class HomePage {
     String regTitle;
     String regContent;
     String regBanner;
+    List<AnnouncementDetail> announcements;
 
     public HomePage() {
     }

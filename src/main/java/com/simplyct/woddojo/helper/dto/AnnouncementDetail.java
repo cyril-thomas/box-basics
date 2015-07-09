@@ -8,12 +8,12 @@ import lombok.Data;
  */
 @Data
 public class AnnouncementDetail {
-    Long   announcementId;
+    Long aId;
     String content;
     String title;
 
     public AnnouncementDetail(Announcement announcement) {
-        this.announcementId = announcement.getId();
+        this.aId = announcement.getId();
         this.title = announcement.getTitle();
         this.content = announcement.getContent();
     }
