@@ -55,17 +55,17 @@
                 <div class="col-lg-12">
                     <h2><i class="fa fa-2x fa-bullhorn"></i> Annoucements</h2>
 
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default" th:each="anno,iterStat : ${homeObj.announcements}">
-                            <div class="panel-heading" role="tab" th:id="'heading-'+${anno.aId}">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default" th:each="anno : ${homeObj.announcements}">
+                            <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion"
-                                       th:href="'#collapse-'+${anno.aId}" aria-expanded="true">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                                       th:href="'#collapse-'+${anno.aId}">
                                         <div th:text="${anno.title}"/>
                                     </a>
                                 </h4>
                             </div>
-                            <div th:id="'collapse-'+${anno.aId}" class="panel-collapse collapsed in" role="tabpanel">
+                            <div th:id="'collapse-'+${anno.aId}" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <div th:text="${anno.content}"/>
                                 </div>
@@ -74,8 +74,9 @@
                     </div>
                 </div>
             </div>
-
             <br/><br/>
+
+            <!-- Registration banner-->
 
             <div class="well">
                 <div class="row">
