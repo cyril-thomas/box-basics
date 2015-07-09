@@ -31,6 +31,9 @@ public class PortalHelper {
     @Autowired
     AnnouncementRepository announcementRepository;
 
+    @Autowired
+    ServiceRepository serviceRepository;
+
     public HomePage getHomePage(Long orgId) {
         Home home = homeRepository.findByOrganizationId(orgId);
         HomePage homePage = new HomePage(home);
@@ -60,5 +63,13 @@ public class PortalHelper {
         return announcements.stream()
                             .map(e -> new AnnouncementDetail(e))
                       .collect(Collectors.toList());
+    }
+
+    public List<ServiceDetail> getServices(Long orgId) {
+        List<com.simplyct.woddojo.model.Service> services =
+                serviceRepository.findByOrganizationId(orgId);
+        return services.stream()
+                       .map(e -> new ServiceDetail(e))
+                       .collect(Collectors.toList());
     }
 }
