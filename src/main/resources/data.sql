@@ -62,3 +62,12 @@ insert into announcement(announcement_id,title,content,org_id,end_date)
 values(2,'Oly Lifts'
 ,'Oly lift classes are moved to Wednesday @ 7 pm instead of the Tuesday’s. Please contact Coach Rocky for more info.'
 ,1, '9999-12-31');
+
+
+
+insert into service(service_id,title,content,org_id)
+values(1,'Foundations','This is designed for individuals new to CrossFit and exercise in general. We slowly integrate and explain the nine basic movements that CrossFit utilizes for its programming. We provide a high level of individual instruction, education, and physical adaptation. The environment this class offers allows for each individual to become comfortable with each movement as well as their own ability to perform each movement. This class also allows for the CrossFit Coaches to understand the physical and mental limitations of each member so that we are able to modify and adapt the individual client when joining a regular group setting. Each foundation class will last 60 minutes and will be offered two times a day, three days a week.',1);
+insert into service(service_id,title,content,org_id)
+values(2,'CrossFit','This class is designed for the average client of Brickwall Crossfit, LLC. The primary base of its programming is for General Physical Preparedness. Each class is designed for a limit of 20 individual members that have completed the proper foundations protocol. This class will be divided into four specific sections: Warm Up, Strength, Workout of the Day (WOD), and Mobility.',1);
+insert into service(service_id,title,content,org_id)
+values(3,'CrossFit Sport','This class is designed specifically for those wishing to compete in the Crossfit games or other regional competitions. Only after certain specific requirements are met will an individual or team be allowed access to this high intensity class. This class meets six times a week and is for the advanced Crossfitter.',1);

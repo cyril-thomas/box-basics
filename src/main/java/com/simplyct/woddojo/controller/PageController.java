@@ -1,10 +1,7 @@
 package com.simplyct.woddojo.controller;
 
 import com.simplyct.woddojo.helper.PortalHelper;
-import com.simplyct.woddojo.helper.dto.AboutPage;
-import com.simplyct.woddojo.helper.dto.CoachDetail;
-import com.simplyct.woddojo.helper.dto.GymDetail;
-import com.simplyct.woddojo.helper.dto.HomePage;
+import com.simplyct.woddojo.helper.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +51,17 @@ public class PageController {
 
         return "contact";
     }
-    
+
+    @RequestMapping(value = "services", method = RequestMethod.GET)
+    public String services(Model model, HttpSession httpSession) {
+        Long orgId = (Long) httpSession.getAttribute("orgId");
+        List<ServiceDetail> services = portalHelper.getServices(orgId);
+
+        model.addAttribute("services", services);
+
+        return "services";
+    }
+
     @RequestMapping(value = "server_status", method = RequestMethod.GET)
     public String serverStatus() {
     	return "server_status";
