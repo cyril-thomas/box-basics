@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        <div th:text="${homeObj.landingHeader}"></div>
+                        <div th:utext="${homeObj.landingHeader}"></div>
                     </h1>
                 </div>
                 <div class="col-md-4">
@@ -21,7 +21,7 @@
                             <h4><i class="fa fa-fw fa-check"></i> <span th:text="${homeObj.introTitle}"></span></h4>
                         </div>
                         <div class="panel-body"> <!-- Intro -->
-                            <div th:text="${homeObj.introContent}"></div>
+                            <div th:utext="${homeObj.introContent}"></div>
                             <a th:href="@{/about}" class="btn btn-default">Learn More</a>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                             <h4><i class="fa fa-fw fa-trophy"></i> <span th:text="${homeObj.servicesTitle}"></span></h4>
                         </div>
                         <div class="panel-body"> <!-- Services -->
-                            <div th:text="${homeObj.servicesContent}"></div>
+                            <div th:utext="${homeObj.servicesContent}"></div>
                             <a th:href="@{/about}" class="btn btn-default">Learn More</a>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                             <h4><i class="fa fa-fw fa-compass"></i> <span th:text="${homeObj.regTitle}"></span></h4>
                         </div>
                         <div class="panel-body"><!-- Sign up -->
-                            <div th:text="${homeObj.regContent}"></div>
+                            <div th:utext="${homeObj.regContent}"></div>
                             <a th:href="@{/user/register}" class="btn btn-default">Learn More</a>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             </div>
                             <div th:id="'collapse-'+${anno.aId}" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <div th:text="${anno.content}"/>
+                                    <div class="content" th:utext="${anno.content}"/>
                                 </div>
                             </div>
                         </div>

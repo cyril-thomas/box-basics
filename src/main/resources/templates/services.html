@@ -30,7 +30,7 @@
                 <div class="tab-pane fade" th:id="'service-'+${service.serviceId}" th:each="service : ${services}">
                     <h2><span th:text="${service.title}"></span></h2>
 
-                    <div th:text="${service.content}"></div>
+                    <div th:utext="${service.content}"></div>
                 </div>
             </div>
         </div>
