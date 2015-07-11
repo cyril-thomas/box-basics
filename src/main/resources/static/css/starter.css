@@ -1,16 +1,113 @@
+.spacer{
+    height: 31px;
+    }
 .admin-nav {
     padding-top: 50px;
     width: 80px;
-}
-
+    }
+.navbar{
+    position:relative;
+    }
+.navbar-inverse .navbar-nav > li > a {
+    color: #999999;
+    }
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: #000000;
+    }
+.navbar-inverse {
+    background-color: #ffe141;
+    }
 .padded-container{
     padding-top: 125px;
-}
+    }
 
-.spacer{
-    height: 31px;
-}
+#mainImage{
+    background-color:#47484d;
+    height:250px;
+    width:100%; 
+    margin-top:-20px;
+    background-image:url(../images/mainImage.png);
+    background-position:center;
+    background-size:cover
+    }
+
 
 .home-page-spacer{
     height: 75px;
 }
+div.image_container{
+    width:auto;
+    max-width:320px;
+    height:320px;
+    margin:15px;
+    float:left;
+
+    }
+
+#parent, .image_container .sliderBox{
+    height:0px;
+    width:100%;
+    overflow:hidden;
+    position:relative;
+    bottom:0px;
+    top:0px;
+    font-size:0px;
+    padding:0px 10px 0px 10px;
+    background-color:rgba(255, 255, 255, .8);
+    -webkit-transition: height 1s, top 1s, padding 1s;
+    -moz-transition:height 1s, top 1s, padding 1s;
+    -ms-transition:height 1s, top 1s, padding 1s;
+    transition:height 1s, top 1s, padding 1s;
+    -webkit-transition-timing-function: ease;
+	
+    }
+
+#parent, .image_container:hover .sliderBox{
+    width:100%;
+    height:150px;
+    top:-150px;
+    font:11px Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    bottom:123px;
+    padding:10px 10px 10px 10px;
+    overflow:hidden;
+    }
+.thumbnail.image_container{border:none;}
+.panel.infoBox{
+    background-color: #faf8e1;
+    
+    }
+.panel{border:none;
+    box-shadow: none;}
+.panel-default > .panel-heading {
+    background-color: #ffe141;
+    }
+.btn-right{
+    text-align: right;
+    padding-top: 15px;
+    }
+    
+    
+    
+@media screen and ( max-width:768px){
+   #mainImage{height:110px}
+}
+
+@media screen and ( min-width:992px){
+   .panel.infoBox{
+       height:404px;
+   }
+   .btn-right {
+        bottom: 34px;
+        padding-top: 15px;
+        position: absolute;
+        right: 32px;
+        text-align: right;
+    }
+}
+@media screen and ( min-width:1200px){
+    .panel.infoBox{
+       height:360px;
+   }
+
+}
+
