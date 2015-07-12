@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="admin/adminLayout :: adhtmlhead"></head>
+<body>
+<div th:replace="admin/adminLayout :: adNavbar">(adNavbar)</div>
+<div class="container">
+   
+
+    <form id="orgForm"
+          th:action="@{/org/edit}"
+          th:object="${org}"
+          action="#"
+          method="post">
+
+
+        <!-- Errors -->
+        <div th:if="${#fields.hasErrors('*')}"
+             class="alert alert-error">
+            <h3 class="text-danger"
+                th:each="error : ${#fields.errors('*')}"
+                th:text="${error}">
+                Validation error
+            </h3>
+        </div>
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div th:if="*{name} != null">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header"><span th:text="*{name}"/></h1>
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{/}">Home</a>
+                        </li>
+                        <li class="active">Edit</li>
+                    </ol>
+                </div>
+            </div>
+            <h1>Editing <span th:text="*{name}"/>!</h1>
+        </div>
+
+        <!-- Fields -->
+
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="name">Name</label>
+                <input type="text"
+                       th:field="*{name}"
+                       id="name"
+                       class="form-control"/>
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="firstLine">Address Line</label>
+
+                <input type="text"
+                       th:field="*{postalAddress.firstLine}"
+                       id="firstLine"
+                       class="form-control"/>
+                <br/>
+                <input type="text"
+                       th:field="*{postalAddress.secondLine}"
+                       id="secondLine"
+                       class="form-control"/>
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="city">City</label>
+
+                <input type="text"
+                       th:field="*{postalAddress.city}"
+                       id="city"
+                       class="form-control"/>
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="state">State</label>
+                <input type="text"
+                       th:field="*{postalAddress.state}"
+                       id="state"
+                       class="form-control"/>
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="zipCode">Zip Code</label>
+
+                <input type="text"
+                       th:field="*{postalAddress.zipcode}"
+                       id="zipCode"
+                       class="form-control"/>
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="email">Email</label>
+
+                <input type="text"
+                       th:field="*{email}"
+                       id="email"
+                       class="form-control"/>
+            </div>
+        </div>
+
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="phone">Phone</label>
+
+                <input type="text"
+                       th:field="*{phone}"
+                       id="phone"
+                       class="form-control"/>
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="domain">Web Domain</label>
+
+                <input type="text"
+                       th:field="*{webDomain}"
+                       id="domain"
+                       class="form-control"/>
+            </div>
+        </div>
+        <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
+
+        <input type="submit"
+               class="btn btn-primary"
+               th:value="*{id} != null? 'Update' : 'Register'"/>
+    </form>
+    <div th:include="admin/adminLayout :: adFooter" id="adFooter">(adFooter)</div>
+</div>
+</body>
+</html>
