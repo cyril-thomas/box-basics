@@ -1,8 +1,8 @@
 insert into address(address_id,first_line,second_line,city,state,zip_code) values
 (1,'Main Street','600 S','Salt Lake City','UT','84111');
 
-insert into organization(org_id,address_id,name,email,phone,web_domain) values
-(1,1,'Brickwall','brickwall@woddojo.com','8019209901','brickwall');
+insert into organization(org_id,address_id,name,email,phone,web_domain,hash_tag) values
+(1,1,'Brickwall','brickwall@woddojo.com','8019209901','brickwall','brickwallcrossfit');
 
 --Users
 insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) values
