@@ -41,6 +41,37 @@ insert into wod(wod_id,name,description,notes) values
 insert into wod(wod_id,name,description,notes) values
 (3,'Kelly','Five rounds for time of: <br/> Run 400 meters <br/> 30 Box jump, 24 inch box <br/> 30 Wall ball shots, 20 pound ball','Run baby run!');
 
+-- Classes
+insert into classes(class_id,org_id,coach_id,name,description) values
+(1,1,1,'6 am - 7 am', 'Early Morning class');
+insert into classes(class_id,org_id,coach_id,name,description) values
+(2,1,1,'7 am - 8 am', 'Morning class');
+insert into classes(class_id,org_id,coach_id,name,description) values
+(3,1,2,'9 am - 10 am', 'Ladies only class');
+insert into classes(class_id,org_id,coach_id,name,description) values
+(4,1,2,'Noon - 1 pm', 'Nooner');
+insert into classes(class_id,org_id,coach_id,name,description) values
+(5,1,3,'4 am - 5 am', 'Evening class');
+insert into classes(class_id,org_id,coach_id,name,description) values
+(6,1,3,'5 am - 6 am', 'Oly lifts');
+
+--Schedule
+insert into schedule(schedule_id,wod_id,org_id,wod_date) values
+(1,1,1,'2015-07-14');
+
+insert into schedule_class_rel(schedule_id,class_id) values
+(1,1);
+insert into schedule_class_rel(schedule_id,class_id) values
+(1,2);
+insert into schedule_class_rel(schedule_id,class_id) values
+(1,3);
+insert into schedule_class_rel(schedule_id,class_id) values
+(1,4);
+insert into schedule_class_rel(schedule_id,class_id) values
+(1,5);
+insert into schedule_class_rel(schedule_id,class_id) values
+(1,6);
+
 -- Portal
 insert into home(home_id,title,intro_title,intro_content,services_title,services_content,registration_title,registration_content,registration_banner,org_id)
 values(1,'Welcome to Brickwall Crossfit!'

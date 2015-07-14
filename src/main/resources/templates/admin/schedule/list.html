@@ -14,7 +14,7 @@
                 </li>
                 <li class="active">Schedule</li>
             </ol>
-            <div class="pull-right"><a th:href="@{/org/edit}" class="btn btn-primary">Create New</a></div>
+            <div class="pull-right"><a th:href="@{/schedule/edit}" class="btn btn-primary">Create New</a></div>
         </div>
     </div>
 
@@ -36,7 +36,7 @@
                     <td th:text="${org.postalAddress.city}"></td>
                     <td th:text="${org.email}"></td>
                     <td th:text="${org.phone}"></td>
-                    <td><a th:href="@{/org/edit(id=${org.id})}" class="btn btn-primary">Edit</a></td>
+                    <td><a th:href="@{/schedule/edit(id=${org.id})}" class="btn btn-primary">Edit</a></td>
                 </tr>
             </table>
         </div>
