@@ -4,7 +4,7 @@
 <body>
 <div th:replace="admin/adminLayout :: adNavbar">(adNavbar)</div>
 <div class="container">
-
+    <div class="spacer"/>
     <div class="row">
         <div class="col-lg-12">
 
@@ -40,16 +40,52 @@
 
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label for="date-sc">Date</label>
+                        <label for="date-sc">Date of Workout</label>
                         <input type="date"
-                               th:field="*{date}"
+                               th:field="*{wodDate}"
                                id="date-sc"
                                class="form-control"/>
                     </div>
                 </div>
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="workout">Select Workout</label>
+                        <select th:field="*{wod}" class="form-control" id="workout">
+                            <option th:each="w : ${workouts}"
+                                    th:value="${w.id}"
+                                    th:text="${w.name}+'  :  '+ ${w.notes}">Workout
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
                 <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
+                <input type="hidden" th:if="*{organization.id} != null" th:field="*{organization.id}"
+                       id="orgId"/>
                 <input type="submit" class="btn btn-primary" th:value="*{id} != null? 'Update' : 'Save'"/>
 
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Classes</h1>
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Title</th>
+                                <th>Coach</th>
+                                <th>Description</th>
+                                <th>Cancel</th>
+                            </tr>
+                            <tr th:each="c : ${schedule.classes}">
+                                <td th:text="${c.name}"></td>
+                                <td th:text="${c.coach.user.firstName}"></td>
+                                <td th:text="${c.description}"></td>
+                                <td><a th:href="@{/schedule/class/cancel(id=${schedule.id},cid=${c.id})}"
+                                       class="btn btn-primary">Cancel</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -60,9 +96,11 @@
     jQuery(document).ready(function dateBox(){
          jQuery("#date-sc").datepicker({
             todayBtn: "linked",
-            orientation: "top auto"
+            orientation: "top auto",
+            format: "yyyy-mm-dd"
          });
         });
+
 
 </script>
 </html>
