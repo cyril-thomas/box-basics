@@ -4,6 +4,7 @@
 <body>
 <div th:replace="admin/adminLayout :: adNavbar">(adNavbar)</div>
 <div class="container">
+    <div class="spacer"/>
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
@@ -28,11 +29,11 @@
                     <th>Coach</th>
                     <th>Edit</th>
                 </tr>
-                <tr th:each="c : ${currentClasses}">
+                <tr th:each="c : ${classes}">
                     <td th:text="${c.id}"></td>
                     <td th:text="${c.name}"></td>
                     <td th:text="${c.description}"></td>
-                    <td th:text="${c.coach.firstName}"></td>
+                    <td th:text="${c.coach.user.firstName}"></td>
                     <td><a th:href="@{/classes/edit(id=${c.id})}" class="btn btn-primary">Edit</a></td>
                 </tr>
             </table>

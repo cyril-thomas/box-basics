@@ -4,6 +4,7 @@
 <body>
 <div th:replace="admin/adminLayout :: adNavbar">(adNavbar)</div>
 <div class="container">
+    <div class="spacer"/>
     
     <div class="row">
         <div class="col-lg-12">
@@ -129,6 +130,22 @@
 
                     <p>Edit and Manage the services you provide at your dojo</p>
                     <a th:href="@{/services/list}" class="btn btn-primary">Setup</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="media">
+                <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-edit fa-stack-1x fa-inverse"></i>
+                        </span>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">Classes</h4>
+
+                    <p>Edit and Manage the classes you provide at your dojo</p>
+                    <a th:href="@{/classes/list}" class="btn btn-primary">Setup</a>
                 </div>
             </div>
         </div>
