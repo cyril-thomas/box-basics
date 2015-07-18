@@ -67,4 +67,26 @@ public class PageController {
     	return "server_status";
     }
 
+
+    @RequestMapping(value = "home", method = RequestMethod.GET)
+    public String home(Model model, HttpSession httpSession) {
+        Long orgId = (Long) httpSession.getAttribute("orgId");
+
+        HomePage homePage = portalHelper.getHomePage(orgId);
+        model.addAttribute("homeObj", homePage);
+
+        AboutPage aboutPage = portalHelper.getAboutPage(orgId);
+        model.addAttribute("aboutObj", aboutPage);
+
+        List<CoachDetail> coaches = portalHelper.getCoaches(orgId);
+        model.addAttribute("coaches", coaches);
+
+        GymDetail gymDetail = portalHelper.getGymDetail(orgId);
+        model.addAttribute("gymObj", gymDetail);
+
+        List<ServiceDetail> services = portalHelper.getServices(orgId);
+        model.addAttribute("services", services);
+
+        return "home";
+    }
 }
