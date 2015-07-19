@@ -44,10 +44,10 @@
                     <a class="page-scroll" href="#services">Services</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#portfolio">Register</a>
+                    <a class="page-scroll" href="#portfolio">Social</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#portfolio">Social</a>
+                    <a class="page-scroll" href="#register">Register</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#contact">Contact</a>
@@ -86,6 +86,7 @@
 
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading">Our Team</h2>
+                <hr class="light"/>
             </div>
             <div class="col-md-4 text-center" th:each="coach : ${coaches}">
                 <div class="thumbnail">
@@ -138,33 +139,50 @@
 </section>
 
 <section class="no-padding" id="portfolio">
+    <div th:if="${feed} == null">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3>Check us out on Instagram!
+                        <br/>
+                        <br/>
+                        <a th:href="${authorizationUrl}"><img src="../images/Instagram_normal.png"/></a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row no-gutter">
-            <div class="col-lg-4 col-sm-6">
-                <a href="#" class="portfolio-box">
-                    <img src="http://placehold.it/750x450" class="img-responsive" alt=""/>
+            <div th:if="${feed} != null">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">#BrickwallCrossfit</h2>
+                    <hr class="primary"/>
+                </div>
+                <div class="col-lg-4 col-sm-6" style="padding: 0 0" th:each="f : ${feed}">
+                    <a href="#" class="portfolio-box">
+                        <img th:src="${f.highResolutionUrl}" class="img-responsive" alt=""/>
 
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Category
-                            </div>
-                            <div class="project-name">
-                                Project Name
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" th:utext="${f.userName}">
+                                </div>
+                                <div class="project-name" th:utext="${f.caption}">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<aside class="bg-dark">
+<aside class="bg-dark" id="register">
     <div class="container text-center">
         <div class="call-to-action">
             <h2><span th:text="${homeObj.regBanner}"></span></h2>
-            <a th:href="@{/register}" class="btn btn-default btn-xl wow tada">Register Now!</a>
+            <a th:href="@{/user/register}" class="btn btn-default btn-xl wow tada">Register Now!</a>
         </div>
     </div>
 </aside>
@@ -202,9 +220,43 @@
                 </ul>
             </div>
             <div class="col-lg-4 text-center">
-                <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
+                <form name="sentMessage" id="contactForm" method="post" action="#">
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Full Name:</label>
+                            <input type="text" class="form-control" id="name"
+                                   data-validation-required-message="Please enter your name."/>
 
-                <p><a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a></p>
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Phone Number:</label>
+                            <input type="tel" class="form-control" id="phone"
+                                   data-validation-required-message="Please enter your phone number."/>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Email Address:</label>
+                            <input type="email" class="form-control" id="email"
+                                   data-validation-required-message="Please enter your email address."/>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Message:</label>
+                            <textarea rows="10" cols="100" class="form-control" id="message"
+                                      data-validation-required-message="Please enter your message" maxlength="999"
+                                      style="resize:none"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+                <!--<i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
+
+                <p><a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a></p>-->
             </div>
         </div>
     </div>

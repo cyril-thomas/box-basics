@@ -1,7 +1,10 @@
 package com.simplyct.woddojo.controller;
 
 import com.simplyct.woddojo.helper.PortalHelper;
+import com.simplyct.woddojo.helper.SocialHelper;
 import com.simplyct.woddojo.helper.dto.*;
+import org.jinstagram.Instagram;
+import org.jinstagram.auth.oauth.InstagramService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +24,15 @@ public class PageController {
     @Autowired
     PortalHelper portalHelper;
 
+    @Autowired
+    SocialHelper socialHelper;
+
+    @Autowired
+    InstagramService instagramService;
+
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model, HttpSession httpSession) {
+        httpSession.setAttribute("home_flow", false);
         Long orgId = (Long) httpSession.getAttribute("orgId");
         HomePage homePage = portalHelper.getHomePage(orgId);
 
@@ -70,6 +80,8 @@ public class PageController {
 
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public String home(Model model, HttpSession httpSession) {
+        httpSession.setAttribute("home_flow", true);
+
         Long orgId = (Long) httpSession.getAttribute("orgId");
 
         HomePage homePage = portalHelper.getHomePage(orgId);
@@ -87,6 +99,14 @@ public class PageController {
         List<ServiceDetail> services = portalHelper.getServices(orgId);
         model.addAttribute("services", services);
 
+        if (httpSession.getAttribute("INSTAGRAM_OBJECT") == null) {
+            model.addAttribute("feed", null);
+            model.addAttribute("authorizationUrl", instagramService.getAuthorizationUrl(null));
+        } else {
+
+            Instagram instagram = (Instagram) httpSession.getAttribute("INSTAGRAM_OBJECT");
+            model.addAttribute("feed", socialHelper.getInstagramFeed(instagram, orgId));
+        }
         return "home";
     }
 }
