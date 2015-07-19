@@ -10,12 +10,14 @@ import org.jinstagram.entity.users.feed.MediaFeedData;
 public class InstagramData {
     private String thumbnailUrl;
     private String lowResolutionUrl;
+    private String highResolutionUrl;
     private String userName;
     private String caption;
 
     public InstagramData(MediaFeedData mediaFeedData) {
         this.thumbnailUrl = mediaFeedData.getImages().getThumbnail().getImageUrl();
         this.lowResolutionUrl = mediaFeedData.getImages().getLowResolution().getImageUrl();
+        this.highResolutionUrl = mediaFeedData.getImages().getStandardResolution().getImageUrl();
         this.userName = mediaFeedData.getUser().getUserName();
         this.caption = mediaFeedData.getCaption().getText();
     }

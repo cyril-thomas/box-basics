@@ -31,12 +31,13 @@ public class IgCallbackServlet extends HttpServlet {
         Token accessToken = instagramService.getAccessToken(null, verifier);
         Instagram instagram = new Instagram(accessToken);
 
-        //ctx.getAutowireCapableBeanFactory().configureBean(instagram,"instagram");
-
         HttpSession session = request.getSession();
         session.setAttribute("INSTAGRAM_OBJECT", instagram);
 
-        response.sendRedirect(request.getContextPath() + "/social/list");
-
+        if (!(Boolean) session.getAttribute("home_flow")) {
+            response.sendRedirect(request.getContextPath() + "/social/list");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/home");
+        }
     }
 }
