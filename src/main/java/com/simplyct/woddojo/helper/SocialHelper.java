@@ -28,13 +28,13 @@ public class SocialHelper {
             Organization organization = organizationRepository.findOne(orgId);
             TagMediaFeed tagMediaFeed = instagram.getRecentMediaTags(organization.getHashTag());
             List<MediaFeedData> mediaFeedData = tagMediaFeed.getData();
-            int size = mediaFeedData.size();
+            /*int size = mediaFeedData.size();
             int counter = size - 1;
             while (size % 3 != 0 && size > 3) {
                 mediaFeedData.remove(counter);
                 size = counter;
                 counter--;
-            }
+            }*/
             return mediaFeedData
                     .stream()
                     .map(e -> new InstagramData(e))
