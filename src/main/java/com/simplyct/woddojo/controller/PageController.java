@@ -1,7 +1,11 @@
 package com.simplyct.woddojo.controller;
 
 import com.simplyct.woddojo.helper.PortalHelper;
+import com.simplyct.woddojo.helper.SocialHelper;
 import com.simplyct.woddojo.helper.dto.*;
+import com.simplyct.woddojo.model.User;
+import org.jinstagram.Instagram;
+import org.jinstagram.auth.oauth.InstagramService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +27,7 @@ public class PageController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model, HttpSession httpSession) {
+        httpSession.setAttribute("home_flow", false);
         Long orgId = (Long) httpSession.getAttribute("orgId");
         HomePage homePage = portalHelper.getHomePage(orgId);
 
@@ -64,7 +69,20 @@ public class PageController {
 
     @RequestMapping(value = "server_status", method = RequestMethod.GET)
     public String serverStatus() {
-    	return "server_status";
+        return "server_status";
     }
 
+
+    @RequestMapping(value = "home", method = RequestMethod.GET)
+    public String home(Model model, HttpSession httpSession) {
+        httpSession.setAttribute("home_flow", true);
+
+        Long orgId = (Long) httpSession.getAttribute("orgId");
+
+        portalHelper.loadHomePage(model, orgId, httpSession);
+
+        model.addAttribute("user", new User());
+
+        return "home";
+    }
 }

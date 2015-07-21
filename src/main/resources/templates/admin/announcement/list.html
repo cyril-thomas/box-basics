@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="admin/adminLayout :: adhtmlhead"></head>
+<body>
+<div th:replace="admin/adminLayout :: adNavbar">(adNavbar)</div>
+<div class="container">
+    <div class="spacer"/>
+    
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Announcements</h1>
+            <ol class="breadcrumb">
+                <li><a th:href="@{/org/landing}">Org</a>
+                </li>
+                <li class="active">Announcements</li>
+            </ol>
+            <div class="pull-right"><a th:href="@{/announcement/edit}" class="btn btn-primary">Add new</a></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Announcements</h1>
+            <table class="table table-hover">
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                </tr>
+                <tr th:each="anno : ${announcements}">
+                    <td th:text="${anno.id}"></td>
+                    <td th:text="${anno.title}"></td>
+                    <td><a th:href="@{/announcement/edit(id=${anno.id})}" class="btn btn-primary">Edit</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div th:include="admin/adminLayout :: adFooter" id="adFooter">(adFooter)</div>
+</div>
+</body>
+</html>

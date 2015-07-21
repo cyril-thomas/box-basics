@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="admin/adminLayout :: adhtmlhead"></head>
+<body>
+<div th:replace="admin/adminLayout :: adNavbar">(navbar)</div>
+<div class="container">
+    <div class="spacer"/>
+  
+    <div class="row">
+        <div class="col-lg-12">
+
+            <form id="annoForm"
+                  th:action="@{/announcement/edit}"
+                  th:object="${anno}"
+                  action="#"
+                  method="post">
+
+                <!-- Errors -->
+                <div th:if="${#fields.hasErrors('*')}"
+                     class="alert alert-error">
+                    <h3 class="text-danger"
+                        th:each="error : ${#fields.errors('*')}"
+                        th:text="${error}">
+                        Validation error
+                    </h3>
+                </div>
+
+                <!-- Page Heading/Breadcrumbs -->
+                <div th:if="*{id} != null">
+                    <h1 class="page-header">Announcement Edit</h1>
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{/announcement/list}">List</a>
+                        </li>
+                        <li class="active">Edit</li>
+                    </ol>
+                </div>
+                <div class="spacer"/>
+
+                <!-- Fields -->
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="title">Title</label>
+                        <input type="text"
+                               th:field="*{title}"
+                               id="title"
+                               class="form-control"/>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="content">Content</label>
+                        <textarea
+                                th:field="*{content}"
+                                id="content"
+                                class="form-control"></textarea>
+                    </div>
+                </div>
+                <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
+                <input type="hidden" th:if="*{organization.id} != null" th:field="*{organization.id}"
+                       id="orgId"/>
+
+                <input type="submit" class="btn btn-primary" th:value="*{id} != null? 'Update' : 'Save'"/>
+
+            </form>
+        </div>
+    </div>
+    <div th:include="admin/adminLayout :: adFooter" id="adFooter">(adFooter)</div>
+</div>
+</body>
+<script>
+        jQuery(document).ready(function introBox(){
+         jQuery("#content").summernote();
+        });
+
+
+</script>
+</html>

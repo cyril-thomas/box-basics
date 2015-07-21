@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="admin/adminLayout :: adhtmlhead"></head>
+<body>
+<div th:replace="admin/adminLayout :: adNavbar">(adNavbar)</div>
+<div class="container">
+    <div class="spacer"/>
+    <div class="spacer"/>
+    <div class="row">
+        <div class="col-lg-12">
+
+            <form id="scheduleForm"
+                  th:action="@{/schedule/edit}"
+                  th:object="${schedule}"
+                  action="#"
+                  method="post">
+
+                <!-- Errors -->
+                <div th:if="${#fields.hasErrors('*')}"
+                     class="alert alert-error">
+                    <h3 class="text-danger"
+                        th:each="error : ${#fields.errors('*')}"
+                        th:text="${error}">
+                        Validation error
+                    </h3>
+                </div>
+
+                <!-- Page Heading/Breadcrumbs -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ol class="breadcrumb">
+                            <li><a th:href="@{/org/landing}">Gym</a>
+                            </li>
+                            <li class="active">Edit</li>
+                        </ol>
+                    </div>
+                </div>
+
+
+                <!-- Fields -->
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="date-sc">Date of Workout</label>
+                        <input type="date"
+                               th:field="*{wodDate}"
+                               id="date-sc"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="workout">Select Workout</label>
+                        <select th:field="*{wod}" class="form-control" id="workout">
+                            <option th:each="w : ${workouts}"
+                                    th:value="${w.id}"
+                                    th:text="${w.name}+'  :  '+ ${w.notes}">Workout
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
+                <input type="hidden" th:if="*{organization.id} != null" th:field="*{organization.id}"
+                       id="orgId"/>
+                <input type="submit" class="btn btn-primary" th:value="*{id} != null? 'Update' : 'Save'"/>
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Classes</h1>
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Title</th>
+                                <th>Coach</th>
+                                <th>Description</th>
+                                <th>Cancel</th>
+                            </tr>
+                            <tr th:each="c : ${schedule.classes}">
+                                <td th:text="${c.name}"></td>
+                                <td th:text="${c.coach.user.firstName}"></td>
+                                <td th:text="${c.description}"></td>
+                                <td><a th:href="@{/schedule/class/cancel(id=${schedule.id},cid=${c.id})}"
+                                       class="btn btn-primary">Cancel</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div th:include="admin/adminLayout :: adFooter" id="adFooter">(adFooter)</div>
+</div>
+</body>
+<script>
+    jQuery(document).ready(function dateBox(){
+         jQuery("#date-sc").datepicker({
+            todayBtn: "linked",
+            orientation: "top auto",
+            format: "yyyy-mm-dd"
+         });
+        });
+
+
+</script>
+</html>
