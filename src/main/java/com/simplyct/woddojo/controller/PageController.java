@@ -3,6 +3,7 @@ package com.simplyct.woddojo.controller;
 import com.simplyct.woddojo.helper.PortalHelper;
 import com.simplyct.woddojo.helper.SocialHelper;
 import com.simplyct.woddojo.helper.dto.*;
+import com.simplyct.woddojo.model.User;
 import org.jinstagram.Instagram;
 import org.jinstagram.auth.oauth.InstagramService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,6 @@ public class PageController {
 
     @Autowired
     PortalHelper portalHelper;
-
-    @Autowired
-    SocialHelper socialHelper;
-
-    @Autowired
-    InstagramService instagramService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model, HttpSession httpSession) {
@@ -74,7 +69,7 @@ public class PageController {
 
     @RequestMapping(value = "server_status", method = RequestMethod.GET)
     public String serverStatus() {
-    	return "server_status";
+        return "server_status";
     }
 
 
@@ -84,32 +79,10 @@ public class PageController {
 
         Long orgId = (Long) httpSession.getAttribute("orgId");
 
-        HomePage homePage = portalHelper.getHomePage(orgId);
-        model.addAttribute("homeObj", homePage);
+        portalHelper.loadHomePage(model, orgId, httpSession);
 
-        AboutPage aboutPage = portalHelper.getAboutPage(orgId);
-        model.addAttribute("aboutObj", aboutPage);
+        model.addAttribute("user", new User());
 
-        List<CoachDetail> coaches = portalHelper.getCoaches(orgId);
-        model.addAttribute("coaches", coaches);
-
-        GymDetail gymDetail = portalHelper.getGymDetail(orgId);
-        model.addAttribute("gymObj", gymDetail);
-
-        WODDetail wod = portalHelper.getWOD(orgId);
-        model.addAttribute("wod", wod);
-
-        List<ServiceDetail> services = portalHelper.getServices(orgId);
-        model.addAttribute("services", services);
-
-        if (httpSession.getAttribute("INSTAGRAM_OBJECT") == null) {
-            model.addAttribute("feed", null);
-            model.addAttribute("authorizationUrl", instagramService.getAuthorizationUrl(null));
-        } else {
-
-            Instagram instagram = (Instagram) httpSession.getAttribute("INSTAGRAM_OBJECT");
-            model.addAttribute("feed", socialHelper.getInstagramFeed(instagram, orgId));
-        }
         return "home";
     }
 }
