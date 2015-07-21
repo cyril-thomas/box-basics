@@ -6,3 +6,5 @@
 .settings/
 .idea/
 *.iml
+
+src/main/resources/application-secret.properties
