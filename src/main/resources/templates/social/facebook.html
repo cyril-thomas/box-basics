@@ -19,7 +19,7 @@
     </div>
 
     <div th:switch="${session.facebookLoggedIn}">
-        <form th:case="false" action="/social/facebook" method="GET">
+        <form th:case="false" action="/social/facebook/connect" method="GET">
             <div class="formInfo">
                 <p>You aren't connected to Facebook yet. Click the button to connect this application with your Facebook account.</p>
             </div>

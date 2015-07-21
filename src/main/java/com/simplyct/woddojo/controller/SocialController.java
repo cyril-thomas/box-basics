@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("social")
 public class SocialController {
 
+    public static final String FACEBOOK_LOGGED_IN = "facebookLoggedIn";
     @Autowired
     SocialHelper socialHelper;
 
@@ -50,7 +51,14 @@ public class SocialController {
     }
 
     @RequestMapping(value = "/facebook", method = RequestMethod.GET)
-    public String facebook(HttpServletRequest request, HttpSession session) {
+    public String facebook(HttpSession session) {
+        String token = (String) session.getAttribute(FACEBOOK_ACCESS_TOKEN);
+        session.setAttribute(FACEBOOK_LOGGED_IN, token != null);
+        return "social/facebook";
+    }
+
+    @RequestMapping(value = "/facebook/connect", method = RequestMethod.GET)
+    public String facebookConnect(HttpServletRequest request, HttpSession session) {
         String token = (String) session.getAttribute(FACEBOOK_ACCESS_TOKEN);
         if (token == null) {
             String loginUrl = "https://www.facebook.com/dialog/oauth?" +
@@ -64,8 +72,8 @@ public class SocialController {
     @RequestMapping(value = "facebook/loginCallback", method = RequestMethod.GET, params = {"code"})
     public String facebookLogin(HttpSession session,
                                 @RequestParam(value = "code") String code) {
-        session.setAttribute("facebookErrorMessage", code);
-        session.setAttribute("facebookLoggedIn", true);
+        session.setAttribute(FACEBOOK_ACCESS_TOKEN, code);
+        session.setAttribute(FACEBOOK_LOGGED_IN, true);
         return "redirect:/social/facebook";
     }
 
@@ -73,8 +81,8 @@ public class SocialController {
     public String facebookLoginError(HttpSession session,
                                 @RequestParam(value = "error_message") String errorMessage) {
         session.setAttribute("facebookErrorMessage", errorMessage);
-        session.setAttribute("facebookLoggedIn", false);
-        return "ocial/facebook";
+        session.setAttribute(FACEBOOK_LOGGED_IN, false);
+        return "social/facebook";
     }
 
     @RequestMapping(value = "facebook/post", method = RequestMethod.POST)
