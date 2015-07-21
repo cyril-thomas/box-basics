@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead"></head>
+<body>
+<div th:replace="layout :: navbar">(navbar)</div>
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Social</h1>
+            <ol class="breadcrumb">
+                <li><a th:href="@{/}">Home</a>
+                </li>
+                <li class="active">Social</li>
+            </ol>
+        </div>
+    </div>
+
+    <div th:switch="${session.facebookLoggedIn}">
+        <form th:case="false" action="/social/facebook" method="GET">
+            <div class="formInfo">
+                <p>You aren't connected to Facebook yet. Click the button to connect this application with your Facebook account.</p>
+            </div>
+            <p><button type="submit">Connect to Facebook</button></p>
+        </form>
+        <div th:case="true">
+            <p>Congrats! You've connected!</p>
+        </div>
+    </div>
+
+    <div th:replace="layout :: footer">(footer)</div>
+</div>
+</body>
+</html>
