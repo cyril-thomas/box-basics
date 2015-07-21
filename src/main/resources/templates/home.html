@@ -198,8 +198,79 @@
 <aside class="bg-dark" id="register">
     <div class="container text-center">
         <div class="call-to-action">
+            <h2 class="section-heading"><span th:text="${homeObj.regTitle}"></span></h2>
+            <hr class="success"/>
+            <div th:utext="${homeObj.regContent}"></div>
+            <br/><br/>
             <h2><span th:text="${homeObj.regBanner}"></span></h2>
-            <a th:href="@{/user/register}" class="btn btn-default btn-xl wow tada">Register Now!</a>
+            <a class="btn btn-default btn-xl wow tada"
+               role="button" data-toggle="collapse" href="#collapseReg"
+               aria-expanded="false" aria-controls="collapseReg">Register Now!</a>
+        </div>
+        <div id="collapseReg" class="collapse">
+            <div class="row">
+                <div class="col-md-4 col-lg-4">
+
+                    <form id="userForm"
+                          th:action="@{/reg/register}"
+                          th:object="${user}"
+                          action="#"
+                          method="post">
+
+                        <!-- Errors -->
+                        <div th:if="${#fields.hasErrors('*')}"
+                             class="alert alert-error">
+                            <h3 class="text-danger"
+                                th:each="error : ${#fields.errors('*')}"
+                                th:text="${error}">
+                                Validation error
+                            </h3>
+                        </div>
+
+                        <!-- Fields -->
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="firstName">First Name</label>
+                                <input type="text"
+                                       th:field="*{firstName}"
+                                       id="firstName"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="lastName">Last Name</label>
+                                <input type="text"
+                                       th:field="*{lastName}"
+                                       id="lastName"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="remail">Email</label>
+                                <input type="text"
+                                       th:field="*{email}"
+                                       id="remail"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="rphone">Phone</label>
+                                <input type="text"
+                                       th:field="*{phone}"
+                                       id="rphone"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+
+                        <input type="submit" class="btn btn-primary" th:value="Register"/>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </aside>
