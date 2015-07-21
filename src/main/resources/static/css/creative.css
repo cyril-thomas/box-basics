@@ -4,6 +4,46 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+@media(max-width:768px) {
+
+    .navbar-default {
+        border-color: rgba(255,255,255,.3);
+              /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#42891f+1,4e9f26+100 */
+background: #42891f; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover,  #42891f 1%, #4e9f26 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#42891f), color-stop(100%,#4e9f26)); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* IE10+ */
+background: radial-gradient(ellipse at center,  #42891f 1%,#4e9f26 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42891f', endColorstr='#4e9f26',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    }
+
+}
+
+@media(min-width:768px) {
+    
+ 
+    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+        font-size: 14px;
+        
+    }
+
+    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+        font-size:14px;
+    }
+   .coachblock_container{
+       margin:10px 5px
+   }
+  
+}
+
+
+@media screen and ( max-width:320px){
+   .coachblock_container{margin:10px 0px !important}
+
+}
 html,
 body {
     width: 100%;
@@ -91,47 +131,7 @@ aside {
     font-weight: 700;
     color: #42891f;
 }
-
-.navbar-default .navbar-header .navbar-brand:hover,
-.navbar-default .navbar-header .navbar-brand:focus {
-    color: #eb3812;
-}
-
-.navbar-default .nav > li>a,
-.navbar-default .nav>li>a:focus {
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: 700;
-    color: #222;
-}
-
-.navbar-default .nav > li>a:hover,
-.navbar-default .nav>li>a:focus:hover {
-    color: #42891f;
-}
-
-.navbar-default .nav > li.active>a,
-.navbar-default .nav>li.active>a:focus {
-    color: #000 !important;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,4c7c34+100&amp;0+0,0.65+100 */
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,227200+100&amp;0+0,0.65+100 */
-background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(34,114,0,0.65) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(34,114,0,0.65))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(34,114,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(34,114,0,0.65) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(34,114,0,0.65) 100%); /* IE10+ */
-background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(34,114,0,0.65) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#a6227200',GradientType=0 ); /* IE6-9 */
-
-}
-
-.navbar-default .nav > li.active>a:hover,
-.navbar-default .nav>li.active>a:focus:hover {
-    background-color: transparent;
-}
-
-@media(min-width:768px) {
-    .navbar-default {
+   .navbar-default {
         border-color: rgba(255,255,255,.3);
         background-color: rgba(0, 0, 0, 0.2);
     }
@@ -150,13 +150,34 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
         color: rgba(255,255,255,.7);
         
     }
-
-    .navbar-default .nav > li>a:hover,
-    .navbar-default .nav>li>a:focus:hover {
-        color: #fff;
+  
+    .navbar-default.affix .nav > li>a,
+    .navbar-default.affix .nav>li>a:focus {
+        color: #f2f2f2;
     }
 
-    .navbar-default.affix {
+    .navbar-default.affix .nav > li>a:hover,
+    .navbar-default.affix .nav>li>a:focus:hover,.navbar-default .navbar-nav > .active > a,
+    .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+        color: #000;
+           
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,4c7c34+100&amp;0+0,0.65+100 */
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,227200+100&amp;0+0,0.65+100 */
+background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(34,114,0,0.65) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(34,114,0,0.65))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(34,114,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(34,114,0,0.65) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(34,114,0,0.65) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(34,114,0,0.65) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#a6227200',GradientType=0 ); /* IE6-9 */
+
+    }
+
+.navbar-default .nav > li.active>a:hover,
+.navbar-default .nav>li.active>a:focus:hover {
+    background-color: transparent;
+}
+.navbar-default.affix {
        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#42891f+1,4e9f26+100 */
 background: #42891f; /* Old browsers */
 background: -moz-radial-gradient(center, ellipse cover,  #42891f 1%, #4e9f26 100%); /* FF3.6+ */
@@ -169,31 +190,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42891f', end
 
     }
 
-    .navbar-default.affix .navbar-header .navbar-brand {
-        font-size: 14px;
-        color: #fff;
-    }
-
-    .navbar-default.affix .navbar-header .navbar-brand:hover,
-    .navbar-default.affix .navbar-header .navbar-brand:focus {
-        color: #fff;
-    }
-
-    .navbar-default.affix .nav > li>a,
-    .navbar-default.affix .nav>li>a:focus {
-        color: #f2f2f2;
-    }
-
-    .navbar-default.affix .nav > li>a:hover,
-    .navbar-default.affix .nav>li>a:focus:hover {
-        color: #000;
-    }
-}
 
 header {
     position: relative;
     width: 100%;
-    min-height: auto;
+    min-height: 100%;
     text-align: center;
     color: #fff;
     background-image: url(../images/mainImage.jpg);
@@ -212,7 +213,7 @@ header .header-content {
 }
 
 header .header-content .header-content-inner h1 {
-    margin-top: 0;
+    
     margin-bottom: 0;
     text-transform: uppercase;
     font-weight: 700;
@@ -229,33 +230,6 @@ header .header-content .header-content-inner p {
     color: rgba(255,255,255,.7);
 }
 
-@media(min-width:768px) {
-    header {
-        min-height: 100%;
-    }
-
-    header .header-content {
-        position: absolute;
-        top: 50%;
-        padding: 0 50px;
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-    }
-
-    header .header-content .header-content-inner {
-        margin-right: auto;
-        margin-left: auto;
-        max-width: 1000px;
-    }
-
-    header .header-content .header-content-inner p {
-        margin-right: auto;
-        margin-left: auto;
-        max-width: 80%;
-        font-size: 18px;
-    }
-}
 
 
 #services, #contact{background-image: url(../images/mainImage-light.jpg);
@@ -273,11 +247,7 @@ header .header-content .header-content-inner p {
     max-width: 400px;
 }
 
-@media(min-width:992px) {
-    .service-box {
-        margin: 20px auto 0;
-    }
-}
+
 
 .service-box p {
     margin-bottom: 0;
@@ -299,7 +269,7 @@ header .header-content .header-content-inner p {
     text-align: center;
     color: #fff;
     opacity: 0;
-    background: rgba(240,95,64,.9);
+    background: rgba(0, 0, 0, 0.8);
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
@@ -325,23 +295,11 @@ header .header-content .header-content-inner p {
     font-weight: 600;
 }
 
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-    font-size: 18px;
-}
-
 .portfolio-box:hover .portfolio-box-caption {
     opacity: 1;
 }
 
-@media(min-width:768px) {
-    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
-        font-size: 16px;
-    }
 
-    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-        font-size: 22px;
-    }
-}
 
 .call-to-action h2 {
     margin: 0 auto 20px;
@@ -502,6 +460,18 @@ body {
 .container {
     width: 100%;
 }
+#wod{color:#000;
+       /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#42891f+1,4e9f26+100 */
+background: #42891f; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover,  #42891f 1%, #4e9f26 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#42891f), color-stop(100%,#4e9f26)); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* IE10+ */
+background: radial-gradient(ellipse at center,  #42891f 1%,#4e9f26 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42891f', endColorstr='#4e9f26',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    }
 
 
 .textblock{text-align:center;width:100%}
@@ -518,6 +488,8 @@ body {
     min-width: 295px;
     text-align: center;
 }
+#instagramHeader{height:88px;}
+#instagramHeader h2{color:#f1f1f1}
 .thumbnail .caption {
     min-height: 150px;
     
@@ -528,14 +500,13 @@ body {
 }
 .caption a{display:inline-block}	
 #about{color:#ccc}
-header .header-content .header-content-inner div{margin:20px 0px;text-shadow: 0 7px 8px #000;}
+header .header-content .header-content-inner div{
+    margin: 5% auto;
+    text-shadow: 0 7px 8px #000;
+    width: 90%;
+    }
+
+#In-img-container{width:100%;text-align: center;background-color: rgba(0, 0, 0, 0.9);padding: 20px 0;}
+.imageContainer{width:300px;display:inline-block}
 
 
-
-@media screen and ( max-width:769px){
-   .coachblock_container{margin:10px 5px}
-}
-
-@media screen and ( max-width:320px){
-   .coachblock_container{margin:10px 0px}
-}
