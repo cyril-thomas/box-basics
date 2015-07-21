@@ -25,4 +25,7 @@ public class Coach {
 
     @Column(name = "job_title")
     String jobTitle;
+
+    @Column(name = "profile_pic")
+    String profilePic;
 }

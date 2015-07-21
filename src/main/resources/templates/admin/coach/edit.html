@@ -13,7 +13,8 @@
                   th:action="@{/coach/edit}"
                   th:object="${coach}"
                   action="#"
-                  method="post">
+                  method="post"
+                  enctype="multipart/form-data">
 
                 <!-- Errors -->
                 <div th:if="${#fields.hasErrors('*')}"
@@ -75,6 +76,7 @@
                                class="form-control"/>
                     </div>
                 </div>
+
                 <div class="control-group form-group">
                     <div class="controls">
                         <label for="jobT">Job Title</label>
@@ -84,6 +86,14 @@
                                class="form-control"/>
                     </div>
                 </div>
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="pic">Picture</label>
+                        <input id="pic" class="btn well col-md-12s" type="file" name="coach" />
+                    </div>
+                </div>
+
                 <div class="control-group form-group">
                     <div class="controls">
                         <label for="intro">Intro</label>
@@ -98,9 +108,15 @@
                 <input type="hidden" th:if="*{user.organization.id} != null" th:field="*{user.organization.id}"
                        id="orgId"/>
 
+
                 <input type="submit" class="btn btn-primary" th:value="*{id} != null? 'Update' : 'Save'"/>
 
             </form>
+<!--
+            <form action="upload" th:action="@{/image/coach}" method="post" enctype="multipart/form-data">
+                <input type="file" name="coach" />
+                <input type="submit" />
+            </form>-->
         </div>
     </div>
     <div th:include="admin/adminLayout :: adFooter" id="adFooter">(adFooter)</div>
