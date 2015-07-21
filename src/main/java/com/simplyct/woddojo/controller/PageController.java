@@ -96,6 +96,9 @@ public class PageController {
         GymDetail gymDetail = portalHelper.getGymDetail(orgId);
         model.addAttribute("gymObj", gymDetail);
 
+        WODDetail wod = portalHelper.getWOD(orgId);
+        model.addAttribute("wod", wod);
+
         List<ServiceDetail> services = portalHelper.getServices(orgId);
         model.addAttribute("services", services);
 
