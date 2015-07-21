@@ -57,7 +57,7 @@ insert into classes(class_id,org_id,coach_id,name,description) values
 
 --Schedule
 insert into schedule(schedule_id,wod_id,org_id,wod_date) values
-(1,1,1,'2015-07-14');
+(1,1,1,current_date);
 
 insert into schedule_class_rel(schedule_id,class_id) values
 (1,1);

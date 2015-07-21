@@ -3,6 +3,7 @@ package com.simplyct.woddojo.helper;
 import com.simplyct.woddojo.helper.dto.*;
 import com.simplyct.woddojo.model.*;
 import com.simplyct.woddojo.repository.*;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,10 @@ public class PortalHelper {
     @Autowired
     ServiceRepository serviceRepository;
 
+    @Autowired
+    ScheduleRepository scheduleRepository;
+
+
     public HomePage getHomePage(Long orgId) {
         Home home = homeRepository.findByOrganizationId(orgId);
         HomePage homePage = new HomePage(home);
@@ -63,6 +68,11 @@ public class PortalHelper {
         return announcements.stream()
                             .map(e -> new AnnouncementDetail(e))
                       .collect(Collectors.toList());
+    }
+
+    public WODDetail getWOD(Long orgId) {
+        Schedule schedule = scheduleRepository.findByOrganizationIdAndWodDateEquals(orgId, DateTime.now().toDate());
+        return new WODDetail(schedule.getWod());
     }
 
     public List<ServiceDetail> getServices(Long orgId) {
