@@ -529,3 +529,13 @@ body {
 .caption a{display:inline-block}	
 #about{color:#ccc}
 header .header-content .header-content-inner div{margin:20px 0px;text-shadow: 0 7px 8px #000;}
+
+
+
+@media screen and ( max-width:769px){
+   .coachblock_container{margin:10px 5px}
+}
+
+@media screen and ( max-width:320px){
+   .coachblock_container{margin:10px 0px}
+}
