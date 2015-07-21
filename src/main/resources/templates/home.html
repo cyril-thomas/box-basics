@@ -70,7 +70,7 @@
             </h1>
             <hr/>
             <div th:utext="${homeObj.introContent}"></div>
-            <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+            <a href="#about" class="btn btn-success btn-xl page-scroll">Find Out More</a>
         </div>
     </div>
 </header>
@@ -91,7 +91,9 @@
                 <h2 class="section-heading">Our Team</h2>
                 <hr class="light"/>
             </div>
-            <div class="col-md-4 text-center" th:each="coach : ${coaches}">
+             </div>
+        <div class="coachblock text-center">
+            <div class="coachblock_container" th:each="coach : ${coaches}">
                 <div class="thumbnail">
                     <img class="img-responsive" src="http://placehold.it/750x450" alt=""/>
 
@@ -102,15 +104,13 @@
                             <small><span th:text="${coach.jobTitle}"></span></small>
                         </h3>
                         <div th:utext="${coach.intro}"></div>
-                        <ul class="list-inline">
-                            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-                            </li>
-                        </ul>
+                        
+                       
+                            
                     </div>
+                    <a href="#"><span class="fa fa-2x fa-facebook-square"></span></a>
+                    <a href="#"><span class="fa fa-2x fa-linkedin-square"></span></a>
+                    <a href="#"><span class="fa fa-2x fa-twitter-square"></span></a>
                     <!-- /.caption-->
                 </div>
                 <!-- /.thumbnail-->
@@ -129,8 +129,8 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 text-center" th:each="service : ${services}">
+        <div class="textblock">
+            <div class="text-center" th:each="service : ${services}">
                 <div class="service-box">
                     <h3><span th:text="${service.title}"></span></h3>
 
@@ -174,7 +174,7 @@
             <div th:if="${feed} != null">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">#BrickwallCrossfit</h2>
-                    <hr class="primary"/>
+                    <hr class="success"/>
                 </div>
                 <div class="col-lg-4 col-sm-6" style="padding: 0 0" th:each="f : ${feed}">
                     <a href="#" class="portfolio-box">
@@ -209,7 +209,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading">Let's Get In Touch!</h2>
-                <hr class="primary"/>
+                <hr class="success"/>
                 <p>Ready to start your transformation with us? That's great! Give us a call, come visit us or send us an
                     message!</p>
             </div>
@@ -269,7 +269,7 @@
                                       style="resize:none"></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <button type="submit" class="btn btn-success">Send Message</button>
                 </form>
                 <!--<i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
 
