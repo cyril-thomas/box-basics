@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="admin/adminLayout :: adhtmlhead"></head>
+<body>
+<div th:replace="admin/adminLayout :: adNavbar">(adNavbar)</div>
+<div class="container">
+    <div class="spacer"/>
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <form id="wodForm"
+                  th:action="@{/wod/edit}"
+                  th:object="${wod}"
+                  action="#"
+                  method="post">
+
+                <!--Errors-->
+                <div th:if="${#fields.hasErrors('*')}"
+                     class="alert alert-error">
+                    <h3 class="text-danger"
+                        th:each="error : ${#fields.errors('*')}"
+                        th:text="${error}">
+                        Validation error
+                    </h3>
+                </div>
+
+                <!-- Page Heading/Breadcrumbs -->
+                <div th:if="*{id} == null">
+                    <h1 class="page-header">WOD</h1>
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{/wod/list}">List</a>
+                        </li>
+                        <li class="active">New</li>
+                    </ol>
+                    <h3>Create a new WOD!</h3>
+                </div>
+
+                <div th:if="*{id} != null">
+                    <h1 class="page-header">WOD Edit</h1>
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{/wod/list}">List</a>
+                        </li>
+                        <li class="active">Edit</li>
+                    </ol>
+                    <h3>Editing <span th:text="*{name}"/></h3>
+                </div>
+                <div class="spacer"/>
+
+
+                <!-- Fields -->
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="name">Name</label>
+                        <input type="text"
+                               th:field="*{name}"
+                               id="name"
+                               class="form-control"/>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="wodDetails">Description</label>
+                <textarea
+                        th:text="*{description}"
+                        name="description"
+                        id="wodDetails"
+                        class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="notes">Notes</label>
+                        <textarea
+                                th:field="*{notes}"
+                                id="notes"
+                                class="form-control"></textarea>
+                    </div>
+                </div>
+                <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
+                <input type="submit"
+                       class="btn btn-primary"
+                       th:value="*{id} != null? 'Update' : 'Create'"/>
+            </form>
+        </div>
+    </div>
+    <div th:include="admin/adminLayout :: adFooter" id="adFooter">(adFooter)</div>
+</div>
+
+<script>
+        jQuery(document).ready(function textarea(){
+         jQuery("#wodDetails").summernote();
+         jQuery("#notes").summernote();
+        });
+
+</script>
+</body>
+</html>

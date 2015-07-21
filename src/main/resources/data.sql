@@ -1,8 +1,8 @@
 insert into address(address_id,first_line,second_line,city,state,zip_code) values
 (1,'Main Street','600 S','Salt Lake City','UT','84111');
 
-insert into organization(org_id,address_id,name,email,phone,web_domain) values
-(1,1,'Brickwall','brickwall@woddojo.com','8019209901','brickwall');
+insert into organization(org_id,address_id,name,email,phone,web_domain,hash_tag) values
+(1,1,'Brickwall','brickwall@woddojo.com','801-920-9901','brickwall','brickwallcrossfit');
 
 --Users
 insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) values
@@ -41,12 +41,43 @@ insert into wod(wod_id,name,description,notes) values
 insert into wod(wod_id,name,description,notes) values
 (3,'Kelly','Five rounds for time of: <br/> Run 400 meters <br/> 30 Box jump, 24 inch box <br/> 30 Wall ball shots, 20 pound ball','Run baby run!');
 
+-- Classes
+insert into classes(class_id,org_id,coach_id,name,description) values
+(1,1,1,'6 am - 7 am', 'Early Morning class');
+insert into classes(class_id,org_id,coach_id,name,description) values
+(2,1,1,'7 am - 8 am', 'Morning class');
+insert into classes(class_id,org_id,coach_id,name,description) values
+(3,1,2,'9 am - 10 am', 'Ladies only class');
+insert into classes(class_id,org_id,coach_id,name,description) values
+(4,1,2,'Noon - 1 pm', 'Nooner');
+insert into classes(class_id,org_id,coach_id,name,description) values
+(5,1,3,'4 am - 5 am', 'Evening class');
+insert into classes(class_id,org_id,coach_id,name,description) values
+(6,1,3,'5 am - 6 am', 'Oly lifts');
+
+--Schedule
+insert into schedule(schedule_id,wod_id,org_id,wod_date) values
+(1,1,1,current_date);
+
+insert into schedule_class_rel(schedule_id,class_id) values
+(1,1);
+insert into schedule_class_rel(schedule_id,class_id) values
+(1,2);
+insert into schedule_class_rel(schedule_id,class_id) values
+(1,3);
+insert into schedule_class_rel(schedule_id,class_id) values
+(1,4);
+insert into schedule_class_rel(schedule_id,class_id) values
+(1,5);
+insert into schedule_class_rel(schedule_id,class_id) values
+(1,6);
+
 -- Portal
 insert into home(home_id,title,intro_title,intro_content,services_title,services_content,registration_title,registration_content,registration_banner,org_id)
 values(1,'Welcome to Brickwall Crossfit!'
-,'Who are we?','CrossFit may be the answer to your fitness shortcomings. At CrossFit Brickwall we’re focused on teaching the theories and methodologies that are producing some of the fittest people in the world. Come learn how you can achieve a new level of fitness through an organic form of excercise.'
+,'Who are we?','CrossFit may be the answer to your fitness shortcomings. At CrossFit Brickwall we are focused on teaching the theories and methodologies that are producing some of the fittest people in the world. Come learn how you can achieve a new level of fitness through an organic form of excercise.'
 ,'How we do it!','Brickwall CrossFit welcomes all fitness levels. The same workouts elite athletes are doing are the same workouts the everyday person should do. Trainers will work with you to scale workouts to your abilities and comfort levels, without sacrificing safety and proper form. The only difference would be the amount of weight, number of reps, and substitutions to promote the progression to the recommended workout. The workouts are meant to be intense for the individual but without sacrificing safety and proper form.'
-,'Sign Up!', 'Call or email us to come in for a free first-time workout. If you choose to continue you’ll need to schedule your On-Ramp training which consists of a series of classes or personal sessions that provide an understanding of the basic movements we perform in CrossFit. These basic movements are the fundamentals to all the movements in the workouts and it is important that you are familiar with the movements and able to perform them correctly and safely.'
+,'Sign Up!', 'Call or email us to come in for a free first-time workout. If you choose to continue you will need to schedule your On-Ramp training which consists of a series of classes or personal sessions that provide an understanding of the basic movements we perform in CrossFit. These basic movements are the fundamentals to all the movements in the workouts and it is important that you are familiar with the movements and able to perform them correctly and safely.'
 ,'What are you waiting for lets do this!',1);
 
 insert into about(about_id,about_title,about_content,org_id)
@@ -60,7 +91,7 @@ values(1,'Namaste!'
 ,1, '9999-12-31');
 insert into announcement(announcement_id,title,content,org_id,end_date)
 values(2,'Oly Lifts'
-,'Oly lift classes are moved to Wednesday @ 7 pm instead of the Tuesday’s. Please contact Coach Rocky for more info.'
+,'Oly lift classes are moved to Wednesday @ 7 pm instead of the Tuesdays. Please contact Coach Rocky for more info.'
 ,1, '9999-12-31');
 
 

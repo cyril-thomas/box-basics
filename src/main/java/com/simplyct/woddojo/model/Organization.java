@@ -40,4 +40,7 @@ public class Organization {
 
     @Column(name = "web_domain")
     String webDomain;
+
+    @Column(name = "hash_tag")
+    String hashTag;
 }

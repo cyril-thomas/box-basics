@@ -22,15 +22,19 @@ public class SocialHelper {
     @Autowired
     OrganizationRepository organizationRepository;
 
-    //@Autowired
-    //Instagram instagram;
-
     public List<InstagramData> getInstagramFeed(Instagram instagram, Long orgId) {
         try {
 
             Organization organization = organizationRepository.findOne(orgId);
-            TagMediaFeed tagMediaFeed = instagram.getRecentMediaTags("brickwallcrossfit");//organization.getName()
+            TagMediaFeed tagMediaFeed = instagram.getRecentMediaTags(organization.getHashTag());
             List<MediaFeedData> mediaFeedData = tagMediaFeed.getData();
+            /*int size = mediaFeedData.size();
+            int counter = size - 1;
+            while (size % 3 != 0 && size > 3) {
+                mediaFeedData.remove(counter);
+                size = counter;
+                counter--;
+            }*/
             return mediaFeedData
                     .stream()
                     .map(e -> new InstagramData(e))
