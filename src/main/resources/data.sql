@@ -26,12 +26,12 @@ insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) va
 insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (9,'Conan','Destroyer','conanthedestroyer@woddojo.com','2313123123',1);
 
-insert into coach(coach_id,user_id,job_title,description) values
-(1,7,'Head Coach','Wild wild west certified, bad-ass with gun slinging skills');
-insert into coach(coach_id,user_id,job_title,description) values
-(2,8,'Asst Coach','Boxing camp has won over 5 world championships, has a lisp that is hard to not notice');
-insert into coach(coach_id,user_id,job_title,description) values
-(3,9,'Cardio Coach','Rides horses and swings the sword');
+insert into coach(coach_id,user_id,job_title,description,profile_pic) values
+(1,7,'Head Coach','Wild wild west certified, bad-ass with gun slinging skills','/org/1/coach/1/original.jpg');
+insert into coach(coach_id,user_id,job_title,description,profile_pic) values
+(2,8,'Asst Coach','Boxing camp has won over 5 world championships, has a lisp that is hard to not notice','/org/1/coach/2/original.jpg');
+insert into coach(coach_id,user_id,job_title,description,profile_pic) values
+(3,9,'Cardio Coach','Rides horses and swings the sword','/org/1/coach/3/original.jpg');
 
 -- Wods
 insert into wod(wod_id,name,description,notes) values

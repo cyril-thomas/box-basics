@@ -7,6 +7,7 @@ import org.jinstagram.Instagram;
 import org.jinstagram.auth.oauth.InstagramService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -48,6 +49,9 @@ public class PortalHelper {
     @Autowired
     InstagramService instagramService;
 
+    @Value("${aws.cdn.url}")
+    String cdnUrl;
+
 
     public HomePage getHomePage(Long orgId) {
         Home home = homeRepository.findByOrganizationId(orgId);
@@ -69,7 +73,7 @@ public class PortalHelper {
     public List<CoachDetail> getCoaches(Long orgId) {
         List<Coach> coaches = coachRepository.findByUserOrganizationId(orgId);
         return coaches.stream()
-                      .map(e -> new CoachDetail(e))
+                      .map(e -> new CoachDetail(cdnUrl, e))
                       .collect(Collectors.toList());
     }
 
