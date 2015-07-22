@@ -145,9 +145,16 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading"><span th:text="${wod.name}"></span></h2>
-                <hr class="primary"/>
-                <div th:utext="${wod.description}"></div>
+                <div th:if="${wod} != null">
+                    <h2 class="section-heading"><span th:text="${wod.name}"></span></h2>
+                    <hr class="primary"/>
+                    <div th:utext="${wod.description}"></div>
+                 </div>
+                <div th:if="${wod} == null">
+                    <h2 class="section-heading">Surprise!</h2>
+                    <hr class="primary"/>
+                    <p>We have a fun workout for today, come check us out at the gym</p>
+                 </div>
             </div>
         </div>
     </div>

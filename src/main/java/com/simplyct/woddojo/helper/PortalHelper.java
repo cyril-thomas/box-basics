@@ -86,7 +86,8 @@ public class PortalHelper {
 
     public WODDetail getWOD(Long orgId) {
         Schedule schedule = scheduleRepository.findByOrganizationIdAndWodDateEquals(orgId, DateTime.now().toDate());
-        return new WODDetail(schedule.getWod());
+        Wod wod = schedule.getWod();
+        return wod != null? new WODDetail(wod): null;
     }
 
     public List<ServiceDetail> getServices(Long orgId) {
