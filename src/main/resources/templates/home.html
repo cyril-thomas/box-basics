@@ -78,12 +78,12 @@
 <section class="bg-primary" id="about">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
+            <div class="col-lg-8 col-lg-offset-2">
                 <h2 class="section-heading">
-                    <div th:text="${aboutObj.aboutHeader}"></div>
+                    <div class="text-center" th:text="${aboutObj.aboutHeader}"></div>
                 </h2>
                 <hr class="light"/>
-                <div th:utext="${aboutObj.aboutContent}"></div>
+                <div class="text-left" th:utext="${aboutObj.aboutContent}"></div>
             </div>
             <br/>
 
@@ -95,7 +95,7 @@
         <div class="coachblock text-center">
             <div class="coachblock_container" th:each="coach : ${coaches}">
                 <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt=""/>
+                    <img class="img-responsive" th:src="${coach.picUrl}" alt=""/>
 
                     <div class="caption">
                         <h3><span th:text="${coach.firstName}"></span>
@@ -145,9 +145,16 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading"><span th:text="${wod.name}"></span></h2>
-                <hr class="primary"/>
-                <div th:utext="${wod.description}"></div>
+                <div th:if="${wod} != null">
+                    <h2 class="section-heading"><span th:text="${wod.name}"></span></h2>
+                    <hr class="primary"/>
+                    <div th:utext="${wod.description}"></div>
+                 </div>
+                <div th:if="${wod} == null">
+                    <h2 class="section-heading">Surprise!</h2>
+                    <hr class="primary"/>
+                    <p>We have a fun workout for today, come check us out at the gym</p>
+                 </div>
             </div>
         </div>
     </div>

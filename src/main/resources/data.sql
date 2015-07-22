@@ -26,12 +26,12 @@ insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) va
 insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (9,'Conan','Destroyer','conanthedestroyer@woddojo.com','2313123123',1);
 
-insert into coach(coach_id,user_id,job_title,description) values
-(1,7,'Head Coach','Wild wild west certified, bad-ass with gun slinging skills');
-insert into coach(coach_id,user_id,job_title,description) values
-(2,8,'Asst Coach','Boxing camp has won over 5 world championships, has a lisp that is hard to not notice');
-insert into coach(coach_id,user_id,job_title,description) values
-(3,9,'Cardio Coach','Rides horses and swings the sword');
+insert into coach(coach_id,user_id,job_title,description,profile_pic) values
+(1,7,'Head Coach','Wild wild west certified, bad-ass with gun slinging skills','/org/1/coach/1/original1.jpg');
+insert into coach(coach_id,user_id,job_title,description,profile_pic) values
+(2,8,'Asst Coach','Boxing camp has won over 5 world championships, has a lisp that is hard to not notice','/org/1/coach/2/original1.jpg');
+insert into coach(coach_id,user_id,job_title,description,profile_pic) values
+(3,9,'Cardio Coach','Rides horses and swings the sword','/org/1/coach/3/original1.jpg');
 
 -- Wods
 insert into wod(wod_id,name,description,notes) values
@@ -78,7 +78,7 @@ values(1,'Welcome to Brickwall Crossfit!'
 ,'Who are we?','CrossFit may be the answer to your fitness shortcomings. At CrossFit Brickwall we are focused on teaching the theories and methodologies that are producing some of the fittest people in the world. Come learn how you can achieve a new level of fitness through an organic form of excercise.'
 ,'How we do it!','Brickwall CrossFit welcomes all fitness levels. The same workouts elite athletes are doing are the same workouts the everyday person should do. Trainers will work with you to scale workouts to your abilities and comfort levels, without sacrificing safety and proper form. The only difference would be the amount of weight, number of reps, and substitutions to promote the progression to the recommended workout. The workouts are meant to be intense for the individual but without sacrificing safety and proper form.'
 ,'Sign Up!', 'Call or email us to come in for a free first-time workout. If you choose to continue you will need to schedule your On-Ramp training which consists of a series of classes or personal sessions that provide an understanding of the basic movements we perform in CrossFit. These basic movements are the fundamentals to all the movements in the workouts and it is important that you are familiar with the movements and able to perform them correctly and safely.'
-,'What are you waiting for lets do this!',1);
+,'What are you waiting for? Lets do this!',1);
 
 insert into about(about_id,about_title,about_content,org_id)
 values(1,'About Brickwall!'

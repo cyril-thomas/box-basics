@@ -243,8 +243,9 @@ header .header-content .header-content-inner p {
 
 }
 .service-box {
-    margin: 50px auto 0;
-    max-width: 400px;
+     margin: 50px auto 0;
+    max-width: 1000px;
+    text-align: left;
 }
 
 
@@ -259,6 +260,7 @@ header .header-content .header-content-inner p {
     margin: 0 auto;
     max-width: 650px;
 }
+#portfolio h3{color:#fff;}
 
 .portfolio-box .portfolio-box-caption {
     display: block;
@@ -475,16 +477,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42891f', end
 
 
 .textblock{text-align:center;width:100%}
-.textblock div{display:-moz-groupbox;margin: 10px;text-align:left;
-    width: 265px;}
 .textblock div h3{text-align:center}
 .coachblock{text-align:center;width:100%}
 .coachblock_container{
     display: -moz-stack;
     height: auto;
     margin: 20px 10px;
-    max-width: 350px;
-    min-height: 534px;
+    max-width: 290px;
     min-width: 295px;
     text-align: center;
 }
@@ -496,14 +495,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42891f', end
 }
 .thumbnail a{
     position: relative;
-    top: 81px;
+    top: 50px;
 }
 .caption a{display:inline-block}	
 #about{color:#ccc}
 header .header-content .header-content-inner div{
     margin: 5% auto;
     text-shadow: 0 7px 8px #000;
-    width: 90%;
+     max-width: 1000px;
     }
 
 #In-img-container{width:100%;text-align: center;background-color: rgba(0, 0, 0, 0.9);padding: 20px 0;}

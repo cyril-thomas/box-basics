@@ -9,6 +9,7 @@ import com.simplyct.woddojo.repository.CoachRepository;
 import com.simplyct.woddojo.repository.OrganizationRepository;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,7 +33,9 @@ import java.util.Map;
 @RequestMapping("/coach")
 public class CoachController {
 
-    private final String BUCKET_NAME          = "woddojo-stage";
+    @Value("${aws.bucket.name}")
+    private String BUCKET_NAME;
+
     private final String OBJECT_NAME_TEMPLATE = "org/%s/coach/%s/%s";
 
     @Autowired
