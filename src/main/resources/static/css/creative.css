@@ -131,47 +131,35 @@ aside {
     font-weight: 700;
     color: #42891f;
 }
-   .navbar-default {
-        border-color: rgba(255,255,255,.3);
-        background-color: rgba(0, 0, 0, 0.2);
-    }
+.navbar-default {
+     border-color: rgba(255,255,255,.3);
+     background-color: transparent;
+ }
 
-    .navbar-default .navbar-header .navbar-brand {
-        color: rgba(255,255,255,.7);
-    }
+ .navbar-default .navbar-header .navbar-brand {
+     color: rgba(255,255,255,.7);
+ }
 
-    .navbar-default .navbar-header .navbar-brand:hover,
-    .navbar-default .navbar-header .navbar-brand:focus {
-        color: #fff;
-    }
+ .navbar-default .navbar-header .navbar-brand:hover,
+ .navbar-default .navbar-header .navbar-brand:focus {
+     color: #fff;
+ }
 
-    .navbar-default .nav > li>a,
-    .navbar-default .nav>li>a:focus {
-        color: rgba(255,255,255,.7);
-        
-    }
-  
-    .navbar-default.affix .nav > li>a,
-    .navbar-default.affix .nav>li>a:focus {
-        color: #f2f2f2;
-    }
+ .navbar-default .nav > li>a,
+ .navbar-default .nav>li>a:focus {
+     color: rgba(255,255,255,.7);
 
-    .navbar-default.affix .nav > li>a:hover,
-    .navbar-default.affix .nav>li>a:focus:hover,.navbar-default .navbar-nav > .active > a,
-    .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-        color: #000;
-           
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,4c7c34+100&amp;0+0,0.65+100 */
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,227200+100&amp;0+0,0.65+100 */
-background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(34,114,0,0.65) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(34,114,0,0.65))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(34,114,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(34,114,0,0.65) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(34,114,0,0.65) 100%); /* IE10+ */
-background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(34,114,0,0.65) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#a6227200',GradientType=0 ); /* IE6-9 */
-
-    }
+ }
+ 
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    background-color: rgba(255, 255, 255, .2);
+    color: #fff;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #fff;
+  background-color: transparent;
+}
 
 .navbar-default .nav > li.active>a:hover,
 .navbar-default .nav>li.active>a:focus:hover {
@@ -462,19 +450,24 @@ body {
 .container {
     width: 100%;
 }
-#wod{color:#000;
-       /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#42891f+1,4e9f26+100 */
-background: #42891f; /* Old browsers */
-background: -moz-radial-gradient(center, ellipse cover,  #42891f 1%, #4e9f26 100%); /* FF3.6+ */
-background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#42891f), color-stop(100%,#4e9f26)); /* Chrome,Safari4+ */
-background: -webkit-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* Chrome10+,Safari5.1+ */
-background: -o-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* Opera 12+ */
-background: -ms-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* IE10+ */
-background: radial-gradient(ellipse at center,  #42891f 1%,#4e9f26 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42891f', endColorstr='#4e9f26',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+#wod{
+    background-image: url("../images/crossfit.png");
+    background-repeat: repeat;
+    background-color:#42891f;
+   
+}
 
-    }
-
+#wod .container{
+    background-color: rgba(255, 255, 255, 1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.2);
+    font-size: 1.5em;
+    line-height: 2em;
+    max-width: 700px;
+    padding: 40px 20px;
+}
 
 .textblock{text-align:center;width:100%}
 .textblock div h3{text-align:center}
