@@ -52,6 +52,7 @@ body {
 
 body {
     font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
+    color: #666;
 }
 
 hr {
@@ -550,7 +551,6 @@ header .header-content .header-content-inner div{
 
 #collapseReg{max-width:400px;margin:20px auto;}
 #userForm input.btn{
-    left: 307px;
     position: relative;
     top: 10px;
 }
@@ -562,7 +562,6 @@ header .header-content .header-content-inner div{
   max-width:400px;  
 }
  #contactForm button {
-    left: 264px;
     position: relative;
     top: 10px;
 }
