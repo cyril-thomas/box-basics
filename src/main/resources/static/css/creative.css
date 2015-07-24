@@ -497,7 +497,7 @@ body {
     top: 50px;
 }
 
-.thumbnail a:hover, .thumbnail a:focus{
+ a:hover, a:focus{
     color:#53ba21;
 }
 
