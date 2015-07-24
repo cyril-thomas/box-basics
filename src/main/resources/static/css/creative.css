@@ -182,7 +182,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42891f', end
 
     }
 
-
+.navbar-right{padding-right:10px;}
 header {
     position: relative;
     width: 100%;
@@ -376,9 +376,9 @@ fieldset[disabled] .btn-default.active {
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-    border-color: #ed431f;
+    border-color: #53ba21;
     color: #fff;
-    background-color: #ee4b28;
+    background-color: #53ba21;
 }
 
 .btn-primary:active,
@@ -546,4 +546,28 @@ header .header-content .header-content-inner div{
 .videoContent a.btn{position:relative;top:33%;font-size:2em;}
 .glyphicon {
     top: 3px;
+}
+
+#collapseReg{max-width:400px;margin:20px auto;}
+#userForm input.btn{
+    left: 307px;
+    position: relative;
+    top: 10px;
+}
+#contact{margin:auto;}
+#contatct-container{text-align: center;}
+.Contact{ display: -moz-stack;
+    padding:10px 20px 10px 30px;}
+#contactForm{
+  max-width:400px;  
+}
+ #contactForm button {
+    left: 264px;
+    position: relative;
+    top: 10px;
+}
+
+.fa-phone::before {
+    font-size: 23px;
+    padding: 0 8px 0 0;
 }
