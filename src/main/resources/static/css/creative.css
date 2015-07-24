@@ -454,6 +454,7 @@ body {
     background-image: url("../images/crossfit.png");
     background-repeat: repeat;
     background-color:#42891f;
+    padding: 47px 5px;
    
 }
 
@@ -491,7 +492,7 @@ body {
     top: 50px;
 }
 .caption a{display:inline-block}	
-#about{color:#ccc}
+#about{color:#ccc;}
 header .header-content .header-content-inner div{
     margin: 5% auto;
     text-shadow: 0 7px 8px #000;
@@ -502,3 +503,37 @@ header .header-content .header-content-inner div{
 .imageContainer{width:300px;display:inline-block}
 
 
+#video{
+    background-image: url("../images/videoBG.jpg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    margin: auto;
+    text-align: center;
+    max-width: 700px;
+    border-radius: 5px;
+    margin-top: 20px;
+    
+}
+
+.videoContent{
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 5px solid rgba(255, 255, 255, 0.6);
+    border-radius: 5px;
+    height: 400px;
+    margin: auto;
+    position: relative;
+    text-align: center;
+    top: -400px;
+    max-width: 700px;
+    width:auto;
+    z-index: 1;
+    margin-bottom:-400px;
+
+}
+.videoContent .logo{position:relative;top:15%;width:100%}
+.videoContent a.btn{position:relative;top:33%;font-size:2em;}
+.glyphicon {
+    top: 3px;
+}

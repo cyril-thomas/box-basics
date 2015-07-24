@@ -117,6 +117,13 @@
             </div>
         </div>
     </div>
+    
+    <div id="video"></div>
+    <div class="videoContent"><img class="logo" src="../images/Logo3.png" alt="logo"/>
+        <a href="https://youtu.be/ykccBGhfkxM" target="_blank" class="btn btn-success btn-lg">
+          <span class="glyphicon glyphicon-play-circle"></span> Play
+        </a>
+    </div>
 </section>
 
 <section id="services">
@@ -138,6 +145,7 @@
                 </div>
             </div>
         </div>
+       
     </div>
 </section>
 
@@ -213,7 +221,7 @@
             <div th:utext="${homeObj.regContent}"></div>
             <br/><br/>
             <h2><span th:text="${homeObj.regBanner}"></span></h2>
-            <a class="btn btn-default btn-xl wow tada"
+            <a class="btn btn-success btn-xl wow tada"
                role="button" data-toggle="collapse" href="#collapseReg"
                aria-expanded="false" aria-controls="collapseReg">Register Now!</a>
         </div>
@@ -317,7 +325,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-lg-4 text-center">
+            <div class="col-lg-4 text-left">
                 <form name="sentMessage" id="contactForm" method="post" action="#">
                     <div class="control-group form-group">
                         <div class="controls">
