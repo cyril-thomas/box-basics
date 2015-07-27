@@ -10,10 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 /**
  * Created by cyril on 7/5/15.
@@ -74,6 +74,11 @@ public class SocialController {
         String accessToken = fbCommunicator.getAccessToken(getRedirectUrl(request), code);
         session.setAttribute(FACEBOOK_ACCESS_TOKEN, accessToken);
         session.setAttribute(FACEBOOK_LOGGED_IN, true);
+        String returnPage = (String) session.getAttribute("returnPage");
+        if (returnPage != null) {
+            session.removeAttribute("returnPage");
+            return "redirect:" + returnPage;
+        }
         return "redirect:/social/facebook";
     }
 
@@ -85,12 +90,24 @@ public class SocialController {
         return "social/facebook";
     }
 
-    @RequestMapping(value = "facebook/post", method = RequestMethod.POST)
-    public String postToFacebook(HttpSession session) {
+    @RequestMapping(value = "facebook/post", method = RequestMethod.GET)
+    public String postToFacebook(HttpSession session, HttpServletRequest request) {
         String token = (String) session.getAttribute(FACEBOOK_ACCESS_TOKEN);
-        RestTemplate restTemplate = new RestTemplate();
-        String postUrl = "";
-//        restTemplate.
+        if (token == null) {
+            String loginUrl = fbCommunicator.getLoginUrl(getRedirectUrl(request));
+            session.setAttribute("returnPage", "/social/facebook/post");
+            return "redirect:" + loginUrl;
+        }
+        if (!fbCommunicator.hasPermissions(token, "manage_pages", "publish_pages")) {
+            String getPostPermissionUrl = fbCommunicator.getLoginUrl(getRedirectUrl(request),
+                    "manage_pages", "publish_pages");
+            session.setAttribute("returnPage", "/social/facebook/post");
+            return "redirect:" + getPostPermissionUrl;
+        }
+        Map pageInfo = fbCommunicator.getPageInfo(token);
+        String pageAccessToken = (String) pageInfo.get("access_token");
+        String pageId = (String) pageInfo.get("id");
+        fbCommunicator.postToPage(pageId, pageAccessToken, "Test post!");
         return "social/facebook";
     }
 

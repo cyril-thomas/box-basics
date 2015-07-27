@@ -1,12 +1,12 @@
 package com.simplyct.woddojo.helper.facebook;
 
 import com.simplyct.woddojo.helper.dto.fb.FbAccessTokenResponse;
+import com.simplyct.woddojo.helper.dto.fb.FbDataResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by molsen_admin on 7/21/15.
@@ -23,10 +23,17 @@ public class FbCommunicator {
     @Value("${facebook.appSecret}")
     private String facebookAppSecret;
 
-    public String getLoginUrl(String callbackUrl) {
-        return "https://www.facebook.com/dialog/oauth?" +
-                "client_id=" + facebookAppId +
-                "&redirect_uri=" + callbackUrl;
+    public String getLoginUrl(String callbackUrl, String... scopes) {
+        StringBuilder loginUrl = new StringBuilder("https://www.facebook.com/dialog/oauth?");
+        loginUrl.append("client_id=")
+                .append(facebookAppId)
+                .append("&redirect_uri=")
+                .append(callbackUrl);
+        if (scopes.length > 0) {
+            loginUrl.append("&scope=");
+            loginUrl.append(String.join(",", scopes));
+        }
+        return loginUrl.toString();
     }
 
     public String getAccessToken(String redirectUrl, String code) {
@@ -41,6 +48,52 @@ public class FbCommunicator {
         FbAccessTokenResponse tokenResponse =
                 restTemplate.getForObject(accessTokenUrl, FbAccessTokenResponse.class, params);
         return tokenResponse.getAccess_token();
+    }
+
+    public boolean hasPermissions(String accessToken, String... permissions) {
+        String getPermissionsUrl = buildUrl(BASE_URL + "me/permissions",
+                "access_token");
+        Map<String, String> params = buildParamMap("access_token", accessToken);
+        RestTemplate restTemplate = new RestTemplate();
+        FbDataResponse response = restTemplate.getForObject(getPermissionsUrl,
+                FbDataResponse.class, params);
+        List permissionList = response.getData();
+        Set<String> permissionSet = new HashSet<>();
+        for (Object o : permissionList) {
+            Map permissionMap = (Map) o;
+            String permission = (String) permissionMap.get("permission");
+            String status = (String) permissionMap.get("status");
+            if ("granted".equals(status)) {
+                permissionSet.add(permission);
+            }
+        }
+        for (String permission : permissions) {
+            if (!permissionSet.contains(permission)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Map getPageInfo(String accessToken) {
+        String checkUrl = buildUrl(BASE_URL + "me/accounts", "access_token");
+        Map<String, String> params = buildParamMap("access_token", accessToken);
+        RestTemplate restTemplate = new RestTemplate();
+        FbDataResponse response = restTemplate.getForObject(checkUrl,
+                        FbDataResponse.class, params);
+        if (response.getData().size() > 0) {
+            return (Map) response.getData().get(0);
+        }
+        return null;
+    }
+
+    public void postToPage(String pageId, String pageAccessToken, String contents) {
+        String postUrl = buildUrl(BASE_URL + pageId + "/feed", "access_token");
+        Map<String, String> params = buildParamMap("access_token", pageAccessToken);
+        Map<String, String> post = buildParamMap("message", contents);
+        RestTemplate restTemplate = new RestTemplate();
+        Map<String, String> response = restTemplate.postForObject(postUrl, post, Map.class, params);
+        System.out.println("response.get(\"id\") = " + response.get("id"));
     }
 
     private String buildUrl(String baseUrl, String... params) {

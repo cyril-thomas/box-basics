@@ -3,7 +3,7 @@ package com.simplyct.woddojo.helper.dto.fb;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Created by molsen_admin on 7/21/15.
+ * Created by matt.olsen on 7/21/15.
  */
 @JsonIgnoreProperties
 public class FbAccessTokenResponse {
