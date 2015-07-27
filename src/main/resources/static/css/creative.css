@@ -52,6 +52,7 @@ body {
 
 body {
     font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
+    color: #666;
 }
 
 hr {
@@ -111,7 +112,7 @@ section {
 aside {
     padding: 50px 0;
 }
-
+aside div{max-width:1020px;}
 .no-padding {
     padding: 0;
 }
@@ -124,6 +125,10 @@ aside {
     -moz-transition: all .35s;
     transition: all .35s;
 }
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus{background-color:#42891f}
+.navbar-default .navbar-toggle{background-color:transparent;}
 
 .navbar-default .navbar-header .navbar-brand {
     text-transform: uppercase;
@@ -178,7 +183,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42891f', end
 
     }
 
-
+.navbar-right{padding-right:10px;}
 header {
     position: relative;
     width: 100%;
@@ -232,7 +237,7 @@ header .header-content .header-content-inner p {
 }
 .service-box {
      margin: 50px auto 0;
-    max-width: 1000px;
+    max-width: 1020px;
     text-align: left;
 }
 
@@ -372,9 +377,9 @@ fieldset[disabled] .btn-default.active {
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-    border-color: #ed431f;
+    border-color: #53ba21;
     color: #fff;
-    background-color: #ee4b28;
+    background-color: #53ba21;
 }
 
 .btn-primary:active,
@@ -483,6 +488,7 @@ body {
 }
 #instagramHeader{height:88px;}
 #instagramHeader h2{color:#f1f1f1}
+.thumbnail{  min-height: 446px;}
 .thumbnail .caption {
     min-height: 150px;
     
@@ -491,6 +497,11 @@ body {
     position: relative;
     top: 50px;
 }
+
+ a:hover, a:focus{
+    color:#53ba21;
+}
+
 .caption a{display:inline-block}	
 #about{color:#ccc;}
 header .header-content .header-content-inner div{
@@ -536,4 +547,26 @@ header .header-content .header-content-inner div{
 .videoContent a.btn{position:relative;top:33%;font-size:2em;}
 .glyphicon {
     top: 3px;
+}
+
+#collapseReg{max-width:400px;margin:20px auto;}
+#userForm input.btn{
+    position: relative;
+    top: 10px;
+}
+#contact{margin:auto;}
+#contatct-container{text-align: center;}
+.Contact{ display: -moz-stack;
+    padding:10px 20px 10px 30px;}
+#contactForm{
+  max-width:400px;  
+}
+ #contactForm button {
+    position: relative;
+    top: 10px;
+}
+
+.fa-phone::before {
+    font-size: 23px;
+    padding: 0 8px 0 0;
 }
