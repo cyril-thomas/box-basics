@@ -149,6 +149,9 @@ nav{
 .navbar {
     border-radius: 0px;
 }
+.affix-top .navbar-nav.navbar-right:last-child {
+   margin-right: -109px;
+}
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus{background-color:#42891f}
 .navbar-default .navbar-toggle{background-color:transparent;}
