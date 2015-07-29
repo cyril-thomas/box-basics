@@ -20,17 +20,11 @@ public class Home {
     @NotEmpty(message = "Title for home page is required")
     String title;
 
-    @Column(name = "intro_title")
-    String introTitle;
-
     @Column(name = "intro_content")
     String introContent;
 
     @Column(name = "services_title")
     String servicesTitle;
-
-    @Column(name = "services_content")
-    String servicesContent;
 
     @Column(name = "registration_title")
     String regTitle;
@@ -40,6 +34,9 @@ public class Home {
 
     @Column(name = "registration_banner")
     String regBanner;
+
+    @Column(name = "video_url")
+    String videoUrl;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "org_id")

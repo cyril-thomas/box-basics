@@ -2,9 +2,8 @@ package com.simplyct.woddojo.controller.admin;
 
 import com.simplyct.woddojo.model.Classes;
 import com.simplyct.woddojo.model.Organization;
-import com.simplyct.woddojo.repository.ClassesRepository;
-import com.simplyct.woddojo.repository.CoachRepository;
-import com.simplyct.woddojo.repository.OrganizationRepository;
+import com.simplyct.woddojo.model.Payment;
+import com.simplyct.woddojo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,17 +20,17 @@ import javax.validation.Valid;
  * Created by cyril on 7/14/15.
  */
 @Controller
-@RequestMapping("/classes")
+@RequestMapping("/payments")
 public class PaymentController {
 
     @Autowired
-    ClassesRepository classesRepository;
-
-    @Autowired
-    CoachRepository coachRepository;
-
-    @Autowired
     OrganizationRepository organizationRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    PaymentRepository paymentRepository;
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String addNew(Model model,
@@ -39,12 +38,12 @@ public class PaymentController {
         Long orgId = (Long) session.getAttribute("orgId");
 
         Organization organization = organizationRepository.findOne(orgId);
-        Classes classes = new Classes();
-        classes.setOrganization(organization);
-        model.addAttribute("classes", classes);
+        Payment payment = new Payment();
+        payment.setOrganization(organization);
+        model.addAttribute("payment", payment);
 
-        model.addAttribute("coaches", coachRepository.findByUserOrganizationId(orgId));
-        return "admin/classes/edit";
+        model.addAttribute("users", userRepository.findByOrganizationId(orgId));
+        return "admin/payments/edit";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -54,39 +53,40 @@ public class PaymentController {
         Long orgId = (Long) session.getAttribute("orgId");
 
         if (id != null) {
-            model.addAttribute("classes", classesRepository.findOne(id));
+            model.addAttribute("payment", paymentRepository.findOne(id));
         } else {
 
             Organization organization = organizationRepository.findOne(orgId);
-            Classes classes = new Classes();
-            classes.setOrganization(organization);
-            model.addAttribute("classes", classes);
+            Payment payment = new Payment();
+            payment.setOrganization(organization);
+            model.addAttribute("payment", payment);
+
         }
 
-        model.addAttribute("coaches", coachRepository.findByUserOrganizationId(orgId));
-        return "admin/classes/edit";
+        model.addAttribute("users", userRepository.findByOrganizationId(orgId));
+        return "admin/payments/edit";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editPost(Model model,
                            HttpSession session,
-                           @ModelAttribute @Valid Classes classes,
+                           @ModelAttribute @Valid Payment payment,
                            BindingResult result) {
 
         if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
-            return "admin/classes/edit";
+            return "admin/payments/edit";
         }
 
-        Long orgId = classes.getOrganization().getId();
+        Long orgId = payment.getOrganization().getId();
         Organization organization = organizationRepository.findOne(orgId);
-        classes.setOrganization(organization);
-        classesRepository.save(classes);
+        payment.setOrganization(organization);
+        paymentRepository.save(payment);
 
-        model.addAttribute("classes", classesRepository.findByOrganizationId(orgId));
-        model.addAttribute("coaches", coachRepository.findByUserOrganizationId(orgId));
+        model.addAttribute("payments", paymentRepository.findByOrganizationId(orgId));
+        model.addAttribute("users", userRepository.findByOrganizationId(orgId));
 
-        return "admin/classes/list";
+        return "admin/payments/list";
     }
 
 
@@ -94,8 +94,8 @@ public class PaymentController {
     public String list(Model model,
                        HttpSession session) {
         Long orgId = (Long) session.getAttribute("orgId");
-        model.addAttribute("classes", classesRepository.findByOrganizationId(orgId));
-        return "admin/classes/list";
+        model.addAttribute("payments", paymentRepository.findByOrganizationId(orgId));
+        return "admin/payments/list";
     }
 
 }

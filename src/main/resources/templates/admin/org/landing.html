@@ -10,7 +10,7 @@
         <div class="col-lg-12">
             <h1 class="page-header">Gym</h1>
             <ol class="breadcrumb">
-                <li class="active"><a th:href="@{/org/landing}">Home</a>
+                <li class="active"><a th:href="@{/}">Website</a>
                 </li>
             </ol>
         </div>
@@ -146,6 +146,22 @@
 
                     <p>Edit and Manage the classes you provide at your dojo</p>
                     <a th:href="@{/classes/list}" class="btn btn-primary">Setup</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="media">
+                <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-credit-card fa-stack-1x fa-inverse"></i>
+                        </span>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">Payments</h4>
+
+                    <p>Edit and Manage the payments you provide at your dojo</p>
+                    <a th:href="@{/payments/list}" class="btn btn-primary">Setup</a>
                 </div>
             </div>
         </div>

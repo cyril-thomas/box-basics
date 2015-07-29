@@ -13,7 +13,7 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "class_id", unique = true)
+    @Column(name = "payment_id", unique = true)
     Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -21,13 +21,13 @@ public class Payment {
     Organization organization;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "coach_id")
-    Coach coach;
+    @JoinColumn(name = "user_id")
+    User user;
 
-    @Column(name = "name")
-    String name;
+    @Column(name = "status")
+    String status;
 
-    @Column(name = "description")
-    String description;
-
+    String cardName;
+    String cardNum;
+    String cvv;
 }

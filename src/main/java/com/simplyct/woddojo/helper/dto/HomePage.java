@@ -10,15 +10,15 @@ import java.util.List;
  */
 @Data
 public class HomePage {
-    Long   homeId;
-    String landingHeader;
-    String introTitle;
-    String introContent;
-    String servicesTitle;
-    String servicesContent;
-    String regTitle;
-    String regContent;
-    String regBanner;
+    Long                     homeId;
+    String                   landingHeader;
+    String                   videoUrl;
+    String                   introContent;
+    String                   servicesTitle;
+    String                   servicesContent;
+    String                   regTitle;
+    String                   regContent;
+    String                   regBanner;
     List<AnnouncementDetail> announcements;
 
     public HomePage() {
@@ -27,10 +27,9 @@ public class HomePage {
     public HomePage(Home home) {
         this.homeId = home.getId();
         this.landingHeader = home.getTitle();
-        this.introTitle = home.getIntroTitle();
+        this.videoUrl = home.getVideoUrl();
         this.introContent = home.getIntroContent();
         this.servicesTitle = home.getServicesTitle();
-        this.servicesContent = home.getServicesContent();
         this.regTitle = home.getRegTitle();
         this.regContent = home.getRegContent();
         this.regBanner = home.getRegBanner();
