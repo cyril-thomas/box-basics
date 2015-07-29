@@ -106,7 +106,7 @@ p {
 }
 
 section {
-    padding: 100px 0;
+    padding: 50px 0;
 }
 
 aside {
@@ -116,7 +116,28 @@ aside div{max-width:1020px;}
 .no-padding {
     padding: 0;
 }
-
+#header{background-color:#f1f1f1;padding:5px;}
+#header img.logo{width:175px;}
+#header-ico{display: inline;
+    float: right;
+    width: auto;}
+nav{
+    position:relative;
+    top: 0px;
+    -webkit-transition:ease-in-out .1s;
+    transition: ease-in-out .1s;
+    z-index: 300;
+    width:100%;
+}
+.affix-top .navbar-right{
+    position: relative;
+    left:0;
+    right: -95px !important;
+}
+ .affix-top button{
+    position: relative;
+    right: -109px !important;
+}
 .navbar-default {
     border-color: rgba(34,34,34,.05);
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
@@ -125,7 +146,9 @@ aside div{max-width:1020px;}
     -moz-transition: all .35s;
     transition: all .35s;
 }
-
+.navbar {
+    border-radius: 0px;
+}
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus{background-color:#42891f}
 .navbar-default .navbar-toggle{background-color:transparent;}
@@ -183,9 +206,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42891f', end
 
     }
 
-.navbar-right{padding-right:10px;}
 header {
     position: relative;
+     margin-top: -72px;
     width: 100%;
     min-height: 100%;
     text-align: center;
@@ -233,6 +256,7 @@ header .header-content .header-content-inner p {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    min-height:100%
 
 }
 .service-box {
@@ -459,14 +483,15 @@ body {
     background-image: url("../images/crossfit.png");
     background-repeat: repeat;
     background-color:#42891f;
-    padding: 47px 5px;
+    padding: 55px 5px;
+    
    
 }
 
 #wod .container{
     background-color: rgba(255, 255, 255, 1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    border-radius: 4px;
     border-right: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.2);
     font-size: 1.5em;
@@ -474,7 +499,15 @@ body {
     max-width: 700px;
     padding: 40px 20px;
 }
+#wod h2{color:#333;}
+#announcements{max-width:700px;margin:80px auto 50px;}
 
+.panel{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.2);
+}
 .textblock{text-align:center;width:100%}
 .textblock div h3{text-align:center}
 .coachblock{text-align:center;width:100%}
