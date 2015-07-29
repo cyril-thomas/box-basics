@@ -59,19 +59,6 @@ insert into classes(class_id,org_id,coach_id,name,description) values
 insert into schedule(schedule_id,wod_id,org_id,wod_date) values
 (1,1,1,current_date);
 
-insert into schedule_class_rel(schedule_id,class_id) values
-(1,1);
-insert into schedule_class_rel(schedule_id,class_id) values
-(1,2);
-insert into schedule_class_rel(schedule_id,class_id) values
-(1,3);
-insert into schedule_class_rel(schedule_id,class_id) values
-(1,4);
-insert into schedule_class_rel(schedule_id,class_id) values
-(1,5);
-insert into schedule_class_rel(schedule_id,class_id) values
-(1,6);
-
 -- Portal
 insert into home(home_id,title,intro_title,intro_content,services_title,services_content,registration_title,registration_content,registration_banner,org_id)
 values(1,'Welcome to Brickwall Crossfit!'

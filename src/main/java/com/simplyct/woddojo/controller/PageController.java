@@ -27,13 +27,7 @@ public class PageController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model, HttpSession httpSession) {
-        httpSession.setAttribute("home_flow", false);
-        Long orgId = (Long) httpSession.getAttribute("orgId");
-        HomePage homePage = portalHelper.getHomePage(orgId);
-
-        model.addAttribute("homeObj", homePage);
-
-        return "index";
+        return home(model,httpSession);
     }
 
     @RequestMapping(value = "about", method = RequestMethod.GET)

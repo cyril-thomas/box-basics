@@ -31,12 +31,4 @@ public class Schedule {
     @JoinColumn(name = "wod_id")
     Wod wod;
 
-    @OneToMany()
-    @JoinTable(
-            name = "schedule_class_rel",
-            joinColumns = @JoinColumn(name = "schedule_id"),
-            inverseJoinColumns = @JoinColumn(name = "class_id")
-    )
-    private List<Classes> classes;
-
 }

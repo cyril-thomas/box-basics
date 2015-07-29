@@ -55,6 +55,9 @@
                 <li>
                     <a class="page-scroll" href="#contact">Contact</a>
                 </li>
+                <li>
+                    <a class="page-scroll" th:href="@{/org/landing}">Admin</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -91,7 +94,7 @@
                 <h2 class="section-heading">Our Team</h2>
                 <hr class="light"/>
             </div>
-             </div>
+        </div>
         <div class="coachblock text-center">
             <div class="coachblock_container" th:each="coach : ${coaches}">
                 <div class="thumbnail">
@@ -104,24 +107,24 @@
                             <small><span th:text="${coach.jobTitle}"></span></small>
                         </h3>
                         <div th:utext="${coach.intro}"></div>
-                        
-                     
+
+
                     </div>
                     <a href="#"><span class="fa fa-2x fa-facebook-square"></span></a>
                     <a href="#"><span class="fa fa-2x fa-linkedin-square"></span></a>
                     <a href="#"><span class="fa fa-2x fa-twitter-square"></span></a>
-                            
+
                     <!-- /.caption-->
                 </div>
                 <!-- /.thumbnail-->
             </div>
         </div>
     </div>
-    
+
     <div id="video"></div>
     <div class="videoContent"><img class="logo" src="../images/Logo3.png" alt="logo"/>
         <a href="https://youtu.be/ykccBGhfkxM" target="_blank" class="btn btn-success btn-lg">
-          <span class="glyphicon glyphicon-play-circle"></span> Play
+            <span class="glyphicon glyphicon-play-circle"></span> Play
         </a>
     </div>
 </section>
@@ -145,7 +148,7 @@
                 </div>
             </div>
         </div>
-       
+
     </div>
 </section>
 
@@ -157,12 +160,12 @@
                     <h2 class="section-heading"><span th:text="${wod.name}"></span></h2>
                     <hr class="primary"/>
                     <div th:utext="${wod.description}"></div>
-                 </div>
+                </div>
                 <div th:if="${wod} == null">
                     <h2 class="section-heading">Surprise!</h2>
                     <hr class="primary"/>
                     <p>We have a fun workout for today, come check us out at the gym</p>
-                 </div>
+                </div>
             </div>
         </div>
     </div>
@@ -185,32 +188,32 @@
         </section>
     </div>
     <div class="container-fluid">
-       
-            <div th:if="${feed} != null">
-                <div id="In-img-container">
+
+        <div th:if="${feed} != null">
+            <div id="In-img-container">
                 <div id="instagramHeader" class="text-center">
                     <h2 class="section-heading">#BrickwallCrossfit</h2>
                     <hr class="success"/>
                 </div>
-                
-                    <div  class="imageContainer" style="padding: 0 0" th:each="f : ${feed}">
-                        <a href="#" class="portfolio-box">
-                            <img th:src="${f.highResolutionUrl}" class="img-responsive" alt=""/>
 
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded" th:utext="${f.userName}">
-                                    </div>
-                                    <div class="project-name" th:utext="${f.caption}">
-                                    </div>
+                <div class="imageContainer" style="padding: 0 0" th:each="f : ${feed}">
+                    <a href="#" class="portfolio-box">
+                        <img th:src="${f.highResolutionUrl}" class="img-responsive" alt=""/>
+
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" th:utext="${f.userName}">
+                                </div>
+                                <div class="project-name" th:utext="${f.caption}">
                                 </div>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-   
+    </div>
+
 </section>
 
 <aside class="bg-dark" id="register">
@@ -220,6 +223,7 @@
             <hr class="success"/>
             <div class="text-left" th:utext="${homeObj.regContent}"></div>
             <br/><br/>
+
             <h2><span th:text="${homeObj.regBanner}"></span></h2>
             <a class="btn btn-success btn-xl wow tada"
                role="button" data-toggle="collapse" href="#collapseReg"
@@ -229,21 +233,11 @@
             <div>
                 <div class="text-left">
 
-                    <form id="userForm"
+                    <form id="registration-form"
                           th:action="@{/reg/register}"
                           th:object="${user}"
                           action="#"
                           method="post">
-
-                        <!-- Errors -->
-                        <div th:if="${#fields.hasErrors('*')}"
-                             class="alert alert-error">
-                            <h3 class="text-danger"
-                                th:each="error : ${#fields.errors('*')}"
-                                th:text="${error}">
-                                Validation error
-                            </h3>
-                        </div>
 
                         <!-- Fields -->
 
@@ -267,19 +261,19 @@
                         </div>
                         <div class="control-group form-group">
                             <div class="controls">
-                                <label for="remail">Email</label>
-                                <input type="text"
+                                <label for="email">Email</label>
+                                <input type="email"
                                        th:field="*{email}"
-                                       id="remail"
+                                       id="email"
                                        class="form-control"/>
                             </div>
                         </div>
                         <div class="control-group form-group">
                             <div class="controls">
-                                <label for="rphone">Phone</label>
+                                <label for="phone">Phone</label>
                                 <input type="text"
                                        th:field="*{phone}"
-                                       id="rphone"
+                                       id="phone"
                                        class="form-control"/>
                             </div>
                         </div>
@@ -339,14 +333,14 @@
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Phone Number:</label>
-                            <input type="tel" class="form-control" id="phone"
+                            <input type="tel" class="form-control" id="aphone"
                                    data-validation-required-message="Please enter your phone number."/>
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Email Address:</label>
-                            <input type="email" class="form-control" id="email"
+                            <input type="email" class="form-control" id="aemail"
                                    data-validation-required-message="Please enter your email address."/>
                         </div>
                     </div>
@@ -378,10 +372,50 @@
 <!-- Plugin JavaScript -->
 <script th:src="@{/js/jquery.easing.min.js}"></script>
 <script th:src="@{/js/jquery.fittext.js}"></script>
+<script th:src="@{/js/jquery.validate.min.js}"></script>
 <script th:src="@{/js/wow.min.js}"></script>
 
 <!-- Custom Theme JavaScript -->
 <script th:src="@{/js/creative.js}"></script>
+
+<script>
+    $(document).ready(function(){
+		$('#registration-form').validate({
+	    rules: {
+	       firstName: {
+	       required: true
+	      },
+
+		 lastName: {
+	        required: true
+	      },
+	      email: {
+	        required: true,
+	        email: true
+	      },
+	      phone: {
+	        required: true,
+	        phoneUS: true
+	      },
+	    },
+	    messages: {
+	       firstName: "Please enter a first name",
+	       lastName: "Please enter a last name",
+	       email: "Please enter a valid email",
+	       phone: "Please enter a valid phone number",
+	       },
+			highlight: function(element) {
+				$(element).closest('.control-group').removeClass('has-success').addClass('has-error');
+			},
+			success: function(element) {
+				element
+				.closest('.control-group').removeClass('has-error').addClass('has-success');
+			}
+	  });
+
+}); // end document.ready
+
+</script>
 
 </body>
 

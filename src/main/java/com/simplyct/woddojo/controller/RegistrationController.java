@@ -28,22 +28,11 @@ public class RegistrationController {
     @Autowired
     OrganizationRepository organizationRepository;
 
-    @Autowired
-    PortalHelper portalHelper;
-
-
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String regPost(Model model,
                           HttpSession httpSession,
-                          @ModelAttribute @Valid User user,
-                          BindingResult result) {
+                          @ModelAttribute User user) {
         Long orgId = (Long) httpSession.getAttribute("orgId");
-
-        if (result.hasErrors()) {
-            portalHelper.loadHomePage(model,orgId,httpSession);
-            model.addAttribute("errors", result.getAllErrors());
-            return "home";
-        }
 
         Organization organization = organizationRepository.findOne(orgId);
         user.setOrganization(organization);
