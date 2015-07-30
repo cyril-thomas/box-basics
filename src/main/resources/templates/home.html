@@ -1,21 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="htmlhead">
-    <meta charset="utf-8"></meta>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-    <meta name="description" content=""></meta>
-    <meta name="author" content=""></meta>
-    <link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}"></link>
-
-    <title th:text="${#httpSession.getAttribute('gymName')}">(title)</title>
-
-    <link th:href="@{/webjars/bootstrap/3.0.3/css/bootstrap.css}" rel="stylesheet"></link>
-    <link th:href="@{/webjars/font-awesome/4.3.0/css/font-awesome.min.css}" rel="stylesheet"></link>
-    <link th:href="@{/css/animate.min.css}" rel="stylesheet"></link>
-    <link th:href="@{/css/creative.css}" rel="stylesheet"></link>
-</head>
-
+<head th:include="layout :: htmlhead"></head>
 <body id="page-top">
 <div id="header">
     <img class="logo" src="../images/Logo3.png" alt="logo"/>
@@ -31,53 +16,7 @@
         </li>
     </ul>
 </div>
-<nav id="mainNav" class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand page-scroll" href="#page-top">
-                <div th:text="${#httpSession.getAttribute('gymName')}">Logo</div>
-            </a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="page-scroll" href="#about">About</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#services">Services</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#wod">Workout</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#portfolio">Social</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#register">Register</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
-                </li>
-                <li>
-                    <a class="page-scroll" th:href="@{/org/landing}">Admin</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-
+<div th:replace="layout :: navbar">(navbar)</div>
 <header>
     <div class="header-content">
         <div class="header-content-inner">
@@ -136,7 +75,7 @@
 
     <div id="video"></div>
     <div class="videoContent"><img class="logo" src="../images/Logo3.png" alt="logo"/>
-        <a href="https://youtu.be/ykccBGhfkxM" target="_blank" class="btn btn-success btn-lg">
+        <a th:href="${homeObj.videoUrl}" target="_blank" class="btn btn-success btn-lg">
             <span class="glyphicon glyphicon-play-circle"></span> Play
         </a>
     </div>
@@ -146,7 +85,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Services we provide</h2>
+                <h2 class="section-heading"><span th:text="${homeObj.servicesTitle}"></span></h2>
                 <hr class="primary"/>
             </div>
         </div>
@@ -166,7 +105,7 @@
 </section>
 
 <section id="wod">
-    <h2 class="text-center"> Workout</h2>
+    <h2 class="text-center">Workout</h2>
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -186,7 +125,7 @@
 <!-- Announcements -->
     <div th:if="${homeObj.announcements != null and homeObj.announcements.size() > 0}">
         <div id="announcements">
-            <h2 class="text-center">Annoucements</h2>
+            <h2 class="text-center">Announcements</h2>
 
             <div class="panel-group" id="accordion">
                 <div class="panel panel-default" th:each="anno : ${homeObj.announcements}">
@@ -210,7 +149,7 @@
     <br/><br/>
 </section>
 
-<section class="no-padding" id="portfolio">
+<section class="no-padding" id="social">
     <div th:if="${feed} == null">
         <section class="bg-primary">
             <div class="container">
@@ -231,7 +170,7 @@
         <div th:if="${feed} != null">
             <div id="In-img-container">
                 <div id="instagramHeader" class="text-center">
-                    <h2 class="section-heading">#BrickwallCrossfit</h2>
+                    <h2 class="section-heading"><span th:text="${gymObj.hashTag}"></span></h2>
                     <hr class="success"/>
                 </div>
 
@@ -317,7 +256,9 @@
                                        th:field="*{phone}"
                                        id="phone"
                                        class="form-control"
-                                       placeholder="Phone"/>
+                                       placeholder="Phone"
+                                       min="10"
+                                       maxlength="10"/>
                             </div>
                         </div>
                         <div class="text-right">
@@ -407,19 +348,7 @@
     </div>
 </section>
 
-
-<script th:src="@{/webjars/jquery/2.0.3/jquery.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/3.0.3/js/bootstrap.min.js}"></script>
-
-
-<!-- Plugin JavaScript -->
-<script th:src="@{/js/jquery.easing.min.js}"></script>
-<script th:src="@{/js/jquery.fittext.js}"></script>
-<script th:src="@{/js/jquery.validate.min.js}"></script>
-<script th:src="@{/js/wow.min.js}"></script>
-
-<!-- Custom Theme JavaScript -->
-<script th:src="@{/js/creative.js}"></script>
+<div th:include="layout :: footer" id="footer">(footer)</div>
 
 <script>
     $(document).ready(function(){

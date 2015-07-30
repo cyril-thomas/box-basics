@@ -12,60 +12,74 @@
 
     <link th:href="@{/webjars/bootstrap/3.0.3/css/bootstrap.css}" rel="stylesheet"></link>
     <link th:href="@{/webjars/font-awesome/4.3.0/css/font-awesome.min.css}" rel="stylesheet"></link>
-    <link th:href="@{/webjars/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css}" rel="stylesheet"></link>
-    <link th:href="@{/js/summernote/summernote.css}" rel="stylesheet"></link>
-    <link th:href="@{/css/starter.css}" rel="stylesheet"></link>
+    <link th:href="@{/css/animate.min.css}" rel="stylesheet"></link>
+    <link th:href="@{/css/creative.css}" rel="stylesheet"></link>
 </head>
 
 <body>
-<nav th:fragment="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
+<nav th:fragment="navbar" id="mainNav" class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarlinks">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" th:href="@{/}">
+            <a class="navbar-brand page-scroll" href="#page-top">
                 <div th:text="${#httpSession.getAttribute('gymName')}">Logo</div>
             </a>
         </div>
-        <div id="navbarlinks" class="collapse navbar-collapse">
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a th:href="@{/}">Home</a></li>
-                <li><a th:href="@{/services}">Services</a></li>
-                <li><a th:href="@{/user/register}">Register</a></li>
-                <li><a th:href="@{/social/list}">Social</a></li>
-                <li><a th:href="@{/about}">About</a></li>
-                <li><a th:href="@{/contact}">Contact</a></li>
-                <li class="dropdown">
-                    <!--<a th:href="@{/admin/landing}">Admin</a>-->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a th:href="@{/org/landing}">Gym</a></li>
-                        <li><a th:href="@{/wod/list}">WOD</a></li>
-                        <li><a th:href="@{/user/list}">Members</a></li>
-                        <li><a th:href="@{/schedule/list}">Schedule</a></li>
-                        <li><a th:href="@{/blog}">Blog</a></li>
-                    </ul>
+                <li>
+                    <a class="page-scroll" href="#about">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#services">Services</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#wod">Workout</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#social">Social</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#register">Register</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">Contact</a>
+                </li>
+                <li>
+                    <a class="page-scroll" th:href="@{/org/landing}">Admin</a>
                 </li>
             </ul>
         </div>
+        <!-- /.navbar-collapse -->
     </div>
-
+    <!-- /.container-fluid -->
 </nav>
+
 <footer th:fragment="footer" id="footer">
-    <div class="spacer"/>
-    <div class="row">
-        <div class="col-lg-12">
-            <p>Copyright &copy; WOD-Dojo 2015</p>
-        </div>
-    </div>
+    <p>Copyright &copy; WOD-Dojo 2015</p>
+
     <script th:src="@{/webjars/jquery/2.0.3/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.0.3/js/bootstrap.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js}"></script>
-    <script th:src="@{/js/summernote/summernote.min.js}"/>
+
+
+    <!-- Plugin JavaScript -->
+    <script th:src="@{/js/jquery.easing.min.js}"></script>
+    <script th:src="@{/js/jquery.fittext.js}"></script>
+    <script th:src="@{/js/jquery.validate.min.js}"></script>
+    <script th:src="@{/js/wow.min.js}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script th:src="@{/js/creative.js}"></script>
+
 </footer>
 
 </body>

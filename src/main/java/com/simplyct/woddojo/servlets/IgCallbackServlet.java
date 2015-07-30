@@ -34,10 +34,6 @@ public class IgCallbackServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("INSTAGRAM_OBJECT", instagram);
 
-        if (!(Boolean) session.getAttribute("home_flow")) {
-            response.sendRedirect(request.getContextPath() + "/social/list");
-        } else {
-            response.sendRedirect(request.getContextPath() + "/home");
-        }
+        response.sendRedirect(request.getContextPath() + "/home#social");
     }
 }

@@ -30,46 +30,8 @@ public class PageController {
         return home(model,httpSession);
     }
 
-    @RequestMapping(value = "about", method = RequestMethod.GET)
-    public String about(Model model, HttpSession httpSession) {
-        Long orgId = (Long) httpSession.getAttribute("orgId");
-        AboutPage aboutPage = portalHelper.getAboutPage(orgId);
-        List<CoachDetail> coaches = portalHelper.getCoaches(orgId);
-
-        model.addAttribute("aboutObj", aboutPage);
-        model.addAttribute("coaches", coaches);
-        return "about";
-    }
-
-    @RequestMapping(value = "contact", method = RequestMethod.GET)
-    public String contact(Model model, HttpSession httpSession) {
-        Long orgId = (Long) httpSession.getAttribute("orgId");
-        GymDetail gymDetail = portalHelper.getGymDetail(orgId);
-
-        model.addAttribute("gymObj", gymDetail);
-
-        return "contact";
-    }
-
-    @RequestMapping(value = "services", method = RequestMethod.GET)
-    public String services(Model model, HttpSession httpSession) {
-        Long orgId = (Long) httpSession.getAttribute("orgId");
-        List<ServiceDetail> services = portalHelper.getServices(orgId);
-
-        model.addAttribute("services", services);
-
-        return "services";
-    }
-
-    @RequestMapping(value = "server_status", method = RequestMethod.GET)
-    public String serverStatus() {
-        return "server_status";
-    }
-
-
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public String home(Model model, HttpSession httpSession) {
-        httpSession.setAttribute("home_flow", true);
 
         Long orgId = (Long) httpSession.getAttribute("orgId");
 
@@ -79,4 +41,10 @@ public class PageController {
 
         return "home";
     }
+
+    @RequestMapping(value = "server_status", method = RequestMethod.GET)
+    public String serverStatus() {
+        return "server_status";
+    }
+
 }

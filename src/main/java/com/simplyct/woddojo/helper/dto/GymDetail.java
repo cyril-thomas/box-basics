@@ -14,12 +14,14 @@ public class GymDetail {
     Address postalAddress;
     String  orgEmail;
     String  phone;
+    String  hashTag;
 
     public GymDetail(Organization organization) {
         this.orgId = organization.getId();
         this.orgEmail = organization.getEmail();
         this.phone = organization.getPhone();
         this.name = organization.getName();
+        this.hashTag = organization.getHashTag();
         this.postalAddress = organization.getPostalAddress();
     }
 }
