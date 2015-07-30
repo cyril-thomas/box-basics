@@ -5,14 +5,14 @@
 <div id="header">
     <img class="logo" src="../images/Logo3.png" alt="logo"/>
     <ul id="header-ico" class="list-unstyled list-inline list-social-icons text-right">
-        <li>
-            <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
+        <li th:if="${not #strings.isEmpty(aboutObj.fbUrl)}">
+            <a th:href="${aboutObj.fbUrl}"><i class="fa fa-facebook-square fa-2x"></i></a>
         </li>
-        <li>
-            <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
+        <li th:if="${not #strings.isEmpty(aboutObj.twitter)}">
+            <a th:href="${aboutObj.twitter}"><i class="fa fa-twitter-square fa-2x"></i></a>
         </li>
-        <li>
-            <a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
+        <li th:if="${not #strings.isEmpty(aboutObj.gPlus)}">
+            <a th:href="${aboutObj.gPlus}"><i class="fa fa-google-plus-square fa-2x"></i></a>
         </li>
     </ul>
 </div>
@@ -292,14 +292,14 @@
                 <p><span class="fa fa-clock-o"></span>
                     <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM</p>
                 <ul class="list-unstyled list-inline list-social-icons">
-                    <li>
-                        <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
+                    <li th:if="${not #strings.isEmpty(aboutObj.fbUrl)}">
+                        <a th:href="${aboutObj.fbUrl}"><i class="fa fa-facebook-square fa-2x"></i></a>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
+                    <li th:if="${not #strings.isEmpty(aboutObj.twitter)}">
+                        <a th:href="${aboutObj.twitter}"><i class="fa fa-twitter-square fa-2x"></i></a>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
+                    <li th:if="${not #strings.isEmpty(aboutObj.gPlus)}">
+                        <a th:href="${aboutObj.gPlus}"><i class="fa fa-google-plus-square fa-2x"></i></a>
                     </li>
                 </ul>
             </div>

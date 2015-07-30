@@ -23,6 +23,15 @@ public class About {
     @Column(name = "about_content")
     String aboutContent;
 
+    @Column(name = "facebook_url")
+    String facebookLink;
+
+    @Column(name = "twitter_url")
+    String twitterLink;
+
+    @Column(name = "google_plus_url")
+    String gPlusLink;
+
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "org_id")
