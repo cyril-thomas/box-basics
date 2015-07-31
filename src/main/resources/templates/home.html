@@ -280,29 +280,7 @@
                 <p>Ready to start your transformation with us? That's great! Give us a call, come visit us or send us an
                     message!</p>
             </div>
-            <div class="Contact text-left">
-                <p><span class="fa fa-phone fa-3x wow bounceIn"></span><span th:text="${gymObj.phone}"></span></p>
-
-                <p></p>
-
-                <span th:text="${gymObj.postalAddress.firstLine}">Add 1</span>
-                <br/>
-                <span th:text="${gymObj.postalAddress.secondLine}">Add 2</span>
-
-                <p><span class="fa fa-clock-o"></span>
-                    <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM</p>
-                <ul class="list-unstyled list-inline list-social-icons">
-                    <li th:if="${not #strings.isEmpty(aboutObj.fbUrl)}">
-                        <a th:href="${aboutObj.fbUrl}"><i class="fa fa-facebook-square fa-2x"></i></a>
-                    </li>
-                    <li th:if="${not #strings.isEmpty(aboutObj.twitter)}">
-                        <a th:href="${aboutObj.twitter}"><i class="fa fa-twitter-square fa-2x"></i></a>
-                    </li>
-                    <li th:if="${not #strings.isEmpty(aboutObj.gPlus)}">
-                        <a th:href="${aboutObj.gPlus}"><i class="fa fa-google-plus-square fa-2x"></i></a>
-                    </li>
-                </ul>
-            </div>
+            
             <div class="Contact text-left">
                 <form name="sentMessage" id="contactForm" method="post" action="#">
                     <div class="control-group form-group">

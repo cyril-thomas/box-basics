@@ -65,8 +65,45 @@
 </nav>
 
 <footer th:fragment="footer" id="footer">
-    <p>Copyright &copy; WOD-Dojo 2015</p>
+    
+    <div class="footer-column">
+        <h4>About Us</h4>
+        <span class="whiteLine"></span>
+        &copy;2015 WOD-Dojo. All Rights Reserved. <br />
+        CrossFit&reg; is a Registered Trademark of CrossFit, Inc. 
+        
+        
+    </div>
+    <div class="footer-column">
+        <h4>Contact Us</h4>
+        <span class="whiteLine"></span>
+        <span class="fa fa-phone fa-3x wow bounceIn"></span><span th:text="${gymObj.phone}"></span><br />
 
+        <span th:text="${gymObj.postalAddress.firstLine}">Add 1</span>
+
+        <span th:text="${gymObj.postalAddress.secondLine}">Add 2</span><br />
+
+        <span class="fa fa-clock-o"></span>
+            <abbr title="Hours"></abbr>: Monday - Friday: 9:00 AM to 5:00 PM
+       
+        
+    </div>
+    <div class="footer-column">
+        <h4>Social</h4>
+        <span class="whiteLine"></span>
+        <ul class="list-unstyled list-inline list-social-icons">
+           
+            <li th:if="${not #strings.isEmpty(aboutObj.fbUrl)}">
+                <a th:href="${aboutObj.fbUrl}"><i class="fa fa-facebook-square fa-2x"></i></a>
+            </li>
+            <li th:if="${not #strings.isEmpty(aboutObj.twitter)}">
+                <a th:href="${aboutObj.twitter}"><i class="fa fa-twitter-square fa-2x"></i></a>
+            </li>
+            <li th:if="${not #strings.isEmpty(aboutObj.gPlus)}">
+                <a th:href="${aboutObj.gPlus}"><i class="fa fa-google-plus-square fa-2x"></i></a>
+            </li>
+        </ul>
+    </div>
     <script th:src="@{/webjars/jquery/2.0.3/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.0.3/js/bootstrap.min.js}"></script>
 
