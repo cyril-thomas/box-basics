@@ -29,7 +29,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand page-scroll" href="#page-top">
-                <div th:text="${#httpSession.getAttribute('gymName')}">Logo</div>
+                <div><img class="logo" src="../images/Logo3.png" th:title="${#httpSession.getAttribute('gymName')}"/></div>
             </a>
         </div>
 
@@ -67,7 +67,7 @@
 <footer th:fragment="footer" id="footer">
     
     <div class="footer-column">
-        <h4>About Us</h4>
+        <h4>Powered by</h4>
         <span class="whiteLine"></span>
         &copy;2015 WOD-Dojo. All Rights Reserved. <br />
         CrossFit&reg; is a Registered Trademark of CrossFit, Inc. 
@@ -75,11 +75,11 @@
         
     </div>
     <div class="footer-column">
-        <h4>Contact Us</h4>
+        <h4>Contact us</h4>
         <span class="whiteLine"></span>
         <span class="fa fa-phone fa-3x wow bounceIn"></span><span th:text="${gymObj.phone}"></span><br />
 
-        <span th:text="${gymObj.postalAddress.firstLine}">Add 1</span>
+        <span th:text="${gymObj.postalAddress.firstLine} + ','">Add 1</span>&nbsp;
 
         <span th:text="${gymObj.postalAddress.secondLine}">Add 2</span><br />
 
@@ -89,7 +89,7 @@
         
     </div>
     <div class="footer-column">
-        <h4>Social</h4>
+        <h4>Follow us</h4>
         <span class="whiteLine"></span>
         <ul class="list-unstyled list-inline list-social-icons">
            

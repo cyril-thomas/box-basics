@@ -2,20 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout :: htmlhead"></head>
 <body id="page-top">
-<div id="header">
-    <img class="logo" src="../images/Logo3.png" alt="logo"/>
-    <ul id="header-ico" class="list-unstyled list-inline list-social-icons text-right">
-        <li th:if="${not #strings.isEmpty(aboutObj.fbUrl)}">
-            <a th:href="${aboutObj.fbUrl}"><i class="fa fa-facebook-square fa-2x"></i></a>
-        </li>
-        <li th:if="${not #strings.isEmpty(aboutObj.twitter)}">
-            <a th:href="${aboutObj.twitter}"><i class="fa fa-twitter-square fa-2x"></i></a>
-        </li>
-        <li th:if="${not #strings.isEmpty(aboutObj.gPlus)}">
-            <a th:href="${aboutObj.gPlus}"><i class="fa fa-google-plus-square fa-2x"></i></a>
-        </li>
-    </ul>
-</div>
+
 <div th:replace="layout :: navbar">(navbar)</div>
 <header>
     <div class="header-content">
