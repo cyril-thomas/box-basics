@@ -14,4 +14,6 @@ import java.util.List;
 public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
 
     public Schedule findByOrganizationIdAndWodDateEquals(Long orgId, Date wodDate);
+
+    public List<Schedule> findByOrganizationId(Long orgId);
 }

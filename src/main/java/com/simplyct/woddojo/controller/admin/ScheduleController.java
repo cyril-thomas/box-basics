@@ -36,7 +36,9 @@ public class ScheduleController {
     WodRepository wodRepository;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String schedule() {
+    public String schedule(Model model, HttpSession session) {
+        Long orgId = (Long) session.getAttribute("orgId");
+        model.addAttribute("currentSchedules", scheduleRepository.findByOrganizationId(orgId));
         return "admin/schedule/list";
     }
 
@@ -81,6 +83,7 @@ public class ScheduleController {
         }
 
         scheduleRepository.save(schedule);
-        return "admin/schedule/edit";
+        model.addAttribute("currentSchedules", scheduleRepository.findByOrganizationId(orgId));
+        return "admin/schedule/list";
     }
 }

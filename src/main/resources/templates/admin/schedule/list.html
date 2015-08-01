@@ -25,19 +25,19 @@
             <table class="table table-hover">
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
-                    <th>City</th>
-                    <th>Email</th>
-                    <th>Phone</th>
+                    <th>WOD</th>
+                    <th>Date</th>
+                    <th>Notes</th>
                     <th>Edit</th>
+                    <th></th>
                 </tr>
-                <tr th:each="org : ${currentOrgs}">
-                    <td th:text="${org.id}"></td>
-                    <td th:text="${org.name}"></td>
-                    <td th:text="${org.postalAddress.city}"></td>
-                    <td th:text="${org.email}"></td>
-                    <td th:text="${org.phone}"></td>
-                    <td><a th:href="@{/schedule/edit(id=${org.id})}" class="btn btn-primary">Edit</a></td>
+                <tr th:each="schedule : ${currentSchedules}">
+                    <td th:text="${schedule.id}"></td>
+                    <td th:text="${schedule.wod.name}"></td>
+                    <td th:text="${schedule.wodDate}"></td>
+                    <td th:text="${schedule.notes}"></td>
+                    <td><a th:href="@{/schedule/edit(id=${schedule.id})}" class="btn btn-primary">Edit</a></td>
+                    <td><a th:href="@{/schedule/post(id=${schedule.id})}" class="btn btn-primary">Post to FB</a></td>
                 </tr>
             </table>
         </div>

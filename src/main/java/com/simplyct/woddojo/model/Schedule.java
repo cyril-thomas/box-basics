@@ -23,6 +23,9 @@ public class Schedule {
     @Temporal(TemporalType.DATE)
     Date wodDate;
 
+    @Column(name = "notes")
+    String notes;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "org_id")
     Organization organization;
