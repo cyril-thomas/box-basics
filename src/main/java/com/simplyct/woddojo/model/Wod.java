@@ -22,7 +22,7 @@ public class Wod {
     String name;
 
     @Column(name = "description")
-    @NotEmpty(message = "Last Name is required")
+    @NotEmpty(message = "Description is required")
     String description;
 
     @Column(name = "notes")

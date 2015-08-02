@@ -22,7 +22,7 @@ import java.util.Map;
 @RequestMapping("social")
 public class SocialController {
 
-    private static final String FACEBOOK_ACCESS_TOKEN = "facebookAccessToken";
+    public static final String FACEBOOK_ACCESS_TOKEN = "facebookAccessToken";
     private static final String FACEBOOK_LOGGED_IN = "facebookLoggedIn";
 
     @Autowired

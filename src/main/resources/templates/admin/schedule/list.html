@@ -37,7 +37,7 @@
                     <td th:text="${schedule.wodDate}"></td>
                     <td th:text="${schedule.notes}"></td>
                     <td><a th:href="@{/schedule/edit(id=${schedule.id})}" class="btn btn-primary">Edit</a></td>
-                    <td><a th:href="@{/schedule/post(id=${schedule.id})}" class="btn btn-primary">Post to FB</a></td>
+                    <td><a th:href="@{/schedule/postToFB(id=${schedule.id})}" class="btn btn-primary">Post to FB</a></td>
                 </tr>
             </table>
         </div>

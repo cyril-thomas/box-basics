@@ -93,7 +93,6 @@ public class FbCommunicator {
         Map<String, String> post = buildParamMap("message", contents);
         RestTemplate restTemplate = new RestTemplate();
         Map<String, String> response = restTemplate.postForObject(postUrl, post, Map.class, params);
-        System.out.println("response.get(\"id\") = " + response.get("id"));
     }
 
     private String buildUrl(String baseUrl, String... params) {
