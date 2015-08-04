@@ -142,11 +142,6 @@
                 <input type="submit" class="btn btn-primary" th:value="*{id} != null? 'Update' : 'Save'"/>
 
             </form>
-<!--
-            <form action="upload" th:action="@{/image/coach}" method="post" enctype="multipart/form-data">
-                <input type="file" name="coach" />
-                <input type="submit" />
-            </form>-->
         </div>
     </div>
     <div th:include="admin/adminLayout :: adFooter" id="adFooter">(adFooter)</div>
