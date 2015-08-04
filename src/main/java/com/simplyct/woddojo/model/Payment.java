@@ -3,6 +3,7 @@ package com.simplyct.woddojo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 /**
  * Created by cyril on 7/5/15.
@@ -24,10 +25,18 @@ public class Payment {
     @JoinColumn(name = "user_id")
     User user;
 
+    @Column(name = "amount")
+    BigDecimal amount;
+
     @Column(name = "status")
     String status;
 
-    String cardName;
-    String cardNum;
-    String cvv;
+    @Column(name = "customer_id")
+    String customerId;
+
+    @Column(name = "confirmation_id")
+    String confirmationId;
+
+    @Transient
+    String nonce;
 }

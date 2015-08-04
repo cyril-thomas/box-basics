@@ -1,8 +1,12 @@
 package com.simplyct.woddojo.controller.admin;
 
+import com.simplyct.woddojo.helper.payments.BraintreePayments;
+import com.simplyct.woddojo.helper.payments.Customer;
+import com.simplyct.woddojo.helper.payments.TransactionResult;
 import com.simplyct.woddojo.model.Classes;
 import com.simplyct.woddojo.model.Organization;
 import com.simplyct.woddojo.model.Payment;
+import com.simplyct.woddojo.model.User;
 import com.simplyct.woddojo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,15 +36,20 @@ public class PaymentController {
     @Autowired
     PaymentRepository paymentRepository;
 
+    @Autowired
+    BraintreePayments braintreePayments;
+
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String addNew(Model model,
                          HttpSession session) {
         Long orgId = (Long) session.getAttribute("orgId");
 
         Organization organization = organizationRepository.findOne(orgId);
+        String clientToken = braintreePayments.getClientToken();
         Payment payment = new Payment();
         payment.setOrganization(organization);
         model.addAttribute("payment", payment);
+        model.addAttribute("payment_method_nonce", clientToken);
 
         model.addAttribute("users", userRepository.findByOrganizationId(orgId));
         return "admin/payments/edit";
@@ -51,9 +60,12 @@ public class PaymentController {
                        HttpSession session,
                        @RequestParam(value = "id", required = false) Long id) {
         Long orgId = (Long) session.getAttribute("orgId");
+        String clientToken = braintreePayments.getClientToken();
+        model.addAttribute("payment_method_nonce", clientToken);
 
         if (id != null) {
-            model.addAttribute("payment", paymentRepository.findOne(id));
+            Payment payment = paymentRepository.findOne(id);
+            model.addAttribute("payment", payment);
         } else {
 
             Organization organization = organizationRepository.findOne(orgId);
@@ -69,7 +81,7 @@ public class PaymentController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editPost(Model model,
-                           HttpSession session,
+                           @RequestParam("payment_method_nonce") String paymentNonce,
                            @ModelAttribute @Valid Payment payment,
                            BindingResult result) {
 
@@ -78,15 +90,32 @@ public class PaymentController {
             return "admin/payments/edit";
         }
 
-        Long orgId = payment.getOrganization().getId();
-        Organization organization = organizationRepository.findOne(orgId);
-        payment.setOrganization(organization);
-        paymentRepository.save(payment);
+        User user = payment.getUser();
 
-        model.addAttribute("payments", paymentRepository.findByOrganizationId(orgId));
-        model.addAttribute("users", userRepository.findByOrganizationId(orgId));
+        Customer customer = new Customer();
+        customer.setUserId(user.getId());
+        customer.setFirstName(user.getFirstName());
+        customer.setLastName(user.getLastName());
+        customer.setEmail(user.getEmail());
+        customer.setPrice(payment.getAmount());
 
-        return "admin/payments/list";
+        TransactionResult transactionResult = braintreePayments.postTransaction(customer, paymentNonce);
+
+        if (!transactionResult.isSuccessful()) {
+            model.addAttribute("errors", transactionResult.getMessage());
+            return "admin/payments/edit";
+        } else {
+            Long orgId = payment.getOrganization().getId();
+            payment.setStatus(transactionResult.getStatus().name());
+            payment.setConfirmationId(transactionResult.getConfirmationId());
+            Organization organization = organizationRepository.findOne(orgId);
+            payment.setOrganization(organization);
+            paymentRepository.save(payment);
+
+            model.addAttribute("payments", paymentRepository.findByOrganizationId(orgId));
+            model.addAttribute("users", userRepository.findByOrganizationId(orgId));
+            return "admin/payments/list";
+        }
     }
 
 

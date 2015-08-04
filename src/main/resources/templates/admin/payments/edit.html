@@ -9,8 +9,8 @@
     <div class="row">
         <div class="col-lg-12">
 
-            <form id="classesForm"
-                  th:action="@{/payment/edit}"
+            <form id="checkout"
+                  th:action="@{/payments/edit}"
                   th:object="${payment}"
                   action="#"
                   method="post">
@@ -42,8 +42,8 @@
                     <div class="controls">
                         <label for="cardName">Name on Card</label>
                         <input type="text"
-                               th:field="*{cardName}"
                                id="cardName"
+                               data-braintree-name="cardholder_name"
                                class="form-control"/>
                     </div>
                 </div>
@@ -51,17 +51,36 @@
                     <div class="controls">
                         <label for="cardNum">Card Number</label>
                         <input type="text"
-                               th:field="*{cardNum}"
+                               data-braintree-name="number"
                                id="cardNum"
-                               class="form-control"/>
+                               class="form-control"
+                                maxlength="16"/>
                     </div>
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
                         <label for="cvv">cvv</label>
                         <input type="text"
-                               th:field="*{cvv}"
+                               data-braintree-name="cvv"
                                id="cvv"
+                               class="form-control"/>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="expiration_date">Expiration Date</label>
+                        <input type="text"
+                               data-braintree-name="expiration_date"
+                               id="expiration_date"
+                               class="form-control"/>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="amount">Amount</label>
+                        <input type="text"
+                               th:field="*{amount}"
+                               id="amount"
                                class="form-control"/>
                     </div>
                 </div>
@@ -78,6 +97,7 @@
                 </div>
                 <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
                 <input type="hidden" th:if="*{organization.id} != null" th:field="*{organization.id}" id="orgId"/>
+                <!--<input type="hidden" th:if="*{nonce} != null" th:field="*{nonce}" id="nonce"/>-->
 
                 <input type="submit" class="btn btn-primary" th:value="*{id} != null? 'Update' : 'Save'"/>
 
@@ -85,6 +105,16 @@
         </div>
     </div>
     <div th:include="admin/adminLayout :: adFooter" id="adFooter">(adFooter)</div>
+    <script src="https://js.braintreegateway.com/v2/braintree.js" type="text/javascript"></script>
+    <script th:inline="javascript">
+/*<![CDATA[*/
+$(document).ready(
+        function btsubmit(){
+            console.log("in method");
+            braintree.setup(/*[[${payment_method_nonce}]]*/, "custom", {id: "checkout"});
+        });
+/*]]>*/
+</script>
 </div>
 </body>
 </html>
