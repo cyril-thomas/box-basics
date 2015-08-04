@@ -36,6 +36,9 @@ public class CoachController {
     @Value("${aws.bucket.name}")
     private String BUCKET_NAME;
 
+    @Value("${aws.cdn.url}")
+    private String CDN_URL;
+
     private final String OBJECT_NAME_TEMPLATE = "org/%s/coach/%s/%s";
 
     @Autowired
@@ -58,7 +61,10 @@ public class CoachController {
                        HttpSession session,
                        @RequestParam(value = "id", required = false) Long id) {
         if (id != null) {
-            model.addAttribute("coach", coachRepository.findOne(id));
+            Coach coach = coachRepository.findOne(id);
+            String imageUrl = CDN_URL+coach.getProfilePic();
+            model.addAttribute("coach", coach);
+            model.addAttribute("imageUrl", imageUrl);
         } else {
             Long orgId = (Long) session.getAttribute("orgId");
             Organization organization = organizationRepository.findOne(orgId);

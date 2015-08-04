@@ -28,4 +28,14 @@ public class Coach {
 
     @Column(name = "profile_pic")
     String profilePic;
+
+
+    @Column(name = "facebook_url")
+    String facebookLink;
+
+    @Column(name = "twitter_url")
+    String twitterLink;
+
+    @Column(name = "linkedIn")
+    String linkedIn;
 }

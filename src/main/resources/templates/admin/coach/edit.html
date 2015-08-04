@@ -89,7 +89,8 @@
 
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label for="pic">Picture</label>
+                        <label for="pic">Profile Picture</label><br/>
+                        <img th:if="${imageUrl} != null" th:src="${imageUrl}" width="300"/><br/><br/>
                         <input id="pic" class="btn well col-md-12s" type="file" name="coach" />
                     </div>
                 </div>
@@ -103,6 +104,35 @@
                                 class="form-control"></textarea>
                     </div>
                 </div>
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="facebookLink">Facebook Page</label>
+                        <input type="text"
+                               th:field="*{facebookLink}"
+                               id="facebookLink"
+                               class="form-control"/>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="twitterLink">Twitter Page</label>
+                        <input type="text"
+                               th:field="*{twitterLink}"
+                               id="twitterLink"
+                               class="form-control"/>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="linkedIn">Linked In</label>
+                        <input type="text"
+                               th:field="*{linkedIn}"
+                               id="linkedIn"
+                               class="form-control"/>
+                    </div>
+                </div>
+
                 <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
                 <input type="hidden" th:if="*{user.id} != null" th:field="*{user.id}" id="userId"/>
                 <input type="hidden" th:if="*{user.organization.id} != null" th:field="*{user.organization.id}"
