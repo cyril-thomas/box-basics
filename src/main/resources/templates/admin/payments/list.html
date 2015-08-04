@@ -33,7 +33,7 @@
                     <td th:text="${c.id}"></td>
                     <td th:text="${c.status}"></td>
                     <td th:text="${c.confirmationId}"></td>
-                    <td th:text="${c.user.firstName}"></td>
+                    <td th:text="${c.user.firstName} + ' ' + ${c.user.lastName}"></td>
                     <!--<td><a th:href="@{/payments/edit(id=${c.id})}" class="btn btn-primary">Edit</a></td>-->
                 </tr>
             </table>
