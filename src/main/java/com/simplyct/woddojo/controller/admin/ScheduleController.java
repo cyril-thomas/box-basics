@@ -2,6 +2,7 @@ package com.simplyct.woddojo.controller.admin;
 
 import com.simplyct.woddojo.controller.SocialController;
 import com.simplyct.woddojo.helper.facebook.FbCommunicator;
+import com.simplyct.woddojo.helper.facebook.PostFormatter;
 import com.simplyct.woddojo.model.Organization;
 import com.simplyct.woddojo.model.Schedule;
 import com.simplyct.woddojo.model.Wod;
@@ -115,14 +116,10 @@ public class ScheduleController {
         String pageAccessToken = (String) pageInfo.get("access_token");
         String pageId = (String) pageInfo.get("id");
         Schedule schedule = scheduleRepository.findOne(id);
-        Wod wod = schedule.getWod();
-        String content = "WOD for " + schedule.getWodDate() + "\n" +
-                wod.getName() + "\n" + wod.getDescription() + "\n" +
-                wod.getNotes() + "\n" + schedule.getNotes();
-        fbCommunicator.postToPage(pageId, pageAccessToken, content);
+        fbCommunicator.postToPage(pageId, pageAccessToken, PostFormatter.formatPost(schedule));
         Long orgId = schedule.getOrganization().getId();
         model.addAttribute("currentSchedules", scheduleRepository.findByOrganizationId(orgId));
-        return "admin/schedule/list";
+        return "redirect:/schedule/list";
     }
 
     private String getRedirectUrl(HttpServletRequest request) {
