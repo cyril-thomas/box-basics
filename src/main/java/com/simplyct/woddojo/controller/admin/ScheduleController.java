@@ -99,7 +99,10 @@ public class ScheduleController {
     @RequestMapping(value = "postToFB", method = RequestMethod.GET)
     public String postToFacebook(HttpSession session, HttpServletRequest request,
                                  Model model,
-                                 @RequestParam(value = "id") Long id) {
+                                 @RequestParam(value = "id", required = false) Long id) {
+        if (id != null) {
+            session.setAttribute("postScheduleId", id);
+        }
         String token = (String) session.getAttribute(SocialController.FACEBOOK_ACCESS_TOKEN);
         if (token == null) {
             String loginUrl = fbCommunicator.getLoginUrl(getRedirectUrl(request));
@@ -115,7 +118,9 @@ public class ScheduleController {
         Map pageInfo = fbCommunicator.getPageInfo(token);
         String pageAccessToken = (String) pageInfo.get("access_token");
         String pageId = (String) pageInfo.get("id");
-        Schedule schedule = scheduleRepository.findOne(id);
+        Long sessionScheduleId = (Long) session.getAttribute("postScheduleId");
+        session.removeAttribute("postScheduleId");
+        Schedule schedule = scheduleRepository.findOne(sessionScheduleId);
         fbCommunicator.postToPage(pageId, pageAccessToken, PostFormatter.formatPost(schedule));
         Long orgId = schedule.getOrganization().getId();
         model.addAttribute("currentSchedules", scheduleRepository.findByOrganizationId(orgId));
@@ -123,8 +128,10 @@ public class ScheduleController {
     }
 
     private String getRedirectUrl(HttpServletRequest request) {
+        int port = request.getServerPort();
+        String serverPort = port == 80 || port == 443 ? "" : Integer.toString(port);
         return request.getScheme() + "://" + request.getServerName() + ":" +
-                request.getServerPort() + request.getContextPath() +
+                serverPort + request.getContextPath() +
                 "/social/facebook/loginCallback";
     }
 }
