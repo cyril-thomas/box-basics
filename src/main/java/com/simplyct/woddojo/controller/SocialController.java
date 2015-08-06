@@ -111,9 +111,11 @@ public class SocialController {
         return "social/facebook";
     }
 
-    private String getRedirectUrl(HttpServletRequest request) {
-        return request.getScheme() + "://" + request.getServerName() + ":" +
-                request.getServerPort() + request.getContextPath() +
+    public static String getRedirectUrl(HttpServletRequest request) {
+        int port = request.getServerPort();
+        String serverPort = port == 80 || port == 443 ? "" : ":" + Integer.toString(port);
+        return request.getScheme() + "://" + request.getServerName() +
+                serverPort + request.getContextPath() +
                 "/social/facebook/loginCallback";
     }
 

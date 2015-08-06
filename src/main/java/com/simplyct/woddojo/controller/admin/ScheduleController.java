@@ -105,12 +105,12 @@ public class ScheduleController {
         }
         String token = (String) session.getAttribute(SocialController.FACEBOOK_ACCESS_TOKEN);
         if (token == null) {
-            String loginUrl = fbCommunicator.getLoginUrl(getRedirectUrl(request));
+            String loginUrl = fbCommunicator.getLoginUrl(SocialController.getRedirectUrl(request));
             session.setAttribute("returnPage", "/schedule/postToFB");
             return "redirect:" + loginUrl;
         }
         if (!fbCommunicator.hasPermissions(token, "manage_pages", "publish_pages")) {
-            String getPostPermissionUrl = fbCommunicator.getLoginUrl(getRedirectUrl(request),
+            String getPostPermissionUrl = fbCommunicator.getLoginUrl(SocialController.getRedirectUrl(request),
                     "manage_pages", "publish_pages");
             session.setAttribute("returnPage", "/schedule/postToFB");
             return "redirect:" + getPostPermissionUrl;
@@ -125,13 +125,5 @@ public class ScheduleController {
         Long orgId = schedule.getOrganization().getId();
         model.addAttribute("currentSchedules", scheduleRepository.findByOrganizationId(orgId));
         return "redirect:/schedule/list";
-    }
-
-    private String getRedirectUrl(HttpServletRequest request) {
-        int port = request.getServerPort();
-        String serverPort = port == 80 || port == 443 ? "" : ":" + Integer.toString(port);
-        return request.getScheme() + "://" + request.getServerName() +
-                serverPort + request.getContextPath() +
-                "/social/facebook/loginCallback";
     }
 }
