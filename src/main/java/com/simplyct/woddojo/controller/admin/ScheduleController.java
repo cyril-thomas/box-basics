@@ -129,8 +129,8 @@ public class ScheduleController {
 
     private String getRedirectUrl(HttpServletRequest request) {
         int port = request.getServerPort();
-        String serverPort = port == 80 || port == 443 ? "" : Integer.toString(port);
-        return request.getScheme() + "://" + request.getServerName() + ":" +
+        String serverPort = port == 80 || port == 443 ? "" : ":" + Integer.toString(port);
+        return request.getScheme() + "//" + request.getServerName() + ":" +
                 serverPort + request.getContextPath() +
                 "/social/facebook/loginCallback";
     }
