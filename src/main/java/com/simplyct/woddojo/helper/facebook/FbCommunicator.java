@@ -4,6 +4,7 @@ import com.simplyct.woddojo.helper.dto.fb.FbAccessTokenResponse;
 import com.simplyct.woddojo.helper.dto.fb.FbDataResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -92,7 +93,12 @@ public class FbCommunicator {
         Map<String, String> params = buildParamMap("access_token", pageAccessToken);
         Map<String, String> post = buildParamMap("message", contents);
         RestTemplate restTemplate = new RestTemplate();
-        Map<String, String> response = restTemplate.postForObject(postUrl, post, Map.class, params);
+        try {
+            Map<String, String> response = restTemplate.postForObject(postUrl, post, Map.class, params);
+        } catch (HttpStatusCodeException e) {
+            System.out.println("Response error code: " + e.getStatusText());
+            System.out.println("Error message from posting to facebook: " + e.getResponseBodyAsString());
+        }
     }
 
     private String buildUrl(String baseUrl, String... params) {
