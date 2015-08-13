@@ -12,7 +12,7 @@ import java.io.IOException;
  * Created by cyril on 6/29/15.
  */
 @Component
-@Profile({"dev"})
+@Profile({"inmemory","dev"})
 public class LocalGymLocatorFilter implements Filter {
 
     @Override
@@ -25,7 +25,7 @@ public class LocalGymLocatorFilter implements Filter {
 
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         HttpSession session = httpRequest.getSession();
-        session.setAttribute("orgId", 1L);
+        session.setAttribute("orgId", -1L);
         session.setAttribute("gymName", "Brickwall");
         filterChain.doFilter(servletRequest, servletResponse);
     }

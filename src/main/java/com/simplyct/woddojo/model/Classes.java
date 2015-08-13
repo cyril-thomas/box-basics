@@ -12,7 +12,8 @@ import javax.persistence.*;
 public class Classes {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="seq_classes", sequenceName="seq_classes", schema="public", initialValue=1, allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq_classes")
     @Column(name = "class_id", unique = true)
     Long id;
 

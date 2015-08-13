@@ -12,8 +12,10 @@ import javax.persistence.*;
 @Table(name = "wod")
 @Data
 public class Wod {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "seq_wod", sequenceName = "seq_wod", schema = "public", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_wod")
     @Column(name = "wod_id", unique = true)
     Long id;
 
