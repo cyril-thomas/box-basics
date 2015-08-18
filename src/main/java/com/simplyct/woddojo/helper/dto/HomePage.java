@@ -19,6 +19,7 @@ public class HomePage {
     String                   regTitle;
     String                   regContent;
     String                   regBanner;
+    String                   customCss;
     List<AnnouncementDetail> announcements;
 
     public HomePage() {
@@ -33,5 +34,6 @@ public class HomePage {
         this.regTitle = home.getRegTitle();
         this.regContent = home.getRegContent();
         this.regBanner = home.getRegBanner();
+        this.customCss = home.getCss();
     }
 }

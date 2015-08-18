@@ -72,6 +72,7 @@ CREATE TABLE home
   intro_content text,
   registration_banner text,
   registration_content text,
+  custom_css text,
   registration_title character varying(255),
   services_title character varying(255),
   title character varying(255) NOT NULL,

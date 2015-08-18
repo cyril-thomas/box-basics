@@ -39,6 +39,9 @@ public class Home {
     @Column(name = "video_url")
     String videoUrl;
 
+    @Column(name = "custom_css")
+    String css;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "org_id")
     Organization organization;

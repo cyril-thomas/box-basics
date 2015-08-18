@@ -60,13 +60,14 @@ insert into schedule(schedule_id,wod_id,org_id,wod_date) values
 (-1,-1,-1,current_date);
 
 -- Portal
-insert into home(home_id,title,intro_content,services_title,registration_title,registration_content,registration_banner,video_url,org_id)
+insert into home(home_id,title,intro_content,services_title,registration_title,registration_content,registration_banner,video_url, custom_css, org_id)
 values(-1,'Welcome to Brickwall Crossfit!'
 ,'CrossFit may be the answer to your fitness shortcomings. At CrossFit Brickwall we are focused on teaching the theories and methodologies that are producing some of the fittest people in the world. Come learn how you can achieve a new level of fitness through an organic form of excercise.'
 ,'Services we provide'
 ,'Sign Up!', 'Call or email us to come in for a free first-time workout. If you choose to continue you will need to schedule your On-Ramp training which consists of a series of classes or personal sessions that provide an understanding of the basic movements we perform in CrossFit. These basic movements are the fundamentals to all the movements in the workouts and it is important that you are familiar with the movements and able to perform them correctly and safely.'
 ,'What are you waiting for? Lets do this!'
 ,'https://youtu.be/ykccBGhfkxM'
+,'cyrilclass{ color : red; }'
 ,-1);
 
 insert into about(about_id,about_title,about_content,facebook_url, twitter_url, google_plus_url, org_id)
