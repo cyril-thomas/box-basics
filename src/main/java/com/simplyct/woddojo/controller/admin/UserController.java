@@ -1,5 +1,6 @@
 package com.simplyct.woddojo.controller.admin;
 
+import com.simplyct.woddojo.helper.EmailHelper;
 import com.simplyct.woddojo.model.User;
 import com.simplyct.woddojo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    EmailHelper emailHelper;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Model model) {
@@ -48,6 +52,10 @@ public class UserController {
         //registration flow
         if (user.getId() == null) {
             userRepository.save(user);
+            emailHelper.sendRegistrationConfirmation("cyril.satyam@gmail.com",
+                                                     "matt.olsen@gmail.com",
+                                                     "Registration",
+                                                     "1");
             return "reg_success";
         }
 
