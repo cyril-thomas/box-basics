@@ -12,7 +12,8 @@ import javax.persistence.*;
 @Data
 public class About {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="seq_about", sequenceName="seq_about", schema="public", initialValue=1, allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq_about")
     @Column(name = "about_id", unique = true)
     Long id;
 

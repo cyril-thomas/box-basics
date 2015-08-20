@@ -12,7 +12,8 @@ import javax.persistence.*;
 @Data
 public class Home {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="seq_home", sequenceName="seq_home", schema="public", initialValue=1, allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq_home")
     @Column(name = "home_id", unique = true)
     Long id;
 
@@ -37,6 +38,9 @@ public class Home {
 
     @Column(name = "video_url")
     String videoUrl;
+
+    @Column(name = "custom_css")
+    String css;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "org_id")

@@ -12,7 +12,8 @@ import javax.persistence.*;
 public class Coach {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="seq_coach", sequenceName="seq_coach", schema="public", initialValue=1, allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq_coach")
     @Column(name = "coach_id", unique = true)
     Long id;
 

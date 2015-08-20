@@ -13,7 +13,8 @@ import java.util.Date;
 public class Announcement {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="seq_announcement", sequenceName="seq_announcement", schema="public", initialValue=1, allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq_announcement")
     @Column(name = "announcement_id", unique = true)
     Long id;
 
