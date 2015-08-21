@@ -358,3 +358,36 @@ CREATE TABLE schedule
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 ALTER TABLE schedule OWNER TO woddojo;
+
+
+-- Table: blog
+
+DROP SEQUENCE IF EXISTS seq_blog CASCADE;
+
+CREATE SEQUENCE seq_blog
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE seq_blog OWNER TO woddojo;
+
+DROP TABLE IF EXISTS blog CASCADE;
+
+CREATE TABLE blog
+(
+  blog_id bigint NOT NULL DEFAULT nextval('seq_blog'::regclass),
+  title character varying(255),
+  content text,
+  post_date date,
+  org_id bigint,
+  coach_id bigint,
+  CONSTRAINT blog_pkey PRIMARY KEY (blog_id),
+  CONSTRAINT fk_blog_org FOREIGN KEY (org_id)
+      REFERENCES organization (org_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_blog_coach FOREIGN KEY (coach_id)
+      REFERENCES coach (coach_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+ALTER TABLE blog OWNER TO woddojo;

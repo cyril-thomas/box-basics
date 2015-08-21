@@ -42,6 +42,14 @@ public class PageController {
         return "home";
     }
 
+    @RequestMapping(value = "blogs", method = RequestMethod.GET)
+    public String blogs(Model model, HttpSession httpSession) {
+        Long orgId = (Long) httpSession.getAttribute("orgId");
+        List<BlogPost> posts = portalHelper.getBlogPosts(orgId);
+        model.addAttribute("posts",posts);
+        return "social/blogs";
+    }
+
     @RequestMapping(value = "server_status", method = RequestMethod.GET)
     public String serverStatus() {
         return "server_status";

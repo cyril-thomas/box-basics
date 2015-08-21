@@ -52,6 +52,8 @@ public class PortalHelper {
     @Value("${aws.cdn.url}")
     String cdnUrl;
 
+    @Autowired
+    BlogRepository blogRepository;
 
     public HomePage getHomePage(Long orgId) {
         Home home = homeRepository.findByOrganizationId(orgId);
@@ -68,6 +70,13 @@ public class PortalHelper {
     public AboutPage getAboutPage(Long orgId) {
         About about = aboutRepository.findByOrganizationId(orgId);
         return new AboutPage(about);
+    }
+
+    public List<BlogPost> getBlogPosts(Long orgId){
+        List<Blog> blogs = blogRepository.findByOrganizationId(orgId);
+        return blogs.stream()
+                    .map( e -> new BlogPost(e))
+                    .collect(Collectors.toList());
     }
 
     public List<CoachDetail> getCoaches(Long orgId) {

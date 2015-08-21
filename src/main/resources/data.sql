@@ -98,3 +98,11 @@ values(-2,'CrossFit','This class is designed for the average client of Brickwall
 insert into service(service_id,title,content,org_id)
 values(-3,'CrossFit Sport','This class is designed specifically for those wishing to compete in the Crossfit games or other regional competitions. Only after certain specific requirements are met will an individual or team be allowed access to this high intensity class. This class meets six times a week and is for the advanced Crossfitter.'
 ,-1);
+
+
+insert into blog(blog_id,title,content,org_id,coach_id,post_date)
+values(-1,'CrossFit Sport','This class is designed specifically for those wishing to compete in the Crossfit games or other regional competitions. Only after certain specific requirements are met will an individual or team be allowed access to this high intensity class. This class meets six times a week and is for the advanced Crossfitter.'
+,-1, -1,current_date);
+insert into blog(blog_id,title,content,org_id,coach_id,post_date)
+values(-2,'CrossFit','This class is designed for the average client of Brickwall Crossfit, LLC. The primary base of its programming is for General Physical Preparedness. Each class is designed for a limit of 20 individual members that have completed the proper foundations protocol. This class will be divided into four specific sections: Warm Up, Strength, Workout of the Day (WOD), and Mobility.'
+,-1, -1,current_date);

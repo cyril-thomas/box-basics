@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead"></head>
+<body>
+<nav th:fragment="navbar" id="mainNav" class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="/home">
+                <div><img class="logo" src="../images/Logo3.png" th:title="${#httpSession.getAttribute('gymName')}"/></div>
+            </a>
+        </div>
+    </div>
+</nav>
+<section class="no-padding" id="blogs">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" th:each="post : ${posts}">
+                    <h2>
+                        <span th:utext="${post.title}">Blog Post Title</span>
+                    </h2>
+                    <p class="lead">
+                        by <a href="/home#about"><span th:text="${post.author}"></span></a>
+                    </p>
+                    <p><i class="fa fa-clock-o"></i> Posted on <span th:text="${post.date}"></span></p>
+                    <p th:utext="${post.content}">
+                        Content
+                    </p>
+                        <a class="btn btn-primary" th:href="@{/blogs(id=${post.id})}">Read More <i class="fa fa-angle-right"></i></a>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+</body>
+
+</html>

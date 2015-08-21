@@ -165,6 +165,22 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="media">
+                <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-coffee fa-stack-1x fa-inverse"></i>
+                        </span>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">Blog</h4>
+
+                    <p>Edit and Manage your dojo blog posts</p>
+                    <a th:href="@{/blog/list}" class="btn btn-primary">Setup</a>
+                </div>
+            </div>
+        </div>
     </div>
     <div th:include="admin/adminLayout :: adFooter" id="adFooter">(adFooter)</div>
 </div>
