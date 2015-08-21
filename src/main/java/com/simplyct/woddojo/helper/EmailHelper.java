@@ -1,8 +1,11 @@
 package com.simplyct.woddojo.helper;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
@@ -11,15 +14,16 @@ import java.util.Locale;
 /**
  * Created by cyril on 8/17/15.
  */
-//@Service
+@Service("emailHelper")
 public class EmailHelper {
 
-    //@Autowired
+    @Autowired
     JavaMailSender javaMailSender;
 
-    //@Autowired
+    @Autowired
     private TemplateEngine templateEngine;
 
+    @Async
     public void sendRegistrationConfirmation(final String emailTo,
                                              final String emailFrom,
                                              final String subject,
@@ -33,7 +37,7 @@ public class EmailHelper {
             final Context ctx = new Context(Locale.US);
 
             ctx.setVariable("confirmationId", confirmationId);
-            String text = templateEngine.process("templates/emails/registration.html", ctx);
+            String text = templateEngine.process("emails/registration", ctx);
             message.setText(text, true);
         };
         javaMailSender.send(mimeMessagePreparator);

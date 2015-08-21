@@ -1,5 +1,6 @@
 package com.simplyct.woddojo.controller;
 
+import com.simplyct.woddojo.helper.EmailHelper;
 import com.simplyct.woddojo.helper.PortalHelper;
 import com.simplyct.woddojo.model.Organization;
 import com.simplyct.woddojo.model.User;
@@ -30,6 +31,9 @@ public class RegistrationController {
     @Autowired
     OrganizationRepository organizationRepository;
 
+    @Autowired
+    EmailHelper emailHelper;
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String regPost(Model model,
                           HttpSession httpSession,
@@ -39,6 +43,10 @@ public class RegistrationController {
         Organization organization = organizationRepository.findOne(orgId);
         user.setOrganization(organization);
         userRepository.save(user);
+        emailHelper.sendRegistrationConfirmation("cyril.satyam@gmail.com",
+                                                 "cyril.satyam@gmail.com",
+                                                 "Registration",
+                                                 "1");
         return "reg_success";
     }
 
