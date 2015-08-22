@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -46,8 +47,27 @@ public class PageController {
     public String blogs(Model model, HttpSession httpSession) {
         Long orgId = (Long) httpSession.getAttribute("orgId");
         List<BlogPost> posts = portalHelper.getBlogPosts(orgId);
+        GymDetail gymDetail = portalHelper.getGymDetail(orgId);
+        AboutPage aboutPage = portalHelper.getAboutPage(orgId);
+        model.addAttribute("gymObj",gymDetail);
+        model.addAttribute("aboutObj",aboutPage);
         model.addAttribute("posts",posts);
         return "social/blogs";
+    }
+
+    @RequestMapping(value = "post", method = RequestMethod.GET)
+    public String posts(Model model,
+                        HttpSession httpSession,
+                        @RequestParam Long id) {
+        BlogPost post = portalHelper.getBlogPost(id);
+        model.addAttribute("post",post);
+
+        Long orgId = (Long) httpSession.getAttribute("orgId");
+        GymDetail gymDetail = portalHelper.getGymDetail(orgId);
+        AboutPage aboutPage = portalHelper.getAboutPage(orgId);
+        model.addAttribute("gymObj",gymDetail);
+        model.addAttribute("aboutObj",aboutPage);
+        return "social/post";
     }
 
     @RequestMapping(value = "server_status", method = RequestMethod.GET)

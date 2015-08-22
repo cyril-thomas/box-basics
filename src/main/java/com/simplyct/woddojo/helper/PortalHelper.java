@@ -79,6 +79,10 @@ public class PortalHelper {
                     .collect(Collectors.toList());
     }
 
+    public BlogPost getBlogPost(Long postId){
+        return new BlogPost(blogRepository.findOne(postId));
+    }
+
     public List<CoachDetail> getCoaches(Long orgId) {
         List<Coach> coaches = coachRepository.findByUserOrganizationId(orgId);
         return coaches.stream()

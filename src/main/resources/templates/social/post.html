@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead"></head>
+<body>
+<nav id="blogNav" class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="/home">
+                <div><img class="logo" src="../images/Logo3.png" th:title="${#httpSession.getAttribute('gymName')}"/>
+                </div>
+            </a>
+        </div>
+    </div>
+</nav>
+<section class="no-padding" id="blogs">
+    <div class="container">
+        <div class="row">
+            <h1 class="page-header"><span th:utext="${post.title}"></span>
+                <small>by <a href="#"><span th:utext="${post.author}"></span></a>
+                </small>
+            </h1>
+            <!-- Date/Time -->
+            <p><i class="fa fa-clock-o"></i> Posted on <span th:text="${post.date}"></span></p>
+            <!-- Post Content -->
+            <p class="lead" th:utext="${post.content}"></p>
+
+            <hr/>
+
+            <!-- Blog Comments -->
+
+            <!-- Comments Form -->
+            <div class="well">
+                <h4>Leave a Comment:</h4>
+
+                <form role="form">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+            <hr/>
+
+            <!-- Posted Comments -->
+
+            <!-- Comment -->
+            <div class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">Comments from Start Bootstrap
+                        <small>August 25, 2014 at 9:30 PM</small>
+                    </h4>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                    Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                    vulputate fringilla. Donec lacinia congue felis in faucibus.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:include="layout :: footer" id="footer">(footer)</div>
+</body>
+
+</html>
