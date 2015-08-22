@@ -1,7 +1,63 @@
-<html>
-<body style="background-color:#f2f2f2;margin:0px;padding:0px;">
-<table width="100%" cellpadding="0" cellspacing="0" >
-Hello!
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Untitled Document</title>
+</head>
+
+<body style="margin:0 auto;padding:0;background-color:#f1f1f1;">
+<table cellpadding="0" cellspacing="0" width="100%" align="center" style="max-width:600px" >
+    <tr>
+        <td valign="top" style="background-color:#ffffff;text-align:center;padding:0px 5px 20px 5px">
+            <table style="min-width:300px;margin:auto" bgcolor="#ffffff" width="98%" cellpadding="0" cellspacing="0" align="center">
+                <tr>
+                    <td valign="top">
+                        <table cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td valign="middle" style="font:bold 30px Arial, Helvetica, sans-serif;color:#666666;padding:5px 15px;text-align:left;"><span th:text="${emailDto.orgName}">Wod-dojo</span></td>
+                                <td valign="middle" style="width:28%;text-align:right;padding:4px 0px 0px;"><a href=""><img src="facebook.png" /></a>&nbsp;&nbsp;<a href=""><img src="instagram.png" /></a>&nbsp;&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="middle" style="font:bold 18px Arial, Helvetica, sans-serif;background-color:#666666;text-align:left;color:#ffffff;padding:10px 10px;">Welcome: <span style="font-size:14px;" th:text="${emailDto.userName}">Christopher</span> </td>
+                </tr>
+                <tr>
+                    <td valign="top" style="font:bold 24px Arial, Helvetica, sans-serif;color:#336699;padding:10px 15px;text-align:left">Congratulations!</td>
+                </tr>
+                <tr>
+                    <td valign="top" style="font:16px Arial, Helvetica, sans-serif;color:#333333;padding:0px 15px 15px 15px;text-align:left;line-height:20px;">Thanks for signing up to be part of the <span th:text="${emailDto.orgName}">Wod-dojo</span> family, we are excited to have you. At <span th:text="${emailDto.orgName}">Wod-dojo</span> we focus on building an everlasting relationship with our peers.</td>
+                </tr>
+                <tr>
+                    <td valign="top" style="font:bold 18px Arial, Helvetica, sans-serif;color:#666666;color:#336699;padding:15px 15px 0px 15px;text-align:left;border-top:1px dashed #336699;">Next Steps:</td>
+                </tr>
+                <tr>
+                    <td valign="top" style="font:12px Arial, Helvetica, sans-serif;color:#666666;padding:10px 15px;text-align:left">1. Drop by the gym and meet one of our coaches, they would like to get to know you, your goals and help achieve them.</td>
+                </tr>
+                <tr>
+                    <td valign="top" style="font:12px Arial, Helvetica, sans-serif;color:#666666;padding:10px 15px;text-align:left">2. Bring a towel and water bottle, lets get down and dirty.</td>
+                </tr>
+                <tr>
+                    <td valign="top" style="font:12px Arial, Helvetica, sans-serif;color:#666666;padding:10px 15px;text-align:left">3. Follow us on social media and be part of the family</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top" style="border-top:2px solid #666666">
+            <table cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td style="font:bold 12px Arial, Helvetica, sans-serif;color:#888888;padding:5px 15px;text-align:left;padding:10px;">
+                        &copy;2015 WOD-Dojo. All Rights Reserved. <br />
+                        CrossFit&reg; is a Registered Trademark of CrossFit, Inc.<br />
+                        WOD-Dojo is not an affiliate of CrossFit&reg;
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
 </table>
 </body>
 </html>

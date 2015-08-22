@@ -1,8 +1,14 @@
 package com.simplyct.woddojo.helper;
 
+import com.simplyct.woddojo.helper.dto.EmailDto;
+import com.simplyct.woddojo.model.Organization;
+import com.simplyct.woddojo.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
@@ -11,31 +17,38 @@ import java.util.Locale;
 /**
  * Created by cyril on 8/17/15.
  */
-//@Service
+@Service("emailHelper")
 public class EmailHelper {
 
-    //@Autowired
+    @Autowired
     JavaMailSender javaMailSender;
 
-    //@Autowired
+    @Autowired
     private TemplateEngine templateEngine;
 
-    public void sendRegistrationConfirmation(final String emailTo,
-                                             final String emailFrom,
-                                             final String subject,
-                                             final String confirmationId) {
+    @Async
+    public void sendRegistrationConfirmation(EmailDto emailDto) {
         MimeMessagePreparator mimeMessagePreparator = mimeMessage -> {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
-            message.setTo(emailTo);
-            message.setFrom(emailFrom);
-            message.setSubject(subject);
+            message.setTo(emailDto.getEmailTo());
+            message.setFrom(emailDto.getEmailFrom());
+            message.setSubject(emailDto.getSubject());
 
             final Context ctx = new Context(Locale.US);
 
-            ctx.setVariable("confirmationId", confirmationId);
-            String text = templateEngine.process("templates/emails/registration.html", ctx);
+            ctx.setVariable("emailDto", emailDto);
+            String text = templateEngine.process("emails/registration", ctx);
             message.setText(text, true);
         };
         javaMailSender.send(mimeMessagePreparator);
+    }
+
+
+    public void sendWelcomeEmail(User user, Organization organization) {
+        EmailDto emailDto = new EmailDto(organization.getEmail(), user.getEmail(), Constants.WELCOME_EMAIL_SUBJECT);
+        emailDto.setOrgName(organization.getName());
+        emailDto.setUserName(user.getFirstName());
+        emailDto.setLogoUrl(organization.getName());
+        sendRegistrationConfirmation(emailDto);
     }
 }
