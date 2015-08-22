@@ -1,7 +1,8 @@
 package com.simplyct.woddojo.controller;
 
+import com.simplyct.woddojo.helper.Constants;
 import com.simplyct.woddojo.helper.EmailHelper;
-import com.simplyct.woddojo.helper.PortalHelper;
+import com.simplyct.woddojo.helper.dto.EmailDto;
 import com.simplyct.woddojo.model.Organization;
 import com.simplyct.woddojo.model.User;
 import com.simplyct.woddojo.repository.OrganizationRepository;
@@ -9,15 +10,11 @@ import com.simplyct.woddojo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 /**
  * Created by cyril on 7/20/15.
@@ -27,12 +24,13 @@ import javax.validation.Valid;
 public class RegistrationController {
 
     @Autowired
-    UserRepository userRepository;
+    UserRepository         userRepository;
     @Autowired
     OrganizationRepository organizationRepository;
 
     @Autowired
     EmailHelper emailHelper;
+
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String regPost(Model model,
@@ -43,10 +41,7 @@ public class RegistrationController {
         Organization organization = organizationRepository.findOne(orgId);
         user.setOrganization(organization);
         userRepository.save(user);
-        emailHelper.sendRegistrationConfirmation("cyril.satyam@gmail.com",
-                                                 "cyril.satyam@gmail.com",
-                                                 "Registration",
-                                                 "1");
+        emailHelper.sendWelcomeEmail(user, organization);
         return "reg_success";
     }
 
