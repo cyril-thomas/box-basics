@@ -106,3 +106,9 @@ values(-1,'CrossFit Sport','This class is designed specifically for those wishin
 insert into blog(blog_id,title,content,org_id,coach_id,post_date)
 values(-2,'CrossFit','This class is designed for the average client of Brickwall Crossfit, LLC. The primary base of its programming is for General Physical Preparedness. Each class is designed for a limit of 20 individual members that have completed the proper foundations protocol. This class will be divided into four specific sections: Warm Up, Strength, Workout of the Day (WOD), and Mobility.'
 ,-1, -1,current_date);
+
+
+insert into custom_link(custom_link_id,link_name, link_url,org_id)
+values(-1,'Our Blog','/blogs',-1);
+insert into custom_link(custom_link_id,link_name, link_url,org_id)
+values(-2,'Johns Advice','/post?id=-1',-1);

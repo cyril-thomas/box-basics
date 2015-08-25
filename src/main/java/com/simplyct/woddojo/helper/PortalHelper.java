@@ -55,10 +55,14 @@ public class PortalHelper {
     @Autowired
     BlogRepository blogRepository;
 
+    @Autowired
+    CustomLinkRepository customLinkRepository;
+
     public HomePage getHomePage(Long orgId) {
         Home home = homeRepository.findByOrganizationId(orgId);
         HomePage homePage = new HomePage(home);
         homePage.setAnnouncements(getAnnouncements(orgId));
+        homePage.customLinkAddAll(getCustomLinks(orgId));
         return homePage;
     }
 
@@ -76,6 +80,13 @@ public class PortalHelper {
         List<Blog> blogs = blogRepository.findByOrganizationId(orgId);
         return blogs.stream()
                     .map( e -> new BlogPost(e))
+                    .collect(Collectors.toList());
+    }
+
+    public List<LinksDetail> getCustomLinks(Long orgId){
+        List<CustomLink> customLinks = customLinkRepository.findByOrganizationId(orgId);
+        return customLinks.stream()
+                    .map( e -> new LinksDetail(e))
                     .collect(Collectors.toList());
     }
 

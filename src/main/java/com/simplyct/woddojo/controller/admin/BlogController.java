@@ -54,14 +54,18 @@ public class BlogController {
     public String edit(Model model,
                        HttpSession session,
                        @RequestParam(value = "id", required = false) Long id) {
+        Long orgId = (Long) session.getAttribute("orgId");
         if (id != null) {
             Blog blog = blogRepository.findOne(id);
             model.addAttribute("blog", blog);
         } else {
-            Long orgId = (Long) session.getAttribute("orgId");
             Organization organization = organizationRepository.findOne(orgId);
-            model.addAttribute("blog", new Blog());
+            Blog blog = new Blog();
+            blog.setOrganization(organization);
+            model.addAttribute("blog", blog);
         }
+        model.addAttribute("coaches", coachRepository.findByUserOrganizationId(orgId));
+
         return "admin/blog/edit";
     }
 
@@ -71,7 +75,8 @@ public class BlogController {
                            @ModelAttribute Blog blog) {
 
         Long orgId = (Long) session.getAttribute("orgId");
-        blog.setCoach(coachRepository.findOne(-1L));
+        blog.setOrganization(organizationRepository.findOne(orgId));
+        blog.setCoach(coachRepository.findOne(blog.getCoach().getId()));
         blog.setPostDate(new Date());
         blogRepository.save(blog);
 
