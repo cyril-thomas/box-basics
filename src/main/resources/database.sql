@@ -345,7 +345,7 @@ DROP TABLE IF EXISTS schedule CASCADE;
 CREATE TABLE schedule
 (
   schedule_id bigint NOT NULL DEFAULT nextval('seq_schedule'::regclass),
-  notes character varying(255),
+  workout character varying(255),
   wod_date date,
   org_id bigint,
   wod_id bigint,

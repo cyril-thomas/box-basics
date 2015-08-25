@@ -5,7 +5,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by cyril on 7/11/15.
@@ -24,8 +23,8 @@ public class Schedule {
     @Temporal(TemporalType.DATE)
     Date wodDate;
 
-    @Column(name = "notes")
-    String notes;
+    @Column(name = "workout")
+    String workout;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "org_id")
