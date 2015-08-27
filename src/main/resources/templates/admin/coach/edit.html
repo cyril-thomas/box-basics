@@ -89,9 +89,11 @@
 
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label for="pic">Profile Picture</label><br/>
-                        <img th:if="${imageUrl} != null" th:src="${imageUrl}" width="300"/><br/><br/>
-                        <input id="pic" class="btn well col-md-12s" type="file" name="coach" />
+                        <label for="proPic">Profile Picture</label><br/>
+                        <img id="proPic" th:if="${imageUrl} != null" th:src="${imageUrl}" width="300"/>
+                        <br/><br/>
+                        <label for="pic">Upload New</label><br/>
+                        <input id="pic" class="btn well col-md-12s" type="file" name="coach"/>
                     </div>
                 </div>
 
@@ -150,6 +152,14 @@
 <script>
         jQuery(document).ready(function introBox(){
          jQuery("#intro").summernote();
+         jQuery("#pic").fileinput({
+         'showUpload':false,
+         'previewFileType':'any',
+         'allowedFileExtensions':['jpg', 'gif', 'png'],
+         'previewSettings':{
+            'image': {'width': 'auto', 'height': '160px'}
+         }
+         });;
         });
 
 </script>
