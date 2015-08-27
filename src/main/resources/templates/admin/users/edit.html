@@ -85,6 +85,50 @@
                                class="form-control"/>
                     </div>
                 </div>
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="city">City</label>
+                        <input type="text"
+                               th:field="*{city}"
+                               id="city"
+                               class="form-control"
+                               placeholder="Your city"/>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="zip">Zip Code</label>
+                        <input type="text"
+                               th:field="*{zip}"
+                               id="zip"
+                               class="form-control"
+                               placeholder="Zip Code"
+                               min="5"
+                               maxlength="5"/>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="date-sc">Date of Birth</label>
+                        <input type="date"
+                               th:field="*{dateOfBirth}"
+                               id="date-sc"
+                               class="form-control"/>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="gender">Gender</label>
+                        <select th:field="*{gender}"
+                               id="gender"
+                               class="form-control">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+                </div>
+
                 <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
 
                 <input type="submit" class="btn btn-primary" th:value="*{id} != null? 'Update' : 'Register'"/>
@@ -95,4 +139,16 @@
     <div th:include="admin/adminLayout :: adFooter" id="adFooter">(adFooter)</div>
 </div>
 </body>
+<script type="text/javascript">
+    jQuery(document).ready(
+
+    function dateBox(){
+         jQuery("#date-sc").datepicker({
+            todayBtn: "linked",
+            orientation: "top auto",
+            format: "mm-dd-yyyy"
+         });
+        }
+    );
+</script>
 </html>

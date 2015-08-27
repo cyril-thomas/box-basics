@@ -196,6 +196,9 @@ CREATE TABLE member
   first_name character varying(255) NOT NULL,
   last_name character varying(255) NOT NULL,
   user_phone character varying(255),
+  dob date,
+  city character varying(255),
+  zip character varying(5),
   org_id bigint,
   CONSTRAINT member_pkey PRIMARY KEY (user_id),
   CONSTRAINT fk_member_org FOREIGN KEY (org_id)
