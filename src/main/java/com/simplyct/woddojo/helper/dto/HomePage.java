@@ -3,6 +3,7 @@ package com.simplyct.woddojo.helper.dto;
 import com.simplyct.woddojo.model.Home;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class HomePage {
     String                   regBanner;
     String                   customCss;
     List<AnnouncementDetail> announcements;
+    List<LinksDetail> customLinks;
 
     public HomePage() {
     }
@@ -35,5 +37,19 @@ public class HomePage {
         this.regContent = home.getRegContent();
         this.regBanner = home.getRegBanner();
         this.customCss = home.getCss();
+    }
+
+    public void customLinkAdd(LinksDetail linksDetail){
+        if(customLinks == null){
+            customLinks = new ArrayList<>(1);
+        }
+        customLinks.add(linksDetail);
+    }
+
+    public void customLinkAddAll(List<LinksDetail> linksDetails){
+        if(customLinks == null){
+            customLinks = new ArrayList<>(1);
+        }
+        customLinks.addAll(linksDetails);
     }
 }

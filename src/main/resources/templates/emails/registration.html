@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Untitled Document</title>
@@ -14,38 +15,32 @@
                     <td valign="top">
                         <table cellpadding="0" cellspacing="0" width="100%">
                             <tr>
-                                <td valign="middle" style="font:bold 30px Arial, Helvetica, sans-serif;color:#666666;padding:5px 15px;text-align:left;">Brickwall</td>
+                                <td valign="middle" style="font:bold 30px Arial, Helvetica, sans-serif;color:#666666;padding:5px 15px;text-align:left;"><span th:text="${emailDto.orgName}">Wod-dojo</span></td>
                                 <td valign="middle" style="width:28%;text-align:right;padding:4px 0px 0px;"><a href=""><img src="facebook.png" /></a>&nbsp;&nbsp;<a href=""><img src="instagram.png" /></a>&nbsp;&nbsp;</td>
                             </tr>
                         </table>
                     </td>
                 </tr>
                 <tr>
-                    <td valign="middle" style="font:bold 18px Arial, Helvetica, sans-serif;background-color:#666666;text-align:left;color:#ffffff;padding:10px 10px;">Welcome: <span style="font-size:14px;">Christopher</span> </td>
+                    <td valign="middle" style="font:bold 18px Arial, Helvetica, sans-serif;background-color:#666666;text-align:left;color:#ffffff;padding:10px 10px;">Welcome: <span style="font-size:18px;" th:text="${emailDto.userName}">Christopher</span> </td>
                 </tr>
                 <tr>
-                    <td valign="top" style="font:bold 24px Arial, Helvetica, sans-serif;color:#336699;padding:10px 15px;text-align:left">Congradulations!</td>
+                    <td valign="top" style="font:bold 24px Arial, Helvetica, sans-serif;color:#336699;padding:10px 15px;text-align:left">Congratulations!</td>
                 </tr>
                 <tr>
-                    <td valign="top" style="font:16px Arial, Helvetica, sans-serif;color:#333333;padding:0px 15px 15px 15px;text-align:left;line-height:20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur enim purus, fermentum in rutrum vitae, accumsan et velit. Mauris molestie, est fringilla sodales condimentum, tellus ex tincidunt erat, ac semper nisi nibh id libero.  </td>
+                    <td valign="top" style="font:16px Arial, Helvetica, sans-serif;color:#333333;padding:0px 15px 15px 15px;text-align:left;line-height:20px;">Thanks for signing up to be part of the <span th:text="${emailDto.orgName}">Wod-dojo</span> family, we are excited to have you. At <span th:text="${emailDto.orgName}">Wod-dojo</span> we focus on building an everlasting relationship with our peers.</td>
                 </tr>
                 <tr>
-                    <td valign="top" style="font:bold 18px Arial, Helvetica, sans-serif;color:#666666;color:#336699;padding:15px 15px 0px 15px;text-align:left;border-top:1px dashed #336699;">heading</td>
+                    <td valign="top" style="font:bold 18px Arial, Helvetica, sans-serif;color:#666666;color:#336699;padding:15px 15px 0px 15px;text-align:left;border-top:1px dashed #336699;">Next Steps:</td>
                 </tr>
                 <tr>
-                    <td valign="top" style="font:12px Arial, Helvetica, sans-serif;color:#666666;padding:10px 15px;text-align:left">Ut felis justo, pretium ac pulvinar vitae, pharetra sit amet odio. Curabitur malesuada lorem felis, et egestas metus volutpat non. Duis sed purus a nibh placerat semper a et nibh. Aliquam sed metus nec lacus egestas convallis. Aliquam et odio sit amet ex elementum vehicula. Proin rhoncus nisl at nunc egestas, nec feugiat lacus porttitor. Maecenas pretium leo quis tempus malesuada. Pellentesque pretium ultricies nulla. Donec nisi tellus, bibendum quis magna eget, mattis egestas velit.</td>
+                    <td valign="top" style="font:12px Arial, Helvetica, sans-serif;color:#666666;padding:10px 15px;text-align:left">1. Drop by the gym and meet one of our coaches, they would like to get to know you, your goals and help achieve them.</td>
                 </tr>
                 <tr>
-                    <td valign="top" style="font:bold 18px Arial, Helvetica, sans-serif;color:#666666;color:#336699;padding:15px 15px 0px 15px;text-align:left;border-top:1px dashed #336699;">heading</td>
+                    <td valign="top" style="font:12px Arial, Helvetica, sans-serif;color:#666666;padding:10px 15px;text-align:left">2. Bring a towel and water bottle, lets get down and dirty.</td>
                 </tr>
                 <tr>
-                    <td valign="top" style="font:12px Arial, Helvetica, sans-serif;color:#666666;padding:10px 15px;text-align:left">Ut felis justo, pretium ac pulvinar vitae, pharetra sit amet odio. Curabitur malesuada lorem felis, et egestas metus volutpat non. Duis sed purus a nibh placerat semper a et nibh. Aliquam sed metus nec lacus egestas convallis. Aliquam et odio sit amet ex elementum vehicula. Proin rhoncus nisl at nunc egestas, nec feugiat lacus porttitor. Maecenas pretium leo quis tempus malesuada. Pellentesque pretium ultricies nulla. Donec nisi tellus, bibendum quis magna eget, mattis egestas velit.</td>
-                </tr>
-                <tr>
-                    <td valign="top" style="font:bold 18px Arial, Helvetica, sans-serif;color:#666666;color:#336699;padding:15px 15px 0px 15px;text-align:left;border-top:1px dashed #336699;">heading</td>
-                </tr>
-                <tr>
-                    <td valign="top" style="font:12px Arial, Helvetica, sans-serif;color:#666666;padding:10px 15px;text-align:left">Ut felis justo, pretium ac pulvinar vitae, pharetra sit amet odio. Curabitur malesuada lorem felis, et egestas metus volutpat non. Duis sed purus a nibh placerat semper a et nibh. Aliquam sed metus nec lacus egestas convallis. Aliquam et odio sit amet ex elementum vehicula. Proin rhoncus nisl at nunc egestas, nec feugiat lacus porttitor. Maecenas pretium leo quis tempus malesuada. Pellentesque pretium ultricies nulla. Donec nisi tellus, bibendum quis magna eget, mattis egestas velit.</td>
+                    <td valign="top" style="font:12px Arial, Helvetica, sans-serif;color:#666666;padding:10px 15px;text-align:left">3. Follow us on social media and be part of the family</td>
                 </tr>
             </table>
         </td>

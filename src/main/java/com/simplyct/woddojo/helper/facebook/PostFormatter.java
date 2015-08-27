@@ -18,7 +18,7 @@ public class PostFormatter {
                 notNull(wod.getName()),
                 notNull(wodDescription),
                 notNull(wod.getNotes()),
-                notNull(schedule.getNotes()));
+                notNull(schedule.getWorkout()));
         return content;
     }
 

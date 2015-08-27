@@ -55,6 +55,14 @@
                 <li>
                     <a class="page-scroll" href="#footer">Contact</a>
                 </li>
+                <li class="dropdown active" th:if="#{homeObj!= null and not #lists.isEmpty(homeObj.customLinks)}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li th:each="link : ${homeObj.customLinks}">
+                            <a class="page-scroll" th:href="${link.linkUrl}"><span th:utext="${link.linkName}"></span></a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a class="page-scroll" th:href="@{/org/landing}">Admin</a>
                 </li>

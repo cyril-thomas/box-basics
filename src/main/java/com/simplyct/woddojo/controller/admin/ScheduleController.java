@@ -1,11 +1,12 @@
 package com.simplyct.woddojo.controller.admin;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.simplyct.woddojo.controller.SocialController;
 import com.simplyct.woddojo.helper.facebook.FbCommunicator;
 import com.simplyct.woddojo.helper.facebook.PostFormatter;
 import com.simplyct.woddojo.model.Organization;
 import com.simplyct.woddojo.model.Schedule;
-import com.simplyct.woddojo.model.Wod;
 import com.simplyct.woddojo.repository.OrganizationRepository;
 import com.simplyct.woddojo.repository.ScheduleRepository;
 import com.simplyct.woddojo.repository.WodRepository;
@@ -20,8 +21,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Date;
 import java.util.Map;
 
@@ -70,6 +75,26 @@ public class ScheduleController {
         model.addAttribute("workouts", wodRepository.findAll());
 
         return "admin/schedule/edit";
+    }
+
+    @RequestMapping(value = "/wod", method = RequestMethod.POST)
+    public void getWod(
+            HttpServletResponse httpServletResponse,
+            @RequestParam(value = "id", required = false) Long id) {
+
+        String workout = wodRepository.findOne(id).getDescription();
+
+        ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+        ObjectWriter OBJECT_WRITER = OBJECT_MAPPER.writer();
+
+        HttpServletResponseWrapper responseWrapper = new HttpServletResponseWrapper(httpServletResponse);
+        try {
+            responseWrapper.setContentType("text/html");
+            Writer out = responseWrapper.getWriter();
+            OBJECT_WRITER.writeValue(out, workout);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

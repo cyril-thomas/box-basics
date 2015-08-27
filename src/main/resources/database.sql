@@ -345,7 +345,7 @@ DROP TABLE IF EXISTS schedule CASCADE;
 CREATE TABLE schedule
 (
   schedule_id bigint NOT NULL DEFAULT nextval('seq_schedule'::regclass),
-  notes character varying(255),
+  workout character varying(255),
   wod_date date,
   org_id bigint,
   wod_id bigint,
@@ -391,3 +391,30 @@ CREATE TABLE blog
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 ALTER TABLE blog OWNER TO woddojo;
+
+-- Table: Custom Links
+
+DROP SEQUENCE IF EXISTS seq_custom_link CASCADE;
+
+CREATE SEQUENCE seq_custom_link
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE seq_custom_link OWNER TO woddojo;
+
+DROP TABLE IF EXISTS custom_link CASCADE;
+
+CREATE TABLE custom_link
+(
+  custom_link_id bigint NOT NULL DEFAULT nextval('seq_custom_link'::regclass),
+  link_name character varying(255),
+  link_url character varying(255),
+  org_id bigint,
+  CONSTRAINT custom_link_pkey PRIMARY KEY (custom_link_id),
+  CONSTRAINT fk_custom_link_org FOREIGN KEY (org_id)
+      REFERENCES organization (org_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+ALTER TABLE custom_link OWNER TO woddojo;

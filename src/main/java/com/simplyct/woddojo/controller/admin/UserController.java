@@ -1,7 +1,11 @@
 package com.simplyct.woddojo.controller.admin;
 
+import com.simplyct.woddojo.helper.Constants;
 import com.simplyct.woddojo.helper.EmailHelper;
+import com.simplyct.woddojo.helper.dto.EmailDto;
+import com.simplyct.woddojo.model.Organization;
 import com.simplyct.woddojo.model.User;
+import com.simplyct.woddojo.repository.OrganizationRepository;
 import com.simplyct.woddojo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -27,6 +32,9 @@ public class UserController {
     @Autowired
     EmailHelper emailHelper;
 
+    @Autowired
+    OrganizationRepository organizationRepository;
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Model model) {
         model.addAttribute("user", new User());
@@ -41,6 +49,7 @@ public class UserController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editPost(Model model,
+                           HttpSession httpSession,
                            @ModelAttribute @Valid User user,
                            BindingResult result) {
 
@@ -51,11 +60,10 @@ public class UserController {
 
         //registration flow
         if (user.getId() == null) {
+            Long orgId = (Long) httpSession.getAttribute("orgId");
+            Organization organization = organizationRepository.findOne(orgId);
             userRepository.save(user);
-            emailHelper.sendRegistrationConfirmation("cyril.satyam@gmail.com",
-                                                     "matt.olsen@gmail.com",
-                                                     "Registration",
-                                                     "1");
+            emailHelper.sendWelcomeEmail(user,organization);
             return "reg_success";
         }
 

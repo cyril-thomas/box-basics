@@ -40,6 +40,18 @@
 
                 <div class="control-group form-group">
                     <div class="controls">
+                        <label for="coach">Select Author</label>
+                        <select th:field="*{coach}" class="form-control" id="coach">
+                            <option th:each="c : ${coaches}"
+                                    th:value="${c.id}"
+                                    th:text="${c.user.firstName}+' '+ ${c.user.lastName}">Coach
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="control-group form-group">
+                    <div class="controls">
                         <label for="content">Content</label>
                         <textarea
                                 th:field="*{content}"
@@ -49,7 +61,6 @@
                 </div>
 
                 <input type="hidden" th:if="*{id} != null" th:field="*{id}" id="id"/>
-                <input type="hidden" th:if="*{coach.id} != null" th:field="*{coach.id}" id="coachId"/>
                 <input type="hidden" th:if="*{organization.id} != null" th:field="*{organization.id}"
                        id="orgId"/>
 
