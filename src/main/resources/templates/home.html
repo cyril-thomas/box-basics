@@ -248,6 +248,49 @@
                                        maxlength="10"/>
                             </div>
                         </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="city">City</label>
+                                <input type="text"
+                                       th:field="*{city}"
+                                       id="city"
+                                       class="form-control"
+                                       placeholder="Your city"/>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="zip">Zip Code</label>
+                                <input type="text"
+                                       th:field="*{zip}"
+                                       id="zip"
+                                       class="form-control"
+                                       placeholder="Zip Code"
+                                       min="5"
+                                       maxlength="5"/>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="date-sc">Date of Birth</label>
+                                <input type="date"
+                                       th:field="*{dateOfBirth}"
+                                       id="date-sc"
+                                       placeholder="Mon-Date-Year"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="gender">Gender</label>
+                                <select th:field="*{gender}"
+                                        id="gender"
+                                        class="form-control">
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="text-right">
                             <input type="submit" class="btn btn-primary" th:value="Register"/>
                         </div>
@@ -336,12 +379,16 @@
 	        required: true,
 	        phoneUS: true
 	      },
+	      zip: {
+	        required: true,
+	      }
 	    },
 	    messages: {
 	       firstName: "Please enter a first name",
 	       lastName: "Please enter a last name",
 	       email: "Please enter a valid email",
 	       phone: "Please enter a valid phone number",
+	       zip: "Please enter a valid US zip code",
 	       },
 			highlight: function(element) {
 				$(element).closest('.control-group').removeClass('has-success').addClass('has-error');
