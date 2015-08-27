@@ -14,6 +14,7 @@ public class GymDetail {
     Address postalAddress;
     String  orgEmail;
     String  phone;
+    String  hours;
     String  hashTag;
 
     public GymDetail(Organization organization) {
@@ -21,6 +22,7 @@ public class GymDetail {
         this.orgEmail = organization.getEmail();
         this.phone = organization.getPhone();
         this.name = organization.getName();
+        this.hours = organization.getHours();
         this.hashTag = organization.getHashTag();
         this.postalAddress = organization.getPostalAddress();
     }

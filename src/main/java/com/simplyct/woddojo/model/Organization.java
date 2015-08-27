@@ -44,4 +44,7 @@ public class Organization {
 
     @Column(name = "hash_tag")
     String hashTag;
+
+    @Column(name = "hours")
+    String hours;
 }
