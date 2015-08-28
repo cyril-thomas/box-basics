@@ -94,7 +94,7 @@
         <span th:text="${gymObj.postalAddress.secondLine}">Add 2</span><br />
 
         <span class="fa fa-clock-o"></span>
-            <abbr title="Hours"></abbr>: Monday - Friday: 9:00 AM to 5:00 PM
+            <abbr title="Hours"></abbr>: <span th:utext="${gymObj.hours}">hours</span>
        
         
     </div>
