@@ -50,12 +50,10 @@
                     <a class="page-scroll" href="#social">Social</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#register">Register</a>
+                    <a class="page-scroll" href="#register">Get Started</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="#footer">Contact</a>
-                </li>
-                <li class="dropdown active" th:if="#{homeObj!= null and not #lists.isEmpty(homeObj.customLinks)}">
+              
+                <li class="dropdown active moreHide" th:if="#{homeObj!= null and not #lists.isEmpty(homeObj.customLinks)}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li th:each="link : ${homeObj.customLinks}">
@@ -63,6 +61,10 @@
                         </li>
                     </ul>
                 </li>
+                <li class="page-scroll hideMe" th:each="link : ${homeObj.customLinks}">
+                    <a class="page-scroll" th:href="${link.linkUrl}"><span th:utext="${link.linkName}"></span></a>
+                </li>
+                
                 <li>
                     <a class="page-scroll" th:href="@{/org/landing}">Admin</a>
                 </li>

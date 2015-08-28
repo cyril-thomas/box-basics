@@ -12,22 +12,26 @@
 
 }
 @media(max-width:767px) {
-.navbar-default {
-    background: #42891f; /* Old browsers */
-    background: -moz-radial-gradient(center, ellipse cover,  #42891f 1%, #4e9f26 100%); /* FF3.6+ */
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#42891f), color-stop(100%,#4e9f26)); /* Chrome,Safari4+ */
-    background: -webkit-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* Opera 12+ */
-    background: -ms-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* IE10+ */
-    background: radial-gradient(ellipse at center,  #42891f 1%,#4e9f26 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42891f', endColorstr='#4e9f26',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-    
-}    
+    .navbar-default {
+        background: #42891f; /* Old browsers */
+        background: -moz-radial-gradient(center, ellipse cover,  #42891f 1%, #4e9f26 100%); /* FF3.6+ */
+        background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#42891f), color-stop(100%,#4e9f26)); /* Chrome,Safari4+ */
+        background: -webkit-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* Opera 12+ */
+        background: -ms-radial-gradient(center, ellipse cover,  #42891f 1%,#4e9f26 100%); /* IE10+ */
+        background: radial-gradient(ellipse at center,  #42891f 1%,#4e9f26 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42891f', endColorstr='#4e9f26',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    }   
+  .page-scroll.hideMe{
+        display:block !important;
+    }
+    .moreHide{display:none!important;}
 }
 
 @media(min-width:768px) {
     
- 
+  
     .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
         font-size: 14px;
         
@@ -52,6 +56,7 @@
        margin:10px 0 5px  !important;
        width: 100% !important;
     }
+    #blogs h1.page-header{font-size:25px !important}
 }
 @media screen and ( max-width:646px){
    
@@ -164,11 +169,11 @@ nav{
     border-radius: 0px;
     background-color:#transparent !important;
 }
-
+#blogNav, 
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus{background-color:#42891f}
 .navbar-default .navbar-toggle{background-color:transparent;}
-
+#blogNav{position: fixed;}
 .navbar-default .navbar-header .navbar-brand {
     text-transform: uppercase;
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
@@ -199,7 +204,7 @@ nav{
  }
  
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-   
+     background-color:transparent;
     color: #fff;
 }
 .navbar-default .navbar-nav > li > a:hover,
@@ -211,6 +216,7 @@ nav{
 .navbar-default .nav > li.active>a:hover,
 .navbar-default .nav>li.active>a:focus:hover {
     background-color: transparent;
+    color:#fff;
 }
 .navbar-default.affix {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#42891f+1,4e9f26+100 */
@@ -224,7 +230,21 @@ nav{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42891f', endColorstr='#4e9f26',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
     }
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+    background-color:transparent;
+    color: rgba(255, 255, 255, 0.7);
+}
+.dropdown-menu > li > a{color:rgba(255, 255, 255, .8)}
+.dropdown-menu > li > a:hover{color:rgba(255, 255, 255, 1);background-color:  rgba(66, 137, 31, 1);}
+.dropdown-menu {
+    background-clip: padding-box;
+    background-color: rgba(66, 137, 31, 0.8);}
 
+.page-scroll.hideMe{
+        display:none;
+    }
+     .moreHide{display:block;}
 header {
     position: relative;
     margin-top: -72px;
@@ -685,3 +705,19 @@ header .header-content .header-content-inner div{
     height:1px;
     border-top:1px solid #f1f1f1;
 }
+
+#blogs{
+    max-width:1020px;
+    margin:auto;
+    padding:20px 15px;
+    
+}
+
+.media, .media .media {
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    margin:15px 45px 15px 45px;
+    padding: 19px;
+}
+.media-heading{color:#42891f}
