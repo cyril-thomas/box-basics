@@ -1,13 +1,18 @@
 package com.simplyct.woddojo.controller.admin;
 
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.simplyct.woddojo.helper.amazon.AwsS3Service;
 import com.simplyct.woddojo.model.About;
+import com.simplyct.woddojo.model.Coach;
 import com.simplyct.woddojo.model.Home;
 import com.simplyct.woddojo.model.Organization;
 import com.simplyct.woddojo.repository.AboutRepository;
 import com.simplyct.woddojo.repository.HomeRepository;
 import com.simplyct.woddojo.repository.OrganizationRepository;
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,9 +20,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by cyril on 6/9/15.
@@ -25,6 +34,16 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/org")
 public class OrganizationController {
+
+    @Value("${aws.bucket.name}")
+    private String BUCKET_NAME;
+
+    @Value("${aws.cdn.url}")
+    private String CDN_URL;
+
+    private final String LOGO_OBJECT_NAME_TEMPLATE           = "org/%s/home/logo/%s/%s";
+    private final String BACKGROUND_OBJECT_NAME_TEMPLATE     = "org/%s/home/bg/%s/%s";
+    private final String ALT_BACKGROUND_OBJECT_NAME_TEMPLATE = "org/%s/home/altBG/%s/%s";
 
     @Autowired
     OrganizationRepository organizationRepository;
@@ -34,6 +53,9 @@ public class OrganizationController {
 
     @Autowired
     AboutRepository aboutRepository;
+
+    @Autowired
+    AwsS3Service awsS3Service;
 
     @RequestMapping("/landing")
     public String getLanding() {
@@ -61,9 +83,25 @@ public class OrganizationController {
             model.addAttribute("orgAbout", new About());
         } else {
             Organization organization = organizationRepository.findOne(id);
+            Home home = homeRepository.findByOrganizationId(organization.getId());
             model.addAttribute("organization", organization);
-            model.addAttribute("orgHome", homeRepository.findByOrganizationId(organization.getId()));
+            model.addAttribute("orgHome", home);
             model.addAttribute("orgAbout", aboutRepository.findByOrganizationId(organization.getId()));
+
+            if(home.getLogoUrl()!= null && !home.getLogoUrl().isEmpty()) {
+                String logoUrl = CDN_URL + home.getLogoUrl();
+                model.addAttribute("logoUrl", logoUrl);
+            }
+
+            if(home.getBgUrl()!= null && !home.getBgUrl().isEmpty()) {
+                String mainBgUrl = CDN_URL + home.getBgUrl();
+                model.addAttribute("mainBgUrl", mainBgUrl);
+            }
+
+            if(home.getAltBgUrl()!= null && !home.getAltBgUrl().isEmpty()) {
+                String bgAltUrl = CDN_URL + home.getAltBgUrl();
+                model.addAttribute("bgAltUrl", bgAltUrl);
+            }
         }
         return "admin/org/setup";
     }
@@ -90,8 +128,11 @@ public class OrganizationController {
     @RequestMapping(value = "/home/edit", method = RequestMethod.POST)
     public String homePost(Model model,
                            HttpSession session,
-                           @ModelAttribute @Valid Home orgHome,
-                           BindingResult result) {
+                           @ModelAttribute Home orgHome,
+                           @RequestParam(value = "logo", required = false) MultipartFile logo,
+                           @RequestParam(value = "mainBg", required = false) MultipartFile background,
+                           @RequestParam(value = "bgAlt", required = false) MultipartFile altBackground
+    ) {
 
 
         if (orgHome.getOrganization() == null) {
@@ -142,6 +183,18 @@ public class OrganizationController {
             model.addAttribute("message", "Updated!");
             orgHome = homeRepository.save(orgHome);
         }
+
+        if (logo != null && !logo.isEmpty()) {
+            imageUpload(orgHome.getOrganization().getId(), orgHome, logo, ImageType.LOGO);
+        }
+        if (background != null && !background.isEmpty()) {
+            imageUpload(orgHome.getOrganization().getId(), orgHome, background, ImageType.BG);
+        }
+        if (altBackground != null && !altBackground.isEmpty()) {
+            imageUpload(orgHome.getOrganization().getId(), orgHome, altBackground, ImageType.ALT_BG);
+        }
+
+
         model.addAttribute("organization", orgHome.getOrganization());
         model.addAttribute("orgHome", orgHome);
         model.addAttribute("orgAbout", aboutRepository.findByOrganizationId(orgHome.getOrganization().getId()));
@@ -173,5 +226,60 @@ public class OrganizationController {
         model.addAttribute("orgAbout", orgAbout);
         return "admin/org/setup";
     }
+
+    private void imageUpload(Long orgId, Home home, MultipartFile file, ImageType imageType) {
+        String fileName = file.getOriginalFilename();
+
+        Map<String, String> userMetadata = new HashMap(1);
+        userMetadata.put("db-timestamp", new DateTime().toDate().toString());
+        userMetadata.put("db-filename", fileName);
+
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentType(file.getContentType());
+        metadata.setUserMetadata(userMetadata);
+
+        String ext = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
+
+        String templateName = StringUtils.EMPTY;
+
+        switch (imageType) {
+            case LOGO: templateName = LOGO_OBJECT_NAME_TEMPLATE;
+                break;
+            case BG: templateName = BACKGROUND_OBJECT_NAME_TEMPLATE;
+                break;
+            case ALT_BG: templateName = ALT_BACKGROUND_OBJECT_NAME_TEMPLATE;
+                break;
+        }
+
+        try {
+            String imageUrl = awsS3Service.uploadResource(file.getInputStream(),
+                                                            orgId,
+                                                            home.getId(),
+                                                            ext,
+                                                            file.getContentType(),
+                                                            metadata,
+                                                            BUCKET_NAME,
+                                                            templateName, false);
+
+            switch (imageType) {
+                case LOGO: home.setLogoUrl(imageUrl);
+                    break;
+                case BG: home.setBgUrl(imageUrl);
+                    break;
+                case ALT_BG: home.setAltBgUrl(imageUrl);
+                    break;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        homeRepository.save(home);
+    }
+
+
+    private enum ImageType {
+        LOGO, BG, ALT_BG
+    }
+
 
 }

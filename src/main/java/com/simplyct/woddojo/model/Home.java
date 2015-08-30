@@ -39,6 +39,18 @@ public class Home {
     @Column(name = "video_url")
     String videoUrl;
 
+
+    @Column(name = "logo_url")
+    String logoUrl;
+
+
+    @Column(name = "bg_url")
+    String bgUrl;
+
+
+    @Column(name = "alt_bg_url")
+    String altBgUrl;
+
     @Column(name = "custom_css")
     String css;
 

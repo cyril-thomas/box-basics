@@ -347,7 +347,8 @@
                           th:action="@{/org/home/edit}"
                           th:object="${orgHome}"
                           action="#"
-                          method="post">
+                          method="post"
+                          enctype="multipart/form-data">
 
 
                         <!-- Errors -->
@@ -361,6 +362,36 @@
                         </div>
 
                         <!-- Fields -->
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="logo">Logo Image</label><br/>
+                                <img id="logo" th:if="${logoUrl} != null" th:src="${logoUrl}" width="300"/>
+                                <br/><br/>
+                                <label for="logoUp">Upload New</label><br/>
+                                <input id="logoUp" class="btn well col-md-12s" type="file" name="logo"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="mainBg">Main Background Image</label><br/>
+                                <img id="mainBg" th:if="${mainBgUrl} != null" th:src="${mainBgUrl}" width="300"/>
+                                <br/><br/>
+                                <label for="mainBgUp">Upload New</label><br/>
+                                <input id="mainBgUp" class="btn well col-md-12s" type="file" name="mainBg"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="bgAlt">Background Alt</label><br/>
+                                <img id="bgAlt" th:if="${bgAltUrl} != null" th:src="${bgAltUrl}" width="300"/>
+                                <br/><br/>
+                                <label for="bgAltUp">Upload New</label><br/>
+                                <input id="bgAltUp" class="btn well col-md-12s" type="file" name="bgAlt"/>
+                            </div>
+                        </div>
 
                         <div class="control-group form-group">
                             <div class="controls">
@@ -393,6 +424,37 @@
      jQuery("#p2-content").summernote();
      jQuery("#p3-content").summernote();
      jQuery("#acontent").summernote();
+
+
+     jQuery("#logoUp").fileinput({
+         'showUpload':false,
+         'previewFileType':'any',
+         'allowedFileExtensions':['jpg', 'gif', 'png'],
+         'previewSettings':{
+            'image': {'width': 'auto', 'height': '160px'}
+         }
+         });
+
+    });
+     jQuery("#mainBgUp").fileinput({
+         'showUpload':false,
+         'previewFileType':'any',
+         'allowedFileExtensions':['jpg', 'gif', 'png'],
+         'previewSettings':{
+            'image': {'width': 'auto', 'height': '160px'}
+         }
+         });
+
+    });
+     jQuery("#bgAltUp").fileinput({
+         'showUpload':false,
+         'previewFileType':'any',
+         'allowedFileExtensions':['jpg', 'gif', 'png'],
+         'previewSettings':{
+            'image': {'width': 'auto', 'height': '160px'}
+         }
+         });
+
     });
 
 </script>

@@ -77,6 +77,9 @@ CREATE TABLE home
   services_title character varying(255),
   title character varying(255) NOT NULL,
   video_url character varying(255),
+  logo_url character varying(255),
+  bg_url character varying(255),
+  alt_bg_url character varying(255),
   org_id bigint,
   CONSTRAINT home_pkey PRIMARY KEY (home_id),
   CONSTRAINT fk_home_org FOREIGN KEY (org_id)
