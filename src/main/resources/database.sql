@@ -8,7 +8,7 @@ CREATE SEQUENCE seq_address
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_address OWNER TO woddojo;
+ALTER TABLE seq_address OWNER TO dbuser;
 
 DROP TABLE IF EXISTS address CASCADE;
 
@@ -22,7 +22,7 @@ CREATE TABLE address
   zip_code character varying(255),
   CONSTRAINT address_pkey PRIMARY KEY (address_id)
 );
-ALTER TABLE address OWNER TO woddojo;
+ALTER TABLE address OWNER TO dbuser;
 
 -- Table: organization
 DROP SEQUENCE IF EXISTS seq_organization CASCADE;
@@ -33,7 +33,7 @@ CREATE SEQUENCE seq_organization
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_organization OWNER TO woddojo;
+ALTER TABLE seq_organization OWNER TO dbuser;
 
 DROP TABLE IF EXISTS organization CASCADE;
 
@@ -51,7 +51,7 @@ CREATE TABLE organization
       REFERENCES address (address_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE organization OWNER TO woddojo;
+ALTER TABLE organization OWNER TO dbuser;
 
 -- Table: home
 DROP SEQUENCE IF EXISTS seq_home CASCADE;
@@ -62,7 +62,7 @@ CREATE SEQUENCE seq_home
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_home OWNER TO woddojo;
+ALTER TABLE seq_home OWNER TO dbuser;
 
 DROP TABLE IF EXISTS home CASCADE;
 
@@ -86,7 +86,7 @@ CREATE TABLE home
       REFERENCES organization (org_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE home OWNER TO woddojo;
+ALTER TABLE home OWNER TO dbuser;
 
 
 -- Table: about
@@ -99,7 +99,7 @@ CREATE SEQUENCE seq_about
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_about OWNER TO woddojo;
+ALTER TABLE seq_about OWNER TO dbuser;
 
 DROP TABLE IF EXISTS about CASCADE;
 
@@ -118,7 +118,7 @@ CREATE TABLE about
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
-ALTER TABLE about OWNER TO woddojo;
+ALTER TABLE about OWNER TO dbuser;
 
 -- Table: service
 
@@ -130,7 +130,7 @@ CREATE SEQUENCE seq_service
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_service OWNER TO woddojo;
+ALTER TABLE seq_service OWNER TO dbuser;
 
 DROP TABLE IF EXISTS service CASCADE;
 
@@ -145,7 +145,7 @@ CREATE TABLE service
       REFERENCES organization (org_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE service OWNER TO woddojo;
+ALTER TABLE service OWNER TO dbuser;
 
 
 
@@ -159,7 +159,7 @@ CREATE SEQUENCE seq_announcement
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_announcement OWNER TO woddojo;
+ALTER TABLE seq_announcement OWNER TO dbuser;
 
 DROP TABLE IF EXISTS announcement CASCADE;
 
@@ -176,7 +176,7 @@ CREATE TABLE announcement
       REFERENCES organization (org_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE announcement OWNER TO woddojo;
+ALTER TABLE announcement OWNER TO dbuser;
 
 -- Table: member
 
@@ -188,7 +188,7 @@ CREATE SEQUENCE seq_member
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_member OWNER TO woddojo;
+ALTER TABLE seq_member OWNER TO dbuser;
 
 DROP TABLE IF EXISTS member CASCADE;
 
@@ -208,7 +208,7 @@ CREATE TABLE member
       REFERENCES organization (org_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE member OWNER TO woddojo;
+ALTER TABLE member OWNER TO dbuser;
 
 
 
@@ -221,7 +221,7 @@ CREATE SEQUENCE seq_coach
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_coach OWNER TO woddojo;
+ALTER TABLE seq_coach OWNER TO dbuser;
 
 DROP TABLE IF EXISTS coach CASCADE;
 
@@ -240,7 +240,7 @@ CREATE TABLE coach
       REFERENCES member (user_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE coach OWNER TO woddojo;
+ALTER TABLE coach OWNER TO dbuser;
 
 
 
@@ -254,7 +254,7 @@ CREATE SEQUENCE seq_classes
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_classes OWNER TO woddojo;
+ALTER TABLE seq_classes OWNER TO dbuser;
 
 DROP TABLE IF EXISTS classes CASCADE;
 
@@ -273,7 +273,7 @@ CREATE TABLE classes
       REFERENCES coach (coach_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE classes OWNER TO woddojo;
+ALTER TABLE classes OWNER TO dbuser;
 
 
 -- Table: payment
@@ -286,7 +286,7 @@ CREATE SEQUENCE seq_payment
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_payment OWNER TO woddojo;
+ALTER TABLE seq_payment OWNER TO dbuser;
 
 DROP TABLE IF EXISTS payment CASCADE;
 
@@ -307,7 +307,7 @@ CREATE TABLE payment
       REFERENCES member (user_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE payment OWNER TO woddojo;
+ALTER TABLE payment OWNER TO dbuser;
 
 
 -- Table: wod
@@ -320,7 +320,7 @@ CREATE SEQUENCE seq_wod
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_wod OWNER TO woddojo;
+ALTER TABLE seq_wod OWNER TO dbuser;
 
 DROP TABLE IF EXISTS wod CASCADE;
 
@@ -332,7 +332,7 @@ CREATE TABLE wod
   notes character varying(255),
   CONSTRAINT wod_pkey PRIMARY KEY (wod_id)
 );
-ALTER TABLE wod OWNER TO woddojo;
+ALTER TABLE wod OWNER TO dbuser;
 
 -- Table: schedule
 
@@ -344,7 +344,7 @@ CREATE SEQUENCE seq_schedule
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_schedule OWNER TO woddojo;
+ALTER TABLE seq_schedule OWNER TO dbuser;
 
 DROP TABLE IF EXISTS schedule CASCADE;
 
@@ -363,7 +363,7 @@ CREATE TABLE schedule
       REFERENCES wod (wod_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE schedule OWNER TO woddojo;
+ALTER TABLE schedule OWNER TO dbuser;
 
 
 -- Table: blog
@@ -376,7 +376,7 @@ CREATE SEQUENCE seq_blog
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_blog OWNER TO woddojo;
+ALTER TABLE seq_blog OWNER TO dbuser;
 
 DROP TABLE IF EXISTS blog CASCADE;
 
@@ -396,7 +396,7 @@ CREATE TABLE blog
       REFERENCES coach (coach_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE blog OWNER TO woddojo;
+ALTER TABLE blog OWNER TO dbuser;
 
 -- Table: Custom Links
 
@@ -408,7 +408,7 @@ CREATE SEQUENCE seq_custom_link
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_custom_link OWNER TO woddojo;
+ALTER TABLE seq_custom_link OWNER TO dbuser;
 
 DROP TABLE IF EXISTS custom_link CASCADE;
 
@@ -423,4 +423,4 @@ CREATE TABLE custom_link
       REFERENCES organization (org_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE custom_link OWNER TO woddojo;
+ALTER TABLE custom_link OWNER TO dbuser;
