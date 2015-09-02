@@ -194,7 +194,6 @@ DROP TABLE IF EXISTS user CASCADE;
 
 CREATE TABLE user
 (
-<<<<<<< HEAD
   user_id bigint NOT NULL DEFAULT nextval('seq_user'::regclass),
   user_email character varying(255),
   first_name character varying(255) NOT NULL,
