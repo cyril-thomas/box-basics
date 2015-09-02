@@ -178,23 +178,23 @@ CREATE TABLE announcement
 );
 ALTER TABLE announcement OWNER TO woddojo;
 
--- Table: member
+-- Table: user
 
-DROP SEQUENCE IF EXISTS seq_member CASCADE;
+DROP SEQUENCE IF EXISTS seq_user CASCADE;
 
-CREATE SEQUENCE seq_member
+CREATE SEQUENCE seq_user
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
-ALTER TABLE seq_member OWNER TO woddojo;
+ALTER TABLE seq_user OWNER TO woddojo;
 
-DROP TABLE IF EXISTS member CASCADE;
+DROP TABLE IF EXISTS user CASCADE;
 
-CREATE TABLE member
+CREATE TABLE user
 (
-  user_id bigint NOT NULL DEFAULT nextval('seq_member'::regclass),
+  user_id bigint NOT NULL DEFAULT nextval('seq_user'::regclass),
   user_email character varying(255),
   first_name character varying(255) NOT NULL,
   last_name character varying(255) NOT NULL,
@@ -203,12 +203,12 @@ CREATE TABLE member
   city character varying(255),
   zip character varying(5),
   org_id bigint,
-  CONSTRAINT member_pkey PRIMARY KEY (user_id),
-  CONSTRAINT fk_member_org FOREIGN KEY (org_id)
+  CONSTRAINT user_pkey PRIMARY KEY (user_id),
+  CONSTRAINT fk_user_org FOREIGN KEY (org_id)
       REFERENCES organization (org_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE member OWNER TO woddojo;
+ALTER TABLE user OWNER TO woddojo;
 
 
 
@@ -236,8 +236,8 @@ CREATE TABLE coach
   twitter_url character varying(255),
   user_id bigint,
   CONSTRAINT coach_pkey PRIMARY KEY (coach_id),
-  CONSTRAINT fk_coach_member FOREIGN KEY (user_id)
-      REFERENCES member (user_id) MATCH SIMPLE
+  CONSTRAINT fk_coach_user FOREIGN KEY (user_id)
+      REFERENCES user (user_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 ALTER TABLE coach OWNER TO woddojo;
@@ -303,8 +303,8 @@ CREATE TABLE payment
   CONSTRAINT fk_payment_org FOREIGN KEY (org_id)
       REFERENCES organization (org_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT fk_payment_member FOREIGN KEY (user_id)
-      REFERENCES member (user_id) MATCH SIMPLE
+  CONSTRAINT fk_payment_user FOREIGN KEY (user_id)
+      REFERENCES user (user_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 ALTER TABLE payment OWNER TO woddojo;
@@ -397,6 +397,38 @@ CREATE TABLE blog
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 ALTER TABLE blog OWNER TO woddojo;
+
+
+-- Table: Comment
+
+DROP SEQUENCE IF EXISTS seq_comment CASCADE;
+
+CREATE SEQUENCE seq_comment
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE seq_comment OWNER TO woddojo;
+
+DROP TABLE IF EXISTS comment CASCADE;
+
+CREATE TABLE comment
+(
+  comment_id bigint NOT NULL DEFAULT nextval('seq_comment'::regclass),
+  content text,
+  post_date date,
+  blog_id bigint,
+  user_id bigint,
+  CONSTRAINT comment_pkey PRIMARY KEY (comment_id),
+  CONSTRAINT fk_comment_blog FOREIGN KEY (blog_id)
+      REFERENCES blog (blog_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_comment_user FOREIGN KEY (user_id)
+      REFERENCES user (user_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+ALTER TABLE comment OWNER TO woddojo;
 
 -- Table: Custom Links
 

@@ -56,6 +56,9 @@ public class PortalHelper {
     BlogRepository blogRepository;
 
     @Autowired
+    CommentRepository commentRepository;
+
+    @Autowired
     CustomLinkRepository customLinkRepository;
 
     public HomePage getHomePage(Long orgId) {
@@ -91,7 +94,15 @@ public class PortalHelper {
     }
 
     public BlogPost getBlogPost(Long postId){
-        return new BlogPost(blogRepository.findOne(postId));
+        Blog post = blogRepository.findOne(postId);
+        List<Comment> comments = commentRepository.findByBlogId(post.getId());
+        List<CommentDetail> commentDetails = comments
+                .stream()
+                .map(e -> new CommentDetail(e))
+                .collect(Collectors.toList());
+        BlogPost blogPost = new BlogPost(post);
+        blogPost.setComments(commentDetails);
+        return blogPost;
     }
 
     public List<CoachDetail> getCoaches(Long orgId) {

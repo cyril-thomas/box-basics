@@ -13,13 +13,12 @@ import java.util.Date;
  * Created by cyril on 5/25/15.
  */
 @Entity
-@Table(name = "member")
 @Data
 public class User {
 
     @Id
-    @SequenceGenerator(name = "seq_member", sequenceName = "seq_member", schema = "public", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_member")
+    @SequenceGenerator(name = "seq_user", sequenceName = "seq_user", schema = "public", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_user")
     @Column(name = "user_id", unique = true)
     Long id;
 

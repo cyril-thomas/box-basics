@@ -1,8 +1,6 @@
 package com.simplyct.woddojo.controller;
 
-import com.simplyct.woddojo.helper.Constants;
 import com.simplyct.woddojo.helper.EmailHelper;
-import com.simplyct.woddojo.helper.dto.EmailDto;
 import com.simplyct.woddojo.model.Organization;
 import com.simplyct.woddojo.model.User;
 import com.simplyct.woddojo.repository.OrganizationRepository;

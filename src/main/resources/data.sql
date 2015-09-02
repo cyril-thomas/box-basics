@@ -5,25 +5,25 @@ insert into organization(org_id,address_id,name,email,phone,web_domain,hash_tag)
 (-1,-1,'Brickwall','brickwall@woddojo.com','801-920-9901','brickwall','brickwallcrossfit');
 
 --Users
-insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) values
+insert into user(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (-1,'LeBron','James','theKing@woddojo.com','2313123123',-1);
-insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) values
+insert into user(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (-2,'Stephen','Curry','curryisthebest@woddojo.com','2313123123',-1);
-insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) values
+insert into user(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (-3,'Dwayne','Wade','WadeoMadeo@woddojo.com','2313123123',-1);
-insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) values
+insert into user(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (-4,'Kobe','Bryant','kobebeef@woddojo.com','2313123123',-1);
-insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) values
+insert into user(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (-5,'Derrick','Favors','favorswaivers@woddojo.com','2313123123',-1);
-insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) values
+insert into user(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (-6,'Nick','Young','youngmoney@woddojo.com','2313123123',-1);
 
 --Coaches
-insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) values
+insert into user(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (-7,'John','Wayne','johnwayne@woddojo.com','2313123123',-1);
-insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) values
+insert into user(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (-8,'Rocky','Balboa','ironfist@woddojo.com','2313123123',-1);
-insert into member(user_id,first_name,last_name,user_email,user_phone,org_id) values
+insert into user(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (-9,'Conan','Destroyer','conanthedestroyer@woddojo.com','2313123123',-1);
 
 insert into coach(coach_id,user_id,job_title,description,profile_pic) values
@@ -106,6 +106,16 @@ values(-1,'CrossFit Sport','This class is designed specifically for those wishin
 insert into blog(blog_id,title,content,org_id,coach_id,post_date)
 values(-2,'CrossFit','This class is designed for the average client of Brickwall Crossfit, LLC. The primary base of its programming is for General Physical Preparedness. Each class is designed for a limit of 20 individual members that have completed the proper foundations protocol. This class will be divided into four specific sections: Warm Up, Strength, Workout of the Day (WOD), and Mobility.'
 ,-1, -1,current_date);
+
+insert into comment(comment_id,content,blog_id,user_id,post_date)
+values(-1,'Johns Advice is great',-1,-3,current_date);
+insert into comment(comment_id,content,blog_id,user_id,post_date)
+values(-2,'Johns Advice is great',-1,-4,current_date);
+insert into comment(comment_id,content,blog_id,user_id,post_date)
+values(-3,'Johns Advice is great',-1,-6,current_date);
+insert into comment(comment_id,content,blog_id,user_id,post_date)
+values(-4,'Johns Advice is great',-1,-7,current_date);
+
 
 
 insert into custom_link(custom_link_id,link_name, link_url,org_id)
