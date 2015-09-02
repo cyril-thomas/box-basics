@@ -15,11 +15,11 @@ DROP TABLE IF EXISTS address CASCADE;
 CREATE TABLE address
 (
   address_id bigint NOT NULL DEFAULT nextval('seq_address'::regclass),
-  city character varying(255),
-  first_line character varying(255),
-  second_line character varying(255),
-  state character varying(255),
-  zip_code character varying(255),
+  city text,
+  first_line text,
+  second_line text,
+  state text,
+  zip_code text,
   CONSTRAINT address_pkey PRIMARY KEY (address_id)
 );
 ALTER TABLE address OWNER TO dbuser;
@@ -40,11 +40,11 @@ DROP TABLE IF EXISTS organization CASCADE;
 CREATE TABLE organization
 (
   org_id bigint NOT NULL DEFAULT nextval('seq_organization'::regclass),
-  email character varying(255),
-  hash_tag character varying(255),
-  name character varying(255) NOT NULL,
-  phone character varying(255),
-  web_domain character varying(255),
+  email text,
+  hash_tag text,
+  name text NOT NULL,
+  phone text,
+  web_domain text,
   address_id bigint,
   CONSTRAINT organization_pkey PRIMARY KEY (org_id),
   CONSTRAINT fk_org_address FOREIGN KEY (address_id)
@@ -73,13 +73,13 @@ CREATE TABLE home
   registration_banner text,
   registration_content text,
   custom_css text,
-  registration_title character varying(255),
-  services_title character varying(255),
-  title character varying(255) NOT NULL,
-  video_url character varying(255),
-  logo_url character varying(255),
-  bg_url character varying(255),
-  alt_bg_url character varying(255),
+  registration_title text,
+  services_title text,
+  title text NOT NULL,
+  video_url text,
+  logo_url text,
+  bg_url text,
+  alt_bg_url text,
   org_id bigint,
   CONSTRAINT home_pkey PRIMARY KEY (home_id),
   CONSTRAINT fk_home_org FOREIGN KEY (org_id)
@@ -107,10 +107,10 @@ CREATE TABLE about
 (
   about_id bigint NOT NULL DEFAULT nextval('seq_about'::regclass),
   about_content text,
-  facebook_url character varying(255),
-  google_plus_url character varying(255),
-  about_title character varying(255) NOT NULL,
-  twitter_url character varying(255),
+  facebook_url text,
+  google_plus_url text,
+  about_title text NOT NULL,
+  twitter_url text,
   org_id bigint,
   CONSTRAINT about_pkey PRIMARY KEY (about_id),
   CONSTRAINT fk_about_org FOREIGN KEY (org_id)
@@ -137,8 +137,8 @@ DROP TABLE IF EXISTS service CASCADE;
 CREATE TABLE service
 (
   service_id bigint NOT NULL DEFAULT nextval('seq_service'::regclass),
-  content character varying(255),
-  title character varying(255),
+  content text,
+  title text,
   org_id bigint,
   CONSTRAINT service_pkey PRIMARY KEY (service_id),
   CONSTRAINT fk_service_org FOREIGN KEY (org_id)
@@ -166,10 +166,10 @@ DROP TABLE IF EXISTS announcement CASCADE;
 CREATE TABLE announcement
 (
   announcement_id bigint NOT NULL DEFAULT nextval('seq_announcement'::regclass),
-  content character varying(255),
+  content text,
   created_date date,
   end_date date,
-  title character varying(255),
+  title text,
   org_id bigint,
   CONSTRAINT announcement_pkey PRIMARY KEY (announcement_id),
   CONSTRAINT fk_announcement_org FOREIGN KEY (org_id)
@@ -195,12 +195,12 @@ DROP TABLE IF EXISTS member CASCADE;
 CREATE TABLE member
 (
   user_id bigint NOT NULL DEFAULT nextval('seq_member'::regclass),
-  user_email character varying(255),
-  first_name character varying(255) NOT NULL,
-  last_name character varying(255) NOT NULL,
-  user_phone character varying(255),
+  user_email text,
+  first_name text NOT NULL,
+  last_name text NOT NULL,
+  user_phone text,
   dob date,
-  city character varying(255),
+  city text,
   zip character varying(5),
   org_id bigint,
   CONSTRAINT member_pkey PRIMARY KEY (user_id),
@@ -228,12 +228,12 @@ DROP TABLE IF EXISTS coach CASCADE;
 CREATE TABLE coach
 (
   coach_id bigint NOT NULL DEFAULT nextval('seq_coach'::regclass),
-  description character varying(255),
-  facebook_url character varying(255),
-  job_title character varying(255),
-  linked_in character varying(255),
-  profile_pic character varying(255),
-  twitter_url character varying(255),
+  description text,
+  facebook_url text,
+  job_title text,
+  linked_in text,
+  profile_pic text,
+  twitter_url text,
   user_id bigint,
   CONSTRAINT coach_pkey PRIMARY KEY (coach_id),
   CONSTRAINT fk_coach_member FOREIGN KEY (user_id)
@@ -261,8 +261,8 @@ DROP TABLE IF EXISTS classes CASCADE;
 CREATE TABLE classes
 (
   class_id bigint NOT NULL DEFAULT nextval('seq_classes'::regclass),
-  description character varying(255),
-  name character varying(255),
+  description text,
+  name text,
   coach_id bigint,
   org_id bigint,
   CONSTRAINT classes_pkey PRIMARY KEY (class_id),
@@ -294,9 +294,9 @@ CREATE TABLE payment
 (
   payment_id bigint NOT NULL DEFAULT nextval('seq_payment'::regclass),
   amount numeric(19,2),
-  confirmation_id character varying(255),
-  customer_id character varying(255),
-  status character varying(255),
+  confirmation_id text,
+  customer_id text,
+  status text,
   org_id bigint,
   user_id bigint,
   CONSTRAINT payment_pkey PRIMARY KEY (payment_id),
@@ -328,8 +328,8 @@ CREATE TABLE wod
 (
   wod_id bigint NOT NULL DEFAULT nextval('seq_wod'::regclass),
   description text NOT NULL,
-  name character varying(255) NOT NULL,
-  notes character varying(255),
+  name text NOT NULL,
+  notes text,
   CONSTRAINT wod_pkey PRIMARY KEY (wod_id)
 );
 ALTER TABLE wod OWNER TO dbuser;
@@ -351,7 +351,7 @@ DROP TABLE IF EXISTS schedule CASCADE;
 CREATE TABLE schedule
 (
   schedule_id bigint NOT NULL DEFAULT nextval('seq_schedule'::regclass),
-  workout character varying(255),
+  workout text,
   wod_date date,
   org_id bigint,
   wod_id bigint,
@@ -383,7 +383,7 @@ DROP TABLE IF EXISTS blog CASCADE;
 CREATE TABLE blog
 (
   blog_id bigint NOT NULL DEFAULT nextval('seq_blog'::regclass),
-  title character varying(255),
+  title text,
   content text,
   post_date date,
   org_id bigint,
@@ -415,8 +415,8 @@ DROP TABLE IF EXISTS custom_link CASCADE;
 CREATE TABLE custom_link
 (
   custom_link_id bigint NOT NULL DEFAULT nextval('seq_custom_link'::regclass),
-  link_name character varying(255),
-  link_url character varying(255),
+  link_name text,
+  link_url text,
   org_id bigint,
   CONSTRAINT custom_link_pkey PRIMARY KEY (custom_link_id),
   CONSTRAINT fk_custom_link_org FOREIGN KEY (org_id)
