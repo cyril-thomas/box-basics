@@ -34,7 +34,7 @@
             <div class="well">
                 <h4>Leave a Comment:</h4>
 
-                <form role="form">
+                <form th:fragment="commentForm">
                     <div class="form-group">
                         <textarea class="form-control" rows="3"></textarea>
                     </div>
@@ -47,14 +47,12 @@
             <!-- Posted Comments -->
 
             <!-- Comment -->
-            <div class="media">
+            <div class="media" th:each="comment : ${post.comments}">
                 <div class="media-body">
-                    <h4 class="media-heading">Comments from Start Bootstrap
-                        <small>August 25, 2014 at 9:30 PM</small>
+                    <h4 class="media-heading"><span th:text="${comment.author}"></span>
+                        <small><span th:text="${comment.date}"></span></small>
                     </h4>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                    Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                    vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    <span th:utext="${comment.content}"></span>
                 </div>
             </div>
         </div>
