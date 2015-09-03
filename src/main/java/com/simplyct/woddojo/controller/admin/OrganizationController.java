@@ -1,9 +1,10 @@
 package com.simplyct.woddojo.controller.admin;
 
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.simplyct.woddojo.helper.EmailHelper;
 import com.simplyct.woddojo.helper.amazon.AwsS3Service;
+import com.simplyct.woddojo.helper.dto.Help;
 import com.simplyct.woddojo.model.About;
-import com.simplyct.woddojo.model.Coach;
 import com.simplyct.woddojo.model.Home;
 import com.simplyct.woddojo.model.Organization;
 import com.simplyct.woddojo.repository.AboutRepository;
@@ -57,6 +58,9 @@ public class OrganizationController {
     @Autowired
     AwsS3Service awsS3Service;
 
+    @Autowired
+    EmailHelper emailHelper;
+
     @RequestMapping("/landing")
     public String getLanding() {
         return "admin/org/landing";
@@ -88,17 +92,17 @@ public class OrganizationController {
             model.addAttribute("orgHome", home);
             model.addAttribute("orgAbout", aboutRepository.findByOrganizationId(organization.getId()));
 
-            if(home.getLogoUrl()!= null && !home.getLogoUrl().isEmpty()) {
+            if (home.getLogoUrl() != null && !home.getLogoUrl().isEmpty()) {
                 String logoUrl = CDN_URL + home.getLogoUrl();
                 model.addAttribute("logoUrl", logoUrl);
             }
 
-            if(home.getBgUrl()!= null && !home.getBgUrl().isEmpty()) {
+            if (home.getBgUrl() != null && !home.getBgUrl().isEmpty()) {
                 String mainBgUrl = CDN_URL + home.getBgUrl();
                 model.addAttribute("mainBgUrl", mainBgUrl);
             }
 
-            if(home.getAltBgUrl()!= null && !home.getAltBgUrl().isEmpty()) {
+            if (home.getAltBgUrl() != null && !home.getAltBgUrl().isEmpty()) {
                 String bgAltUrl = CDN_URL + home.getAltBgUrl();
                 model.addAttribute("bgAltUrl", bgAltUrl);
             }
@@ -253,13 +257,13 @@ public class OrganizationController {
 
         try {
             String imageUrl = awsS3Service.uploadResource(file.getInputStream(),
-                                                            orgId,
-                                                            home.getId(),
-                                                            ext,
-                                                            file.getContentType(),
-                                                            metadata,
-                                                            BUCKET_NAME,
-                                                            templateName, false);
+                                                          orgId,
+                                                          home.getId(),
+                                                          ext,
+                                                          file.getContentType(),
+                                                          metadata,
+                                                          BUCKET_NAME,
+                                                          templateName, false);
 
             switch (imageType) {
                 case LOGO: home.setLogoUrl(imageUrl);
@@ -281,5 +285,24 @@ public class OrganizationController {
         LOGO, BG, ALT_BG
     }
 
+
+    @RequestMapping(value = "/help", method = RequestMethod.GET)
+    public String help(Model model) {
+        Help help = new Help();
+        model.addAttribute("help", help);
+        return "admin/org/help";
+    }
+
+    @RequestMapping(value = "/help", method = RequestMethod.POST)
+    public String help(Model model,
+                       HttpSession session,
+                       @ModelAttribute Help help) {
+
+        Long orgId = (Long) session.getAttribute("orgId");
+        Organization organization = organizationRepository.findOne(orgId);
+        emailHelper.sendEmailToDeveloper(help,organization);
+        model.addAttribute("message","Help-desk has been contacted");
+        return "admin/org/help";
+    }
 
 }

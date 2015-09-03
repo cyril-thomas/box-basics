@@ -1,6 +1,7 @@
 package com.simplyct.woddojo.helper;
 
 import com.simplyct.woddojo.helper.dto.EmailDto;
+import com.simplyct.woddojo.helper.dto.Help;
 import com.simplyct.woddojo.helper.dto.MessageUs;
 import com.simplyct.woddojo.model.Organization;
 import com.simplyct.woddojo.model.User;
@@ -77,6 +78,18 @@ public class EmailHelper {
                                                "Email: %s \n" +
                                                "Phone: %s",
                                        messageUs.getName(), messageUs.getMessage(), messageUs.getEmail(), messageUs.getPhone());
+        emailDto.setBody(message);
+
+        sendSimpleEmail(emailDto);
+    }
+
+    public void sendEmailToDeveloper(Help help, Organization organization) {
+        EmailDto emailDto = new EmailDto(ADMIN_EMAIL,organization.getEmail(), help.getSubject());
+        String message = String.format("Here is a message from : %s \n\n" +
+                                               "%s \n\n" +
+                                               "Email: %s \n" +
+                                               "Phone: %s",
+                                       organization.getName(), help.getMessage(), organization.getEmail(), organization.getPhone());
         emailDto.setBody(message);
 
         sendSimpleEmail(emailDto);

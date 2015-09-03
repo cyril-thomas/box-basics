@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="admin/adminLayout :: adhtmlhead"></head>
+<body>
+<div th:replace="admin/adminLayout :: adNavbar">(adNavbar)</div>
+<div class="container">
+    <div class="spacer"/>
+
+    <form id="orgForm"
+          th:action="@{/org/help}"
+          th:object="${help}"
+          action="#"
+          method="post">
+
+        <!-- Errors -->
+        <div th:if="${!#strings.isEmpty(message)}"
+             class="alert alert-info">
+            <h3><span th:text="${message}"></span>
+            </h3>
+        </div>
+
+        <h3>Having trouble?</h3>
+        <p>Feel free to send us a message, we will make sure to get it resolved ASAP.</p>
+        <!-- Fields -->
+
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="subject">Subject</label>
+                <input type="text"
+                       th:field="*{subject}"
+                       id="subject"
+                       class="form-control"/>
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label for="message">Message</label>
+
+                <textarea
+                       th:field="*{message}"
+                       id="message"
+                       class="form-control" ></textarea>
+            </div>
+        </div>
+
+        <input type="submit"
+               class="btn btn-primary"
+               th:value="Send"/>
+    </form>
+    <div th:include="admin/adminLayout :: adFooter" id="adFooter">(adFooter)</div>
+</div>
+<script>
+
+jQuery(document).ready(function textarea(){
+         jQuery("#message").summernote({
+         height: 150
+         });
+        });
+</script>
+</body>
+</html>
