@@ -88,8 +88,8 @@ public class PageController {
         Long orgId = (Long) httpSession.getAttribute("orgId");
         Organization organization = organizationRepository.findOne(orgId);
         emailHelper.sendMessageUsEmail(messageUs, organization.getEmail());
-        portalHelper.loadHomePage(model, orgId, httpSession);
-        return "home";
+        //portalHelper.loadHomePage(model, orgId, httpSession);
+        return "redirect:/home";
     }
 
 
