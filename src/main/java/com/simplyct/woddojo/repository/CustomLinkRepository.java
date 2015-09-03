@@ -13,4 +13,6 @@ import java.util.List;
 public interface CustomLinkRepository extends CrudRepository<CustomLink, Long> {
 
     public List<CustomLink> findByOrganizationId(Long orgId);
+
+    public List<CustomLink> findByOrganizationIdOrderByLinkNameAsc(Long orgId);
 }

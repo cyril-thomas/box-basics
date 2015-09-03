@@ -14,28 +14,43 @@
         </div>
     </div>
 </nav>
-<section class="" id="blogs">
-    <section>
-        <div class="container">
+
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li th:each="link : ${homeObj.customLinks}">
+                <a class="page-scroll" th:href="${link.linkUrl}"><span th:utext="${link.linkName}"></span></a>
+            </li>
+         </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12" th:each="post : ${posts}">
-                    <h2>
-                        <span th:utext="${post.title}">Blog Post Title</span>
-                    </h2>
-                    <p class="lead">
-                        by <a href="/home#about"><span th:text="${post.author}"></span></a>
-                    </p>
-                    <p><i class="fa fa-clock-o"></i> Posted on <span th:text="${post.date}"></span></p>
-                    <p th:utext="${post.content}">
-                        Content
-                    </p>
+                <div class="col-lg-12">
+                    <div class="col-lg-12" th:each="post : ${posts}">
+                        <h2>
+                            <span th:utext="${post.title}">Blog Post Title</span>
+                        </h2>
+                        <p class="lead">
+                            by <a href="/home#about"><span th:text="${post.author}"></span></a>
+                        </p>
+                        <p><i class="fa fa-clock-o"></i> Posted on <span th:text="${post.date}"></span></p>
+                        <p th:utext="${post.content}">
+                            Content
+                        </p>
                         <a class="btn btn-primary" th:href="@{/post(id=${post.id})}">Read More <i class="fa fa-angle-right"></i></a>
-                    <hr/>
+                        <hr/>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-</section>
+    </div>
+</div>
 
 <div th:include="layout :: footer" id="footer">(footer)</div>
 </body>

@@ -87,7 +87,7 @@ public class PortalHelper {
     }
 
     public List<LinksDetail> getCustomLinks(Long orgId){
-        List<CustomLink> customLinks = customLinkRepository.findByOrganizationId(orgId);
+        List<CustomLink> customLinks = customLinkRepository.findByOrganizationIdOrderByLinkNameAsc(orgId);
         return customLinks.stream()
                     .map( e -> new LinksDetail(e))
                     .collect(Collectors.toList());
@@ -163,5 +163,8 @@ public class PortalHelper {
             Instagram instagram = (Instagram) httpSession.getAttribute("INSTAGRAM_OBJECT");
             model.addAttribute("feed", socialHelper.getInstagramFeed(instagram, orgId));
         }
+
+        model.addAttribute("user", new User());
+        model.addAttribute("messageUs",new MessageUs());
     }
 }
