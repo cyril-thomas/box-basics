@@ -57,10 +57,10 @@ public class PageController {
         Long orgId = (Long) httpSession.getAttribute("orgId");
         List<BlogPost> posts = portalHelper.getBlogPosts(orgId);
         GymDetail gymDetail = portalHelper.getGymDetail(orgId);
-        HomePage homeObj = portalHelper.getHomePage(orgId);
+        List<LinksDetail> customLinks = portalHelper.getCustomLinks(orgId);
         AboutPage aboutPage = portalHelper.getAboutPage(orgId);
         model.addAttribute("gymObj",gymDetail);
-        model.addAttribute("homeObj",homeObj);
+        model.addAttribute("customLinks",customLinks);
         model.addAttribute("aboutObj",aboutPage);
         model.addAttribute("posts",posts);
         return "social/blogs";
@@ -76,8 +76,10 @@ public class PageController {
         Long orgId = (Long) httpSession.getAttribute("orgId");
         GymDetail gymDetail = portalHelper.getGymDetail(orgId);
         AboutPage aboutPage = portalHelper.getAboutPage(orgId);
+        List<LinksDetail> customLinks = portalHelper.getCustomLinks(orgId);
         model.addAttribute("gymObj",gymDetail);
         model.addAttribute("aboutObj",aboutPage);
+        model.addAttribute("customLinks",customLinks);
         return "social/post";
     }
 

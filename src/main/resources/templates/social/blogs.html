@@ -6,7 +6,7 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
-            <li th:each="link : ${homeObj.customLinks}">
+            <li th:each="link : ${customLinks}">
                 <a class="page-scroll" th:href="${link.linkUrl}"><span th:utext="${link.linkName}"></span></a>
             </li>
          </ul>
