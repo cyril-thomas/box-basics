@@ -776,11 +776,12 @@ header .header-content .header-content-inner div{
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #000;
+    background: #fff;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+    border-right:1px solid #eee;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -811,27 +812,47 @@ header .header-content .header-content-inner div{
     padding: 0;
     list-style: none;
 }
-
+.sidebar-nav a.home{
+   background-color: #42891f;
+    color: #000;
+    display: block;
+    font-size: 2em;
+    padding: 5px 25px;
+    text-align: right;
+    text-decoration: none;
+    width: 100%;
+}
+.sidebar-nav h2{
+    border-bottom: 1px solid #eee;
+    color: #000;
+    margin:20px 4px 10px;
+    padding:0px 15px;
+    text-align: left;
+    text-transform: uppercase;
+    font-size:2em;
+    line-height:2.5em;
+}
 .sidebar-nav li {
-    text-indent: 20px;
+    text-indent: 25px;
     line-height: 40px;
+    margin:0 4px;
 }
 
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #fff;
-    background: rgba(255,255,255,0.2);
+    background: rgba(0,0,0,.05);
 }
 
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
     text-decoration: none;
+    color: #000;
 }
 
 .sidebar-nav > .sidebar-brand {
