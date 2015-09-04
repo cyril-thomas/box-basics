@@ -2,20 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout :: htmlhead"></head>
 <body>
-<nav id="blogNav" class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-           
-            <a class="navbar-brand page-scroll" href="/home">
-                <div><img class="logo" src="../images/Logo3.png" th:title="${#httpSession.getAttribute('gymName')}"/></div>
-            </a>
-             
-        </div>
-    </div>
-</nav>
-
-
 <div id="wrapper">
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
@@ -25,11 +11,26 @@
             </li>
          </ul>
     </div>
+
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
-    <div id="page-content-wrapper">
-        <div class="container-fluid">
+    <div id="page-content-wrapper" class="blogWrapper">
+
+        <nav id="blogNav" class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a id="menu-toggle" href="#menu-toggle"><span class="arrow">&laquo;</span><span class="menuText">more</span></a>
+                    <a class="navbar-brand page-scroll" href="/home">
+                        <div><img class="logo" src="../images/Logo3.png" th:title="${#httpSession.getAttribute('gymName')}"/></div>
+                    </a>
+
+                </div>
+            </div>
+        </nav>
+
+        <div id="blog" class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="col-lg-12" th:each="post : ${posts}">
@@ -49,10 +50,10 @@
                 </div>
             </div>
         </div>
+   
+        <div th:include="layout :: footer" id="footer">(footer)</div>
     </div>
 </div>
-
-<div th:include="layout :: footer" id="footer">(footer)</div>
 </body>
 
 </html>
