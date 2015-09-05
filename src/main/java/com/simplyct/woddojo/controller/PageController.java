@@ -4,6 +4,7 @@ import com.simplyct.woddojo.helper.EmailHelper;
 import com.simplyct.woddojo.helper.PortalHelper;
 import com.simplyct.woddojo.helper.SocialHelper;
 import com.simplyct.woddojo.helper.dto.*;
+import com.simplyct.woddojo.model.Comment;
 import com.simplyct.woddojo.model.CustomLink;
 import com.simplyct.woddojo.model.Organization;
 import com.simplyct.woddojo.model.User;
@@ -71,7 +72,8 @@ public class PageController {
                         HttpSession httpSession,
                         @RequestParam Long id) {
         BlogPost post = portalHelper.getBlogPost(id);
-        model.addAttribute("post",post);
+        model.addAttribute("blog",post);
+        model.addAttribute("blogId",id);
 
         Long orgId = (Long) httpSession.getAttribute("orgId");
         GymDetail gymDetail = portalHelper.getGymDetail(orgId);
@@ -80,6 +82,7 @@ public class PageController {
         model.addAttribute("gymObj",gymDetail);
         model.addAttribute("aboutObj",aboutPage);
         model.addAttribute("customLinks",customLinks);
+        model.addAttribute("comment",new Comment());
         return "social/post";
     }
 
@@ -90,7 +93,6 @@ public class PageController {
         Long orgId = (Long) httpSession.getAttribute("orgId");
         Organization organization = organizationRepository.findOne(orgId);
         emailHelper.sendMessageUsEmail(messageUs, organization.getEmail());
-        //portalHelper.loadHomePage(model, orgId, httpSession);
         return "redirect:/home";
     }
 

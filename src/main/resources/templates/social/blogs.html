@@ -3,34 +3,14 @@
 <head th:include="layout :: htmlhead"></head>
 <body>
 <div id="wrapper">
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-             <a href="/home"  th:title="${#httpSession.getAttribute('gymName')}" class="home"><span class="glyphicon glyphicon-home"></span></a>
-                <h2>Blogs</h2>
-            <li th:each="link : ${customLinks}">
-                <a class="page-scroll" th:href="${link.linkUrl}"><span th:utext="${link.linkName}"></span></a>
-            </li>
-         </ul>
-    </div>
 
+    <div th:include="layout :: sidebar" id="sidebar-wrapper">(sidebar)</div>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper" class="blogWrapper">
 
-        <nav id="blogNav" class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <a id="menu-toggle" href="#menu-toggle"><span class="arrow">&laquo;</span><span class="menuText">more</span></a>
-                    <a class="navbar-brand page-scroll" href="/home">
-                        <div><img class="logo" src="../images/Logo3.png" th:title="${#httpSession.getAttribute('gymName')}"/></div>
-                    </a>
-
-                </div>
-            </div>
-        </nav>
+        <nav th:include="layout :: blogNav" id="blogNav" class="navbar navbar-default">(BlogNav)</nav>
 
         <div id="blog" class="container-fluid">
             <div class="row">

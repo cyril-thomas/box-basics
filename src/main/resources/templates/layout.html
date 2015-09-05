@@ -78,6 +78,32 @@
     <!-- /.container-fluid -->
 </nav>
 
+<!-- Sidebar -->
+<div th:fragment="sidebar" id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <a href="/home"  th:title="${#httpSession.getAttribute('gymName')}" class="home"><span class="glyphicon glyphicon-home"></span></a>
+        <h2>Blogs</h2>
+        <li th:each="link : ${customLinks}">
+            <a class="page-scroll" th:href="${link.linkUrl}"><span th:utext="${link.linkName}"></span></a>
+        </li>
+    </ul>
+</div>
+
+<!-- Blog nav bar-->
+<nav th:fragment="blogNav">
+    <div  class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a id="menu-toggle" href="#menu-toggle"><span class="arrow">&laquo;</span><span class="menuText">more</span></a>
+            <a class="navbar-brand page-scroll" href="/home">
+                <div><img class="logo" src="../images/Logo3.png" th:title="${#httpSession.getAttribute('gymName')}"/>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</nav>
+
 <footer th:fragment="footer" id="footer">
     
     <div class="footer-column">

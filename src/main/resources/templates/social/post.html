@@ -4,45 +4,23 @@
 <body>
     <div id="wrapper">
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <a href="/home"  th:title="${#httpSession.getAttribute('gymName')}" class="home"><span class="glyphicon glyphicon-home"></span></a>
-                <h2>Blogs</h2>
-                <li th:each="link : ${customLinks}">
-                    <a class="page-scroll" th:href="${link.linkUrl}"><span th:utext="${link.linkName}"></span></a>
-                </li>
-             </ul>
-        </div>
-
-            <!-- /#sidebar-wrapper -->
+        <div th:include="layout :: sidebar" id="sidebar-wrapper">(sidebar)</div>
 
             <!-- Page Content -->
         <div id="page-content-wrapper" class="blogWrapper">
-            <nav id="blogNav" class="navbar navbar-default">
-                <div  class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <a id="menu-toggle" href="#menu-toggle"><span class="arrow">&laquo;</span><span class="menuText">more</span></a>
-                        <a class="navbar-brand page-scroll" href="/home">
-                            <div><img class="logo" src="../images/Logo3.png" th:title="${#httpSession.getAttribute('gymName')}"/>
-                            </div>
-                        </a>
 
-                    </div>
-                </div>
-            </nav>
-
+            <nav th:include="layout :: blogNav" id="blogNav" class="navbar navbar-default">(BlogNav)</nav>
             <div id="blog" class="container">
                 <section class="" id="blogs">
                 <div class="row">
-                    <h1 class="page-header"><span th:utext="${post.title}"></span>
-                        <small>by <a href="#"><span th:utext="${post.author}"></span></a>
+                    <h1 class="page-header"><span th:utext="${blog.title}"></span>
+                        <small>by <a href="#"><span th:utext="${blog.author}"></span></a>
                         </small>
                     </h1>
                     <!-- Date/Time -->
-                    <p><i class="fa fa-clock-o"></i> Posted on <span th:text="${post.date}"></span></p>
+                    <p><i class="fa fa-clock-o"></i> Posted on <span th:text="${blog.date}"></span></p>
                     <!-- Post Content -->
-                    <p class="lead" th:utext="${post.content}"></p>
+                    <p class="lead" th:utext="${blog.content}"></p>
 
                     <hr/>
 
@@ -52,10 +30,16 @@
                     <div class="well">
                         <h4>Leave a Comment:</h4>
 
-                        <form th:fragment="commentForm">
+                        <form id="commentForm"
+                              th:action="@{/post/comment}"
+                              th:object="${comment}"
+                              action="#"
+                              method="post">
                             <div class="form-group">
-                                <textarea class="form-control" rows="3"></textarea>
+                                <textarea th:field="*{content}" class="form-control" rows="3"></textarea>
                             </div>
+                            <input type="hidden" th:if="${blogId} != null" th:value="${blogId}"
+                                   name="blogId" id="blogId"/>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
@@ -65,7 +49,7 @@
                     <!-- Posted Comments -->
 
                     <!-- Comment -->
-                    <div class="media" th:each="comment : ${post.comments}">
+                    <div class="media" th:each="comment : ${blog.comments}">
                         <div class="media-body">
                             <h4 class="media-heading"><span th:text="${comment.author}"></span>
                                 <small><span th:text="${comment.date}"></span></small>
