@@ -17,23 +17,23 @@ public class Home {
     @Column(name = "home_id", unique = true)
     Long id;
 
-    @Column(name = "title")
+    @Column(name = "title", length = 4096)
     @NotEmpty(message = "Title for home page is required")
     String title;
 
-    @Column(name = "intro_content")
+    @Column(name = "intro_content", length = 4096)
     String introContent;
 
-    @Column(name = "services_title")
+    @Column(name = "services_title", length = 4096)
     String servicesTitle;
 
-    @Column(name = "registration_title")
+    @Column(name = "registration_title", length = 4096)
     String regTitle;
 
-    @Column(name = "registration_content")
+    @Column(name = "registration_content", length = 4096)
     String regContent;
 
-    @Column(name = "registration_banner")
+    @Column(name = "registration_banner", length = 4096)
     String regBanner;
 
     @Column(name = "video_url")
@@ -51,7 +51,7 @@ public class Home {
     @Column(name = "alt_bg_url")
     String altBgUrl;
 
-    @Column(name = "custom_css")
+    @Column(name = "custom_css", length = 16000)
     String css;
 
     @OneToOne(cascade = CascadeType.ALL)

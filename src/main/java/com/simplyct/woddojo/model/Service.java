@@ -21,7 +21,7 @@ public class Service {
     @JoinColumn(name = "org_id")
     Organization organization;
 
-    @Column(name = "content")
+    @Column(name = "content", length = 4096)
     String content;
 
     @Column(name = "title")

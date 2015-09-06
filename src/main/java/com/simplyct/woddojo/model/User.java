@@ -13,6 +13,7 @@ import java.util.Date;
  * Created by cyril on 5/25/15.
  */
 @Entity
+@Table(name = "\"user\"")
 @Data
 public class User {
 

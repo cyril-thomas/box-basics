@@ -30,7 +30,7 @@ public class Blog {
     @Column(name = "title")
     String title;
 
-    @Column(name = "content")
+    @Column(name = "content", length = 16000)
     String content;
 
     @Column(name = "post_date")

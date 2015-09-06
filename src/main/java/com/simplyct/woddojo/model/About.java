@@ -21,7 +21,7 @@ public class About {
     @NotEmpty(message = "Title for about page is required")
     String title;
 
-    @Column(name = "about_content")
+    @Column(name = "about_content", length = 4096)
     String aboutContent;
 
     @Column(name = "facebook_url")
