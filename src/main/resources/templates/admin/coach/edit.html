@@ -69,6 +69,20 @@
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
+                        <label for="password">Password</label>
+                        <input th:if="*{#strings.isEmpty(user.password)}" type="text"
+                               th:field="*{user.password}"
+                               id="password"
+                               class="form-control"/>
+                        <input th:if="*{! #strings.isEmpty(user.password)}" type="password"
+                               th:field="*{user.password}"
+                               id="password"
+                               class="form-control"
+                               placeholder="For security reasons we are not showing the current password, but you can update it"/>
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
                         <label for="phone">Phone</label>
                         <input type="text"
                                th:field="*{user.phone}"

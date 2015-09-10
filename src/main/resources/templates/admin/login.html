@@ -11,12 +11,12 @@
             font-family: arial,helvetica,sans-serif;
             margin: 100px auto;
             padding: 15px 29px 40px 72px;
-            width: 300px;
+            width: 400px;
         } 
         form div{
             margin-right: 50px;
             padding: 8px 0;
-            text-align: right;
+            text-align: left;
         }
     </style>
     
@@ -29,10 +29,12 @@
         <div th:if="${param.logout}">
             You have been logged out.
         </div>
-        <h2>Please Sign in:</h2>
+        <h2>Sign in:</h2>
+        <h4>You are entering into a secure area of this site, to continue you need to authenticate. If you
+        need an username and password setup talk to your box owner.</h4>
         <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
+            <div><label> Email <input type="text" name="username"/> </label></div>
+            <div><label> Password <input type="password" name="password"/> </label></div>
             <div><input type="submit" value="Sign In"/></div>
         </form>
     </div>

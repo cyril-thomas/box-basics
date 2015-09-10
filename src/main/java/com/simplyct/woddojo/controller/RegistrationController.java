@@ -40,6 +40,7 @@ public class RegistrationController {
         user.setOrganization(organization);
         userRepository.save(user);
         emailHelper.sendWelcomeEmail(user, organization);
+        emailHelper.sendRegistrationEmailToGym(user,organization.getEmail());
         return "reg_success";
     }
 

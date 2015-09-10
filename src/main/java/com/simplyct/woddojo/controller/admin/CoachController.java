@@ -7,9 +7,11 @@ import com.simplyct.woddojo.model.Organization;
 import com.simplyct.woddojo.model.User;
 import com.simplyct.woddojo.repository.CoachRepository;
 import com.simplyct.woddojo.repository.OrganizationRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +50,9 @@ public class CoachController {
 
     @Autowired
     AwsS3Service awsS3Service;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String addNew(Model model) {
@@ -90,9 +94,31 @@ public class CoachController {
             model.addAttribute("errors", result.getAllErrors());
             return "admin/coach/edit";
         }
+        if (coach.getId() == null) {
 
-        coachRepository.save(coach);
+            if (StringUtils.isNotEmpty(coach.getUser().getPassword())) {
+                String encryptedPassword = passwordEncoder.encode(coach.getUser().getPassword());
+                coach.getUser().setPassword(encryptedPassword);
+            }
 
+            coach.getUser().setRole(User.UserRole.COACH.name());
+            coachRepository.save(coach);
+        }else {
+
+            Coach dbValue = coachRepository.findOne(coach.getId());
+            if (coach.getProfilePic() == null) {
+                coach.setProfilePic(dbValue.getProfilePic());
+            }
+            if (coach.getUser().getPassword() == null) {
+                coach.getUser().setPassword(dbValue.getUser().getPassword());
+            }
+            if (StringUtils.isNotEmpty(coach.getUser().getPassword())) {
+                String encryptedPassword = passwordEncoder.encode(coach.getUser().getPassword());
+                coach.getUser().setPassword(encryptedPassword);
+            }
+            coach.getUser().setRole(User.UserRole.COACH.name());
+            coachRepository.save(coach);
+        }
         if (file != null && !file.isEmpty()) {
 
             imageUpload(orgId, coach, file);

@@ -83,6 +83,20 @@ public class EmailHelper {
         sendSimpleEmail(emailDto);
     }
 
+    public void sendRegistrationEmailToGym(User user, String orgEmail) {
+        String subject = String.format("%s has registered at your gym", user.getFirstName());
+        EmailDto emailDto = new EmailDto(orgEmail, ADMIN_EMAIL, subject);
+        String message = String.format("Name : %s \n" +
+                                       "Gender: %s \n" +
+                                       "Email: %s \n" +
+                                       "Phone: %s",
+                                       user.getFirstName()+" "+user.getLastName(),
+                                       user.getGender(), user.getEmail(), user.getPhone());
+        emailDto.setBody(message);
+
+        sendSimpleEmail(emailDto);
+    }
+
     public void sendEmailToDeveloper(Help help, Organization organization) {
         EmailDto emailDto = new EmailDto(ADMIN_EMAIL,organization.getEmail(), help.getSubject());
         String message = String.format("Here is a message from : %s \n\n" +
