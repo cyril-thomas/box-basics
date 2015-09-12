@@ -1,0 +1,198 @@
+{
+  "type": "script",
+  "seleniumVersion": "2",
+  "formatVersion": 2,
+  "steps": [
+    {
+      "type": "get",
+      "url": "http://localhost:8080/home"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Admin"
+      }
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "name",
+        "value": "username"
+      },
+      "text": "johnwayne@woddojo.com"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "name",
+        "value": "password"
+      },
+      "text": "hello"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "css selector",
+        "value": "input[type=\"submit\"]"
+      }
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Setup"
+      }
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "name"
+      },
+      "text": "Woddojo"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "firstLine"
+      },
+      "text": "Main Street"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "secondLine"
+      },
+      "text": "600 S"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "city"
+      },
+      "text": "Salt Lake City"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "state"
+      },
+      "text": "UT"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "zipCode"
+      },
+      "text": "84111"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "email"
+      },
+      "text": "cyril.satyam@gmail.com"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "phone"
+      },
+      "text": "801-920-9901"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "hours"
+      },
+      "text": "Monday-Friday 9:00 am to 7 pm"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "domain"
+      },
+      "text": "brickwall"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "domain"
+      },
+      "text": "brickwall"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "tag"
+      },
+      "text": "brickwallcrossfit"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "css selector",
+        "value": "input.btn.btn-primary"
+      }
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Brickwall"
+      }
+    },
+    {
+      "type": "verifyTextPresent",
+      "text": "Monday-Friday 9:00 am to 7 pm"
+    },
+    {
+      "type": "verifyTextPresent",
+      "text": "Main Street,"
+    },
+    {
+      "type": "verifyTextPresent",
+      "text": "600 S"
+    },
+    {
+      "type": "verifyTextPresent",
+      "text": "801-920-9901"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Admin"
+      }
+    },
+    {
+      "type": "verifyTextPresent",
+      "text": "Hello John!"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Logout"
+      }
+    }
+  ],
+  "data": {
+    "configs": {},
+    "source": "none"
+  },
+  "inputs": [],
+  "timeoutSeconds": 60
+}

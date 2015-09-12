@@ -19,8 +19,8 @@ insert into "user"(user_id,first_name,last_name,user_email,user_phone,org_id) va
 (-6,'Nick','Young','youngmoney@woddojo.com','2313123123',-1);
 
 --Coaches
-insert into "user"(user_id,first_name,last_name,user_email,user_phone,org_id) values
-(-7,'John','Wayne','johnwayne@woddojo.com','2313123123',-1);
+insert into "user"(user_id,first_name,last_name,user_email,user_phone,org_id,password,role) values
+(-7,'John','Wayne','johnwayne@woddojo.com','2313123123',-1,'$2a$10$GhF3KXpSQMvUenBHemWkXui7mqXWu9/YDrgeriz0KrmGugABOQswu','COACH');
 insert into "user"(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (-8,'Rocky','Balboa','ironfist@woddojo.com','2313123123',-1);
 insert into "user"(user_id,first_name,last_name,user_email,user_phone,org_id) values

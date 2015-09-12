@@ -1,0 +1,172 @@
+{
+  "type": "script",
+  "seleniumVersion": "2",
+  "formatVersion": 2,
+  "steps": [
+    {
+      "type": "get",
+      "url": "http://localhost:8080/home"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Admin"
+      }
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "name",
+        "value": "username"
+      },
+      "text": "johnwayne@woddojo.com"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "name",
+        "value": "password"
+      },
+      "text": "hello"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "css selector",
+        "value": "input[type=\"submit\"]"
+      }
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Setup"
+      }
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "About"
+      }
+    },
+    {
+      "type": "pause",
+      "waitTime": "1000"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "facebookLink"
+      },
+      "text": "https://www.facebook.com/BrickwallCrossFit"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "twitterLink"
+      },
+      "text": "https://twitter.com/brickwallcf"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "gPlusLink"
+      },
+      "text": "https://twitter.com/brickwallcf"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "atitle"
+      },
+      "text": "Testing selenium"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "acontent"
+      },
+      "text": "Testing selenium"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "css selector",
+        "value": "#aboutForm > input.btn.btn-primary"
+      }
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Brickwall"
+      }
+    },
+    {
+      "type": "verifyTextPresent",
+      "text": "Testing selenium"
+    },
+    {
+      "type": "verifyTextPresent",
+      "text": "Testing selenium"
+    },
+    {
+      "type": "verifyElementAttribute",
+      "locator": {
+        "type": "xpath",
+        "value": "//div[@id='footer']/div[3]/ul/li[1]/a"
+      },
+      "attributeName": "href",
+      "value": "https://www.facebook.com/BrickwallCrossFit"
+    },
+    {
+      "type": "verifyElementAttribute",
+      "locator": {
+        "type": "xpath",
+        "value": "//div[@id='footer']/div[3]/ul/li[2]/a"
+      },
+      "attributeName": "href",
+      "value": "https://twitter.com/brickwallcf"
+    },
+    {
+      "type": "verifyElementAttribute",
+      "locator": {
+        "type": "xpath",
+        "value": "//div[@id='footer']/div[3]/ul/li[3]/a"
+      },
+      "attributeName": "href",
+      "value": "https://twitter.com/brickwallcf"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Admin"
+      }
+    },
+    {
+      "type": "verifyTextPresent",
+      "text": "Hello John!"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Logout"
+      }
+    }
+  ],
+  "data": {
+    "configs": {},
+    "source": "none"
+  },
+  "inputs": [],
+  "timeoutSeconds": 60
+}
