@@ -1,0 +1,99 @@
+{
+  "type": "script",
+  "seleniumVersion": "2",
+  "formatVersion": 2,
+  "steps": [
+    {
+      "type": "get",
+      "url": "http://localhost:8080/home"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Admin"
+      }
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "name",
+        "value": "username"
+      }
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "name",
+        "value": "username"
+      },
+      "text": "johnwayne@woddojo.com"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "name",
+        "value": "password"
+      },
+      "text": "hello"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "css selector",
+        "value": "input[type=\"submit\"]"
+      }
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Contact"
+      }
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "subject"
+      },
+      "text": "Testing selenium"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "message"
+      },
+      "text": "Testing selenium"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "css selector",
+        "value": "input.btn.btn-primary"
+      }
+    },
+    {
+      "type": "verifyTextPresent",
+      "text": "Help-desk has been contacted"
+    },
+    {
+      "type": "verifyTextPresent",
+      "text": "John"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Logout"
+      }
+    }
+  ],
+  "data": {
+    "configs": {},
+    "source": "none"
+  },
+  "inputs": [],
+  "timeoutSeconds": 60
+}
