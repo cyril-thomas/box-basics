@@ -81,8 +81,7 @@
 <!-- Sidebar -->
 <div th:fragment="sidebar" id="sidebar-wrapper">
     <ul class="sidebar-nav">
-        <a href="/home"  th:title="${#httpSession.getAttribute('gymName')}" class="home"><span class="glyphicon glyphicon-home"></span></a>
-        <h2>Blogs</h2>
+        <a href="/home"  th:title="${#httpSession.getAttribute('gymName')}" class="home"><span class="glyphicon glyphicon-home"></span> <span th:utext="${#httpSession.getAttribute('gymName')}"></span> Home </a>
         <li th:each="link : ${customLinks}">
             <a class="page-scroll" th:href="${link.linkUrl}"><span th:utext="${link.linkName}"></span></a>
         </li>

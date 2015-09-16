@@ -15,6 +15,9 @@ public class CoachDetail {
     String intro;
     String jobTitle;
     String picUrl;
+    String fbUrl;
+    String twitter;
+    String linIn;
 
     public CoachDetail(String cdnUrl, Coach coach) {
         this.coachId = coach.getId();
@@ -24,5 +27,8 @@ public class CoachDetail {
         this.intro = coach.getDescription();
         this.jobTitle = coach.getJobTitle();
         this.picUrl = cdnUrl + coach.getProfilePic();
+        this.fbUrl = coach.getFacebookLink();
+        this.twitter = coach.getTwitterLink();
+        this.linIn = coach.getLinkedIn();
     }
 }
