@@ -78,7 +78,7 @@ public class SocialController {
             session.removeAttribute("returnPage");
             return "redirect:" + returnPage;
         }
-        return "/social/close";
+        return "social/close";
     }
 
     @RequestMapping(value = "facebook/loginCallback", method = RequestMethod.GET, params = {"error_message"})
