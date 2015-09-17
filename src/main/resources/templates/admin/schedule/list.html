@@ -20,10 +20,9 @@
                         'Content-Type': 'application/json'
                     },
                     data: JSON.stringify(serializedForm),
-                    dataType: 'application/json',
                     type: 'POST',
                     async: false,
-                    done: function () {
+                    success: function () {
                         alert('Posted to Facebook!');
                     },
                     error: function(jqXHR) {

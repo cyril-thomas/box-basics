@@ -129,14 +129,12 @@ public class ScheduleController {
     }
 
     @RequestMapping(value = "postToFB", method = RequestMethod.POST)
-    public @ResponseBody String
+    public @ResponseBody PostValue
     postToFacebook(HttpSession session, HttpServletRequest request,
                    @RequestBody List<PostValue> pagesToPostTo) throws IOException {
         String token = (String) session.getAttribute(SocialController.FACEBOOK_ACCESS_TOKEN);
         if (token == null) {
-            String loginUrl = fbCommunicator.getLoginUrl(SocialController.getRedirectUrl(request));
-            session.setAttribute("returnPage", "/schedule/list");
-            return "redirect:" + loginUrl;
+            throw new RuntimeException("Not logged in to Facebook.");
         }
         List<Map> pageInfoList = fbCommunicator.getPageInfo(token);
         Long sessionScheduleId = (Long) session.getAttribute("postScheduleId");
@@ -150,10 +148,18 @@ public class ScheduleController {
                 }
             }
         }
-        return "Post OK";
+        return new PostValue("result", "Post OK");
     }
 
     public static class PostValue {
+        public PostValue() {
+        }
+
+        public PostValue(String name, String value) {
+            this.name = name;
+            this.value = value;
+        }
+
         public String name;
         public String value;
     }
