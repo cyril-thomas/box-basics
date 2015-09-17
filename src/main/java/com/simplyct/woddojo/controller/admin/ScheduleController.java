@@ -15,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +25,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -121,34 +119,48 @@ public class ScheduleController {
         return "admin/schedule/list";
     }
 
-    @RequestMapping(value = "postToFB", method = RequestMethod.GET)
-    public String postToFacebook(HttpSession session, HttpServletRequest request,
-                                 Model model,
-                                 @RequestParam(value = "id", required = false) Long id) {
-        if (id != null) {
-            session.setAttribute("postScheduleId", id);
-        }
+    @RequestMapping(value = "fbPageList", method = RequestMethod.GET)
+    public String fbPageList(Model model, HttpSession session,
+                             @RequestParam(value = "postScheduleId") Long postScheduleId) {
+        String token = (String) session.getAttribute(SocialController.FACEBOOK_ACCESS_TOKEN);
+        model.addAttribute("pageInfoList", fbCommunicator.getPageInfo(token));
+        session.setAttribute("postScheduleId", postScheduleId);
+        return "admin/schedule/fbPageList";
+    }
+
+    @RequestMapping(value = "postToFB", method = RequestMethod.POST)
+    public @ResponseBody PostValue
+    postToFacebook(HttpSession session, HttpServletRequest request,
+                   @RequestBody List<PostValue> pagesToPostTo) throws IOException {
         String token = (String) session.getAttribute(SocialController.FACEBOOK_ACCESS_TOKEN);
         if (token == null) {
-            String loginUrl = fbCommunicator.getLoginUrl(SocialController.getRedirectUrl(request));
-            session.setAttribute("returnPage", "/schedule/postToFB");
-            return "redirect:" + loginUrl;
+            throw new RuntimeException("Not logged in to Facebook.");
         }
-        if (!fbCommunicator.hasPermissions(token, "manage_pages", "publish_pages")) {
-            String getPostPermissionUrl = fbCommunicator.getLoginUrl(SocialController.getRedirectUrl(request),
-                    "manage_pages", "publish_pages");
-            session.setAttribute("returnPage", "/schedule/postToFB");
-            return "redirect:" + getPostPermissionUrl;
-        }
-        Map pageInfo = fbCommunicator.getPageInfo(token);
-        String pageAccessToken = (String) pageInfo.get("access_token");
-        String pageId = (String) pageInfo.get("id");
+        List<Map> pageInfoList = fbCommunicator.getPageInfo(token);
         Long sessionScheduleId = (Long) session.getAttribute("postScheduleId");
-        session.removeAttribute("postScheduleId");
         Schedule schedule = scheduleRepository.findOne(sessionScheduleId);
-        fbCommunicator.postToPage(pageId, pageAccessToken, PostFormatter.formatPost(schedule));
-        Long orgId = schedule.getOrganization().getId();
-        model.addAttribute("currentSchedules", scheduleRepository.findByOrganizationId(orgId));
-        return "redirect:/schedule/list";
+        for (Map pageInfo : pageInfoList) {
+            String pageAccessToken = (String) pageInfo.get("access_token");
+            String pageId = (String) pageInfo.get("id");
+            for (PostValue postValue : pagesToPostTo) {
+                if (pageId.equals(postValue.name) && "on".equals(postValue.value)) {
+                    fbCommunicator.postToPage(pageId, pageAccessToken, PostFormatter.formatPost(schedule));
+                }
+            }
+        }
+        return new PostValue("result", "Post OK");
+    }
+
+    public static class PostValue {
+        public PostValue() {
+        }
+
+        public PostValue(String name, String value) {
+            this.name = name;
+            this.value = value;
+        }
+
+        public String name;
+        public String value;
     }
 }

@@ -1,6 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="admin/adminLayout :: adhtmlhead"></head>
+<head th:include="admin/adminLayout :: adhtmlhead">
+</head>
+    <script src="/webjars/jquery/2.0.3/jquery.min.js"></script>
+    <script>
+        // <![CDATA[
+        $(document).ready(function() {
+            var facebookLogin = function() {
+                window.open("/social/facebook/loginForPosting");
+            };
+            var submitFacebookPost = function () {
+                var form = $(this).parent().parent();
+                var serializedForm = form.serializeArray();
+                console.log(serializedForm);
+                $.ajax({
+                    url: '/schedule/postToFB',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    data: JSON.stringify(serializedForm),
+                    type: 'POST',
+                    async: false,
+                    success: function () {
+                        alert('Posted to Facebook!');
+                    },
+                    error: function(jqXHR) {
+                        alert('Error posting to pages: ' + jqXHR.responseText);
+                    }
+                });
+                return false;
+            };
+            var facebookPost = function() {
+                var buttonElement = $(this);
+                var postScheduleId = buttonElement.data("schedule_id");
+                $.ajax("/schedule/fbPageList?postScheduleId=" + postScheduleId)
+                        .done(function(data) {
+                            var spanElement = buttonElement.parent().next();
+                            spanElement.html(data);
+                            spanElement.find("a").click(submitFacebookPost);
+                            spanElement.show();
+                        })
+                        .fail(function(jqXHR) {
+                            alert('Error getting page list: ' + jqXHR.responseText);
+                        });
+            };
+            $.ajax("/social/facebook/isLoggedIn")
+                    .done(function(data) {
+                        var isLoggedIn = data;
+                        var postButton = $(".fbPost");
+                        if (isLoggedIn) {
+                            postButton.html('Post to FB');
+                            postButton.click(facebookPost);
+                        }
+                        else {
+                            postButton.html('Login to FB');
+                            postButton.click(facebookLogin);
+                        }
+                    })
+                    .fail(function(jqXHR) {
+                        alert("Error checking FaceBook login: " + jqXHR.responseText);
+                    });
+        });
+        // ]]>
+    </script>
 <body>
 <div th:replace="admin/adminLayout :: adNavbar">(adNavbar)</div>
 <div class="container">
@@ -37,7 +100,10 @@
                     <td th:text="${schedule.wodDate}"></td>
                     <td th:text="${schedule.workout}"></td>
                     <td><a th:href="@{/schedule/edit(id=${schedule.id})}" class="btn btn-primary">Edit</a></td>
-                    <td><a th:href="@{/schedule/postToFB(id=${schedule.id})}" class="btn btn-primary">Post to FB</a></td>
+                    <td><span class="btn btn-primary fbPost"
+                           th:attr="data-schedule_id=${schedule.id}">Post to FB</span>
+                    </td>
+                    <td><div class="messagepop pop"></div></td>
                 </tr>
             </table>
         </div>

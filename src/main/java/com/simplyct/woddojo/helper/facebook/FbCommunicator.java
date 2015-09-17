@@ -76,16 +76,13 @@ public class FbCommunicator {
         return true;
     }
 
-    public Map getPageInfo(String accessToken) {
+    public List<Map> getPageInfo(String accessToken) {
         String checkUrl = buildUrl(BASE_URL + "me/accounts", "access_token");
         Map<String, String> params = buildParamMap("access_token", accessToken);
         RestTemplate restTemplate = new RestTemplate();
         FbDataResponse response = restTemplate.getForObject(checkUrl,
                         FbDataResponse.class, params);
-        if (response.getData().size() > 0) {
-            return (Map) response.getData().get(0);
-        }
-        return null;
+        return response.getData();
     }
 
     public void postToPage(String pageId, String pageAccessToken, String contents) {
@@ -98,6 +95,7 @@ public class FbCommunicator {
         } catch (HttpStatusCodeException e) {
             System.out.println("Response error code: " + e.getStatusText());
             System.out.println("Error message from posting to facebook: " + e.getResponseBodyAsString());
+            throw new RuntimeException(e.getResponseBodyAsString());
         }
     }
 

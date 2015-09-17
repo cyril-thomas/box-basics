@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<div>Select page(s) to post to</div>
+<div>
+    <form>
+        <div th:each="pageInfo : ${pageInfoList}">
+            <label>
+                <input type="checkbox" th:name="${pageInfo.id}"/>
+                <span th:text="${pageInfo.name}"></span>
+            </label>
+        </div>
+        <div>
+            <a href="#">Post</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
