@@ -19,7 +19,7 @@ import java.io.IOException;
  * Created by cyril on 6/29/15.
  */
 @Component
-@Profile({"stage", "production"})
+@Profile({"dev","stage", "production"})
 public class GymLocatorFilter implements Filter {
 
     @Autowired

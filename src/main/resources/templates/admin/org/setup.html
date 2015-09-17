@@ -11,7 +11,7 @@
         <!-- Bread crumb -->
 
         <div class="col-lg-12">
-            <h2 class="page-header">Brickwall</h2>
+            <h2 class="page-header"><span th:text="${#httpSession.getAttribute('gymName')}"></span></h2>
             <ol class="breadcrumb">
                 <li><a th:href="@{/org/landing}">Gym</a>
                 </li>

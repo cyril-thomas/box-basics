@@ -73,6 +73,13 @@ public class OrganizationController {
         return "admin/org/list";
     }
 
+    @RequestMapping(value = "/admin/edit", method = RequestMethod.GET)
+    public String adminEdit(Model model) {
+
+        model.addAttribute("organization", new Organization());
+        return "admin/org/edit";
+    }
+
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String edit(Model model,
                        HttpSession session,
@@ -88,23 +95,26 @@ public class OrganizationController {
         } else {
             Organization organization = organizationRepository.findOne(id);
             Home home = homeRepository.findByOrganizationId(organization.getId());
+            About about = aboutRepository.findByOrganizationId(organization.getId());
             model.addAttribute("organization", organization);
-            model.addAttribute("orgHome", home);
-            model.addAttribute("orgAbout", aboutRepository.findByOrganizationId(organization.getId()));
+            model.addAttribute("orgHome", home == null ? new Home() : home);
+            model.addAttribute("orgAbout", about == null ? new About() : about);
 
-            if (home.getLogoUrl() != null && !home.getLogoUrl().isEmpty()) {
-                String logoUrl = CDN_URL + home.getLogoUrl();
-                model.addAttribute("logoUrl", logoUrl);
-            }
+            if (home != null) {
+                if (home.getLogoUrl() != null && !home.getLogoUrl().isEmpty()) {
+                    String logoUrl = CDN_URL + "/" + home.getLogoUrl();
+                    model.addAttribute("logoUrl", logoUrl);
+                }
 
-            if (home.getBgUrl() != null && !home.getBgUrl().isEmpty()) {
-                String mainBgUrl = CDN_URL + home.getBgUrl();
-                model.addAttribute("mainBgUrl", mainBgUrl);
-            }
+                if (home.getBgUrl() != null && !home.getBgUrl().isEmpty()) {
+                    String mainBgUrl = CDN_URL + "/" + home.getBgUrl();
+                    model.addAttribute("mainBgUrl", mainBgUrl);
+                }
 
-            if (home.getAltBgUrl() != null && !home.getAltBgUrl().isEmpty()) {
-                String bgAltUrl = CDN_URL + home.getAltBgUrl();
-                model.addAttribute("bgAltUrl", bgAltUrl);
+                if (home.getAltBgUrl() != null && !home.getAltBgUrl().isEmpty()) {
+                    String bgAltUrl = CDN_URL + "/" + home.getAltBgUrl();
+                    model.addAttribute("bgAltUrl", bgAltUrl);
+                }
             }
         }
         return "admin/org/setup";
@@ -123,9 +133,12 @@ public class OrganizationController {
         model.addAttribute("message", "Updated!");
         organizationRepository.save(organization);
 
+        Home home = homeRepository.findByOrganizationId(organization.getId());
+        About about = aboutRepository.findByOrganizationId(organization.getId());
+
+        model.addAttribute("orgHome", home == null ? new Home() : home);
+        model.addAttribute("orgAbout", about == null ? new About() : about);
         model.addAttribute("organization", organization);
-        model.addAttribute("orgHome", homeRepository.findByOrganizationId(organization.getId()));
-        model.addAttribute("orgAbout", aboutRepository.findByOrganizationId(organization.getId()));
         return "admin/org/setup";
     }
 
@@ -176,7 +189,7 @@ public class OrganizationController {
                 dbHome.setVideoUrl(orgHome.getVideoUrl());
             }
             if (StringUtils.isNotEmpty(orgHome.getCss()) &&
-                    !dbHome.getCss().equalsIgnoreCase(orgHome.getCss())) {
+                    dbHome.getCss() == null || !dbHome.getCss().equalsIgnoreCase(orgHome.getCss())) {
                 dbHome.setCss(orgHome.getCss());
             }
             model.addAttribute("message", "Updated!");
@@ -201,7 +214,8 @@ public class OrganizationController {
 
         model.addAttribute("organization", orgHome.getOrganization());
         model.addAttribute("orgHome", orgHome);
-        model.addAttribute("orgAbout", aboutRepository.findByOrganizationId(orgHome.getOrganization().getId()));
+        About about = aboutRepository.findByOrganizationId(orgHome.getOrganization().getId());
+        model.addAttribute("orgAbout", about != null ? about : new About());
         return "admin/org/setup";
     }
 
@@ -300,8 +314,8 @@ public class OrganizationController {
 
         Long orgId = (Long) session.getAttribute("orgId");
         Organization organization = organizationRepository.findOne(orgId);
-        emailHelper.sendEmailToDeveloper(help,organization);
-        model.addAttribute("message","Help-desk has been contacted");
+        emailHelper.sendEmailToDeveloper(help, organization);
+        model.addAttribute("message", "Help-desk has been contacted");
         return "admin/org/help";
     }
 

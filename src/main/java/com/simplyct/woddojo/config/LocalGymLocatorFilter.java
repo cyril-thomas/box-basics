@@ -16,7 +16,7 @@ import java.io.IOException;
  * Created by cyril on 6/29/15.
  */
 @Component
-@Profile({"inmemory","dev"})
+@Profile({"inmemory"})
 public class LocalGymLocatorFilter implements Filter {
 
     @Override
