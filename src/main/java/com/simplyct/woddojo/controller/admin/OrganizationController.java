@@ -188,8 +188,8 @@ public class OrganizationController {
                     !dbHome.getVideoUrl().equalsIgnoreCase(orgHome.getVideoUrl())) {
                 dbHome.setVideoUrl(orgHome.getVideoUrl());
             }
-            if (StringUtils.isNotEmpty(orgHome.getCss()) &&
-                    dbHome.getCss() == null || !dbHome.getCss().equalsIgnoreCase(orgHome.getCss())) {
+            if (StringUtils.isNotEmpty(orgHome.getCss()) && (
+                    dbHome.getCss() == null || !dbHome.getCss().equalsIgnoreCase(orgHome.getCss()))) {
                 dbHome.setCss(orgHome.getCss());
             }
             model.addAttribute("message", "Updated!");
