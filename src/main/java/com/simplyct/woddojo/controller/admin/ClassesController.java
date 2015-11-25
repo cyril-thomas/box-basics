@@ -43,7 +43,7 @@ public class ClassesController {
         classes.setOrganization(organization);
         model.addAttribute("classes", classes);
 
-        model.addAttribute("coaches", coachRepository.findByUserOrganizationId(orgId));
+        model.addAttribute("coaches", coachRepository.findByUserOrganizationIdOrderByRankAsc(orgId));
         return "admin/classes/edit";
     }
 
@@ -63,7 +63,7 @@ public class ClassesController {
             model.addAttribute("classes", classes);
         }
 
-        model.addAttribute("coaches", coachRepository.findByUserOrganizationId(orgId));
+        model.addAttribute("coaches", coachRepository.findByUserOrganizationIdOrderByRankAsc(orgId));
         return "admin/classes/edit";
     }
 
@@ -84,7 +84,7 @@ public class ClassesController {
         classesRepository.save(classes);
 
         model.addAttribute("classes", classesRepository.findByOrganizationId(orgId));
-        model.addAttribute("coaches", coachRepository.findByUserOrganizationId(orgId));
+        model.addAttribute("coaches", coachRepository.findByUserOrganizationIdOrderByRankAsc(orgId));
 
         return "admin/classes/list";
     }

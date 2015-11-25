@@ -123,7 +123,7 @@ public class CoachController {
 
             imageUpload(orgId, coach, file);
         }
-        model.addAttribute("currentCoaches", coachRepository.findByUserOrganizationId(orgId));
+        model.addAttribute("currentCoaches", coachRepository.findByUserOrganizationIdOrderByRankAsc(orgId));
         return "admin/coach/list";
     }
 
@@ -163,7 +163,7 @@ public class CoachController {
     public String list(Model model,
                        HttpSession session) {
         Long orgId = (Long) session.getAttribute("orgId");
-        model.addAttribute("currentCoaches", coachRepository.findByUserOrganizationId(orgId));
+        model.addAttribute("currentCoaches", coachRepository.findByUserOrganizationIdOrderByRankAsc(orgId));
         return "admin/coach/list";
     }
 

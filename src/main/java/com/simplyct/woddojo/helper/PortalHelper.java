@@ -41,6 +41,12 @@ public class PortalHelper {
     ServiceRepository serviceRepository;
 
     @Autowired
+    PricingRepository pricingRepository;
+
+    @Autowired
+    ClassesRepository classesRepository;
+
+    @Autowired
     ScheduleRepository scheduleRepository;
 
     @Autowired
@@ -106,7 +112,7 @@ public class PortalHelper {
     }
 
     public List<CoachDetail> getCoaches(Long orgId) {
-        List<Coach> coaches = coachRepository.findByUserOrganizationId(orgId);
+        List<Coach> coaches = coachRepository.findByUserOrganizationIdOrderByRankAsc(orgId);
         return coaches.stream()
                       .map(e -> new CoachDetail(cdnUrl, e))
                       .collect(Collectors.toList());
@@ -135,6 +141,21 @@ public class PortalHelper {
                        .map(e -> new ServiceDetail(e))
                        .collect(Collectors.toList());
     }
+
+
+    public List<PricingDto> getPricing(Long orgId) {
+        List<Pricing> pricing = pricingRepository.findByOrganizationId(orgId);
+        return pricing.stream()
+                      .map(e -> new PricingDto(e))
+                      .collect(Collectors.toList());
+    }
+
+    public List<ClassesDto> getClasses(Long orgId) {
+        List<Classes> klasses = classesRepository.findByOrganizationId(orgId);
+        return klasses.stream()
+                      .map(e -> new ClassesDto(e))
+                      .collect(Collectors.toList());
+    }
     
     public void loadHomePage(Model model, Long orgId, HttpSession httpSession){
         HomePage homePage = getHomePage(orgId);
@@ -154,6 +175,12 @@ public class PortalHelper {
 
         List<ServiceDetail> services = getServices(orgId);
         model.addAttribute("services", services);
+
+        List<PricingDto> pricing = getPricing(orgId);
+        model.addAttribute("pricing", pricing);
+
+        List<ClassesDto> classes = getClasses(orgId);
+        model.addAttribute("klasses", classes);
 
         if (httpSession.getAttribute("INSTAGRAM_OBJECT") == null) {
             model.addAttribute("feed", null);

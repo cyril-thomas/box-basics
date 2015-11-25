@@ -39,4 +39,7 @@ public class Coach {
 
     @Column(name = "linkedIn")
     String linkedIn;
+
+    @Column(name = "rank")
+    Integer rank;
 }

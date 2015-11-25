@@ -21,17 +21,18 @@ insert into "user"(user_id,first_name,last_name,user_email,user_phone,org_id) va
 --Coaches
 insert into "user"(user_id,first_name,last_name,user_email,user_phone,org_id,password,role) values
 (-7,'John','Wayne','johnwayne@woddojo.com','2313123123',-1,'$2a$10$GhF3KXpSQMvUenBHemWkXui7mqXWu9/YDrgeriz0KrmGugABOQswu','COACH');
+--hello
 insert into "user"(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (-8,'Rocky','Balboa','ironfist@woddojo.com','2313123123',-1);
 insert into "user"(user_id,first_name,last_name,user_email,user_phone,org_id) values
 (-9,'Conan','Destroyer','conanthedestroyer@woddojo.com','2313123123',-1);
 
-insert into coach(coach_id,user_id,job_title,description,profile_pic) values
-(-1,-7,'Head Coach','Wild wild west certified, bad-ass with gun slinging skills','/org/1/coach/1/original1.jpg');
-insert into coach(coach_id,user_id,job_title,description,profile_pic) values
-(-2,-8,'Asst Coach','Boxing camp has won over 5 world championships, has a lisp that is hard to not notice','/org/1/coach/2/original1.jpg');
-insert into coach(coach_id,user_id,job_title,description,profile_pic) values
-(-3,-9,'Cardio Coach','Rides horses and swings the sword','/org/1/coach/3/original1.jpg');
+insert into coach(coach_id,user_id,job_title,description,profile_pic, rank) values
+(-1,-7,'Head Coach','Wild wild west certified, bad-ass with gun slinging skills','/org/1/coach/1/original1.jpg',1);
+insert into coach(coach_id,user_id,job_title,description,profile_pic,rank) values
+(-2,-8,'Asst Coach','Boxing camp has won over 5 world championships, has a lisp that is hard to not notice','/org/1/coach/2/original1.jpg',2);
+insert into coach(coach_id,user_id,job_title,description,profile_pic,rank) values
+(-3,-9,'Cardio Coach','Rides horses and swings the sword','/org/1/coach/3/original1.jpg',3);
 
 -- Wods
 insert into wod(wod_id,name,description,notes) values
@@ -122,3 +123,10 @@ insert into custom_link(custom_link_id,link_name, link_url,org_id)
 values(-1,'Our Blog','/blogs',-1);
 insert into custom_link(custom_link_id,link_name, link_url,org_id)
 values(-2,'Johns Advice','/post?id=-1',-1);
+
+insert into pricing(price_id, org_id, membership_level, cost)
+values(-1,-1,'Gold level membership',120.00)
+insert into pricing(price_id, org_id, membership_level, cost)
+values(-2,-1,'Silver level membership',110.00)
+insert into pricing(price_id, org_id, membership_level, cost)
+values(-3,-1,'Bronze level membership',100.00)

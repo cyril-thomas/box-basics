@@ -1,6 +1,7 @@
 package com.simplyct.woddojo.repository;
 
-import com.simplyct.woddojo.model.Coach;
+import com.simplyct.woddojo.model.Blog;
+import com.simplyct.woddojo.model.Pricing;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * Created by cyril on 6/30/15.
  */
 @Repository
-public interface CoachRepository extends CrudRepository<Coach, Long> {
+public interface PricingRepository extends CrudRepository<Pricing, Long> {
 
-    public List<Coach> findByUserOrganizationIdOrderByRankAsc(Long orgId);
+    public List<Pricing> findByOrganizationId(Long orgId);
 }

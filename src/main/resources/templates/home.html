@@ -37,7 +37,10 @@
         <div class="coachblock text-center">
             <div class="coachblock_container" th:each="coach : ${coaches}">
                 <div class="thumbnail">
-                    <img class="img-responsive" th:src="${coach.picUrl}" alt=""/>
+                    <img th:if="${not #strings.isEmpty(coach.picUrl)}" class="img-responsive" th:src="${coach.picUrl}"
+                         alt=""/>
+                    <img th:if="${#strings.isEmpty(coach.picUrl)}" class="img-responsive"
+                         src="http://placehold.it/700x450" alt=""/>
 
                     <div class="caption">
                         <h3><span th:text="${coach.firstName}"></span>
@@ -95,12 +98,40 @@
                 </div>
             </div>
         </div>
+        <br/><br/>
+        <!-- Membership -->
+        <div class="text-center">
+            <hr class="primary"/>
+            <a class="btn btn-success btn-xl"
+               role="button" data-toggle="collapse" href="#collapsePricing"
+               aria-expanded="false" aria-controls="collapsePricing">Memberships</a>
+            <br/>
+            <div id="collapsePricing" class="collapse container">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Level</th>
+                            <th>Pricing</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
+                        <tr th:each="pricingDto : ${pricing}">
+                            <td><span th:text="${pricingDto.level}"></span></td>
+                            <td>$ <span th:text="${pricingDto.cost}"></span> per month</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
 <section id="wod">
     <h2 class="text-center">Workout</h2>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -117,7 +148,7 @@
             </div>
         </div>
     </div>
-<!-- Announcements -->
+    <!-- Announcements -->
     <div th:if="${homeObj.announcements != null and homeObj.announcements.size() > 0}">
         <div id="announcements">
             <h2 class="text-center">Announcements</h2>
@@ -142,6 +173,35 @@
         </div>
     </div>
     <br/><br/>
+
+    <!-- Klasses -->
+    <div class="text-center">
+        <a class="btn btn-success btn-xl"
+           role="button" data-toggle="collapse" href="#collapseKlasses"
+           aria-expanded="false" aria-controls="collapsePricing">Class Timings</a>
+        <br/>
+        <div id="collapseKlasses" class="collapse container">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Coach</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="klass : ${klasses}">
+                        <td> <span th:text="${klass.name}"></span></td>
+                        <td th:text="${klass.description}"></td>
+                        <td th:text="${klass.coach}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="no-padding" id="social">
@@ -318,7 +378,7 @@
                 <p>Ready to start your transformation with us? That's great! Give us a call, come visit us or send us an
                     message!</p>
             </div>
-            
+
             <div class="Contact text-left">
                 <form id="contactForm"
                       method="post"
@@ -354,7 +414,8 @@
                         <div class="controls">
                             <label>Message:</label>
                             <textarea rows="10" cols="100" class="form-control" id="message" th:field="*{message}"
-                                      placeholder="Please enter your message, max characters allowed is 999 characters" maxlength="999"
+                                      placeholder="Please enter your message, max characters allowed is 999 characters"
+                                      maxlength="999"
                                       style="resize:none"></textarea>
                         </div>
                     </div>
@@ -437,6 +498,7 @@
 	  });
 
 }); // end document.ready
+
 
 </script>
 

@@ -160,11 +160,29 @@
                 <div class="media-body">
                     <h4 class="media-heading">Payments</h4>
 
-                    <p>Edit and Manage the payments you provide at your dojo</p>
+                    <p>Edit and Manage the payments you provide at your gym</p>
                     <a th:href="@{/payments/list}" class="btn btn-primary">Setup</a>
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="media">
+                <div class="pull-left">
+                        <span class="fa-stack fa-2x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-dollar fa-stack-1x fa-inverse"></i>
+                        </span>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">Pricing</h4>
+
+                    <p>Edit and Manage the membership costs at your gym</p>
+                    <a th:href="@{/pricing/list}" class="btn btn-primary">Setup</a>
+                </div>
+            </div>
+        </div>
+
+
         <div class="col-md-4">
             <div class="media">
                 <div class="pull-left">
@@ -181,43 +199,44 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="media">
-            <div class="pull-left">
+        <div class="col-md-4">
+            <div class="media">
+                <div class="pull-left">
                     <span class="fa-stack fa-2x">
                           <i class="fa fa-circle fa-stack-2x text-primary"></i>
                           <i class="fa fa-book fa-stack-1x fa-inverse"></i>
                     </span>
-            </div>
-            <div class="media-body">
-                <h4 class="media-heading">Custom Page</h4>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">Custom Page</h4>
 
-                <p>Add custom pages to your site, link it to a blog post</p>
-                <a th:href="@{/custom/list}" class="btn btn-primary">Setup</a>
+                    <p>Add custom pages to your site, link it to a blog post</p>
+                    <a th:href="@{/custom/list}" class="btn btn-primary">Setup</a>
+                </div>
             </div>
         </div>
-    </div>
 
 
 
-    <!-- Help -->
-    <div class="col-md-4">
-        <div class="media">
-            <div class="pull-left">
+        <!-- Help -->
+        <div class="col-md-4">
+            <div class="media">
+                <div class="pull-left">
                     <span class="fa-stack fa-2x">
                           <i class="fa fa-circle fa-stack-2x text-primary"></i>
                           <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
                     </span>
-            </div>
-            <div class="media-body">
-                <h4 class="media-heading">Help</h4>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">Help</h4>
 
-                <p>Contact your developer</p>
-                <a th:href="@{/org/help}" class="btn btn-primary">Contact</a>
+                    <p>Contact your developer</p>
+                    <a th:href="@{/org/help}" class="btn btn-primary">Contact</a>
+                </div>
             </div>
         </div>
     </div>
+
 
     <div th:include="admin/adminLayout :: adFooter" id="adFooter">(adFooter)</div>
 </div>
