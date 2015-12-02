@@ -66,7 +66,7 @@ public class CoachController {
                        @RequestParam(value = "id", required = false) Long id) {
         if (id != null) {
             Coach coach = coachRepository.findOne(id);
-            String imageUrl = CDN_URL+coach.getProfilePic();
+            String imageUrl = CDN_URL + coach.getProfilePic();
             model.addAttribute("coach", coach);
             model.addAttribute("imageUrl", imageUrl);
         } else {
@@ -94,6 +94,13 @@ public class CoachController {
             model.addAttribute("errors", result.getAllErrors());
             return "admin/coach/edit";
         }
+
+        Integer maxRank = coachRepository.findMaxRank(orgId);
+
+        if(maxRank == null)
+            maxRank = 0;
+
+
         if (coach.getId() == null) {
 
             if (StringUtils.isNotEmpty(coach.getUser().getPassword())) {
@@ -102,8 +109,9 @@ public class CoachController {
             }
 
             coach.getUser().setRole(User.UserRole.COACH.name());
+            coach.setRank(maxRank  + 1);
             coachRepository.save(coach);
-        }else {
+        } else {
 
             Coach dbValue = coachRepository.findOne(coach.getId());
             if (coach.getProfilePic() == null) {
@@ -116,6 +124,10 @@ public class CoachController {
                 String encryptedPassword = passwordEncoder.encode(coach.getUser().getPassword());
                 coach.getUser().setPassword(encryptedPassword);
             }
+            if (coach.getRank() == null || coach.getRank() == 0) {
+                coach.setRank(maxRank + 1);
+            }
+
             coach.getUser().setRole(User.UserRole.COACH.name());
             coachRepository.save(coach);
         }
