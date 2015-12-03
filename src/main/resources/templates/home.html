@@ -37,7 +37,6 @@
         <div class="coachblock text-center">
             <div class="coachblock_container" th:each="coach : ${coaches}">
                 <div class="thumbnail">
-                    <span th:text="${coach.picUrl}"/>
                     <img th:if="${not #strings.isEmpty(coach.picUrl)}" class="img-responsive" th:src="${coach.picUrl}"
                          alt=""/>
                     <img th:if="${#strings.isEmpty(coach.picUrl)}" class="img-responsive"
