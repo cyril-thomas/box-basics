@@ -109,7 +109,6 @@ public class CoachController {
             }
 
             coach.getUser().setRole(User.UserRole.COACH.name());
-            coach.setRank(maxRank  + 1);
             coachRepository.save(coach);
         } else {
 

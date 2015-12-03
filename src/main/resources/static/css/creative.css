@@ -555,7 +555,7 @@ body {
     border-radius: 4px;
     border-right: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.2);
-    font-size: 1.5em;
+    /*font-size: 1.5em;*/
     line-height: 2em;
     max-width: 700px;
     padding: 40px 20px;
@@ -591,11 +591,11 @@ body {
     margin: 0 10px;
     text-align: center;
     vertical-align: top;
-    width: 290px;
+    width: 350px;
 }
 #instagramHeader{height:88px;}
 #instagramHeader h2{color:#f1f1f1}
-.thumbnail{  min-height: 446px;}
+.thumbnail{  height: 710px;}
 .thumbnail .caption {
     min-height: 150px;
     
@@ -605,6 +605,10 @@ body {
     top: 50px;
 }
 
+.thumbnail .caption {
+    max-height: 350px;
+    overflow: scroll;
+}
  a:hover, a:focus{
     color:#53ba21;
 }
@@ -756,6 +760,13 @@ header .header-content .header-content-inner div{
     padding: 19px;
 }
 .media-heading{color:#42891f}
+
+.table{
+    margin: 20px auto;
+    min-width: 463px;
+    text-align: left;
+    width: auto;
+}
 
 /*!
  * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
