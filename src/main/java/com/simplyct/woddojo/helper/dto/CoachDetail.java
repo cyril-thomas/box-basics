@@ -26,7 +26,9 @@ public class CoachDetail {
         this.email = coach.getUser().getEmail();
         this.intro = coach.getDescription();
         this.jobTitle = coach.getJobTitle();
-        this.picUrl = cdnUrl + coach.getProfilePic();
+        if (coach.getProfilePic() != null) {
+            this.picUrl = cdnUrl + coach.getProfilePic();
+        }
         this.fbUrl = coach.getFacebookLink();
         this.twitter = coach.getTwitterLink();
         this.linIn = coach.getLinkedIn();
