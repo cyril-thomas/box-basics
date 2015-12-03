@@ -591,7 +591,7 @@ body {
     margin: 0 10px;
     text-align: center;
     vertical-align: top;
-    width: 350px;
+    max-width: 350px;
 }
 #instagramHeader{height:88px;}
 #instagramHeader h2{color:#f1f1f1}
@@ -602,10 +602,10 @@ body {
 }
 .thumbnail a{
     position: relative;
-    top: 50px;
+    top: 10px;
 }
 
-.thumbnail .caption {
+.thumbnail .caption .text{
     max-height: 350px;
     overflow: scroll;
 }
