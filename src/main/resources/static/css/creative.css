@@ -595,11 +595,14 @@ body {
 }
 #instagramHeader{height:88px;}
 #instagramHeader h2{color:#f1f1f1}
-.thumbnail{  height: 710px;}
+.thumbnail {
+    max-height: 710px;
+}
+
 .thumbnail .caption {
     min-height: 150px;
-    
 }
+
 .thumbnail a{
     position: relative;
     top: 10px;
@@ -607,7 +610,7 @@ body {
 
 .thumbnail .caption .text{
     max-height: 350px;
-    overflow: scroll;
+    overflow: auto;
 }
  a:hover, a:focus{
     color:#53ba21;
