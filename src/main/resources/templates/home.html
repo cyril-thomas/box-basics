@@ -107,22 +107,12 @@
                aria-expanded="false" aria-controls="collapsePricing">Memberships</a>
             <br/>
             <div id="collapsePricing" class="collapse container">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Level</th>
-                            <th>Pricing</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        <tr th:each="pricingDto : ${pricing}">
-                            <td><span th:text="${pricingDto.level}"></span></td>
-                            <td>$ <span th:text="${pricingDto.cost}"></span> per month</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div id="pricing">
+                <br/><br/>
+                    <div class="gridBlock membership" th:each="pricingDto : ${pricing}">
+                        <h3 class="pricingValue" th:text="${pricingDto.level}"></h3>
+                        <p class="pricingValue" th:text="'$'+${#numbers.formatDecimal(pricingDto.cost, 0, 'COMMA', 2, 'POINT')}+' per month'"></p> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -178,34 +168,15 @@
     <div class="text-center">
         <a class="btn btn-success btn-xl"
            role="button" data-toggle="collapse" href="#collapseKlasses"
-           aria-expanded="false" aria-controls="collapseKlasses">Class Timings</a>
+           aria-expanded="false" aria-controls="collapseKlasses">Class Schedules</a>
         <br/><br/>
         <div id="collapseKlasses" class="collapse container">
-            <!--<div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Coach</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+            <div class="gridparent">
+                <h2>Class Schedule</h2>
 
-                    <tr th:each="klass : ${klasses}">
-                        <td> <span th:text="${klass.name}"></span></td>
-                        <td th:text="${klass.description}"></td>
-                        <td th:text="${klass.coach}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>-->
-            <div id="ClassSchedule">
-                <h2>CLASS SCHEDULE</h2>
-
-                <div class="classBlock" th:each="klass : ${klasses}">
+                <div class="gridBlock" th:each="klass : ${klasses}">
                     <h3>When:</h3><p th:text="${klass.name}"></p>
-                    <h3>Description:</h3><p class="descripBlock" th:text="${klass.description}"></p>
+                    <h3>Description:</h3><p class="gridDescripBlock" th:text="${klass.description}"></p>
                     <h3>Coach:</h3><p class="noBorder" th:text="${klass.coach}"></p>
                 </div>
             </div>
