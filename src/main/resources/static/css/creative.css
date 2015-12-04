@@ -893,21 +893,25 @@ header .header-content .header-content-inner div{
     background: none;
 }
 
-#ClassSchedule{
-	max-width:800px;
+
+/**
+* Class and membership blocks
+**/
+.gridparent{
 	width:auto;
 	margin:auto;
 	text-align:center;
-	padding:10px 15px;
 	background-color:#fff;
 	border: 1px solid #dddddd;
 }
 
-#ClassSchedule h2{
-	margin:5px;padding:0px;
+.gridparent h2{
+	margin:5px;
+    padding:0px;
+    color: #666;
 }
 
-.classBlock{
+.gridBlock {
     width:200px;
     padding:5px;
     background-color:#fff;
@@ -920,19 +924,48 @@ header .header-content .header-content-inner div{
 	overflow:auto;
 }
 
-.classBlock h3{
+.gridBlock h3{
     font-size:1em;
     margin:6px 8px 0px;
+    font-weight: bold;
 }
 
-.descripBlock{
+.gridDescripBlock{
     max-height:55px;
     overflow:auto;
+}
+
+.gridDescripBlock p{
+    font-size: 0.8em;
+    margin: 0;
+    padding: 3px 5px 3px 8px;
+    text-align: left;
 }
 
 p.noBorder{
     border-bottom:none;
 }
+
+#pricing{
+    max-width: 500px;
+    margin: auto;
+
+}
+
+.membership {
+    width: 100%;
+    height: auto;
+
+}
+
+.pricingValue{
+    display: block;
+    float: left;
+    width: 45%;
+    font-size: 12px;
+    line-height: 14px;
+}
+
 
 @media(min-width:768px) {
     #wrapper {
