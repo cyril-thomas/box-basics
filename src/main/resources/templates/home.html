@@ -181,7 +181,7 @@
            aria-expanded="false" aria-controls="collapseKlasses">Class Timings</a>
         <br/><br/>
         <div id="collapseKlasses" class="collapse container">
-            <div class="table-responsive">
+            <!--<div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -199,8 +199,17 @@
                     </tr>
                     </tbody>
                 </table>
+            </div>-->
+            <div id="ClassSchedule">
+                <h2>CLASS SCHEDULE</h2>
+
+                <div class="classBlock" th:each="klass : ${klasses}">
+                    <h3>When:</h3><p th:text="${klass.name}"></p>
+                    <h3>Description:</h3><p class="descripBlock" th:text="${klass.description}"></p>
+                    <h3>Coach:</h3><p class="noBorder" th:text="${klass.coach}"></p>
+                </div>
             </div>
-        </div>
+            </div>
     </div>
 </section>
 
