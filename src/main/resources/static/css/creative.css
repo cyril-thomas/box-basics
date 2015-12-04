@@ -893,6 +893,47 @@ header .header-content .header-content-inner div{
     background: none;
 }
 
+#ClassSchedule{
+	max-width:800px;
+	width:auto;
+	margin:auto;
+	text-align:center;
+	padding:10px 15px;
+	background-color:#fff;
+	border: 1px solid #dddddd;
+}
+
+#ClassSchedule h2{
+	margin:5px;padding:0px;
+}
+
+.classBlock{
+    width:200px;
+    padding:5px;
+    background-color:#fff;
+    border: 1px solid #dddddd;
+    line-height: 1.42857;
+    padding: 5px;
+	height:215px;
+	display:inline-block;
+	text-align:left;
+	overflow:auto;
+}
+
+.classBlock h3{
+    font-size:1em;
+    margin:6px 8px 0px;
+}
+
+.descripBlock{
+    max-height:55px;
+    overflow:auto;
+}
+
+p.noBorder{
+    border-bottom:none;
+}
+
 @media(min-width:768px) {
     #wrapper {
         padding-left: 250px;
